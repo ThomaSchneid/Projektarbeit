@@ -67,7 +67,6 @@ def diagonal_bottom_left(pos, img):
 def diagonal_bottom_right(pos, img):
     list = [0, 1]
     sum_diagonal = 0
-    average_diagonal = 0
     for a in list:
         sum_diagonal += img[pos[0] + a][pos[1] + 1]
 

@@ -32,5 +32,6 @@ def direction(pos, img):
     pos = (result[0][0], result[0][1])
     return
 
-oben_unten(japan())
-print(direction((1,1), japan()))
+def test
+    oben_unten(japan())
+    print(direction((1,1), japan()))
