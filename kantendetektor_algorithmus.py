@@ -15,6 +15,7 @@ def oben_unten(img):
     print('diagonal_bottom_right', diagonal_bottom_right(pos, img))
 
 def direction(pos, img):
+    oben_unten(img)
     direction = np.zeros((3,3))
     direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
     direction[0][1] = top(pos, img) - bottom(pos, img)
@@ -24,13 +25,14 @@ def direction(pos, img):
     direction[2][0] = - direction[0][2]
     direction[2][1] = - direction[0][1]
     direction[2][2] = - direction[0][0]
+    print('direction',direction)
 
-    max = np.where(direction == np.amax(direction))
-    print('max',max)
-    result = list(zip(max[0], max[1]))
+    min = np.where(direction == np.amin(direction))
+    print('max',min)
+    result = list(zip(min[0], min[1]))
     print('result', result)
     pos = (result[0][0], result[0][1])
-    return
+    return direction, pos
 
 oben_unten(japan())
-print(direction((1,1), japan()))
+direction((1,1), japan())
