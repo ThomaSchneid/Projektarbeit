@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import xlwt
 from xlwt import Workbook
 import time
 
