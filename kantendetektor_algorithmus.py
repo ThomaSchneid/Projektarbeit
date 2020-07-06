@@ -25,14 +25,39 @@ def direction(pos, img):
     direction[2][0] = - direction[0][2]
     direction[2][1] = - direction[0][1]
     direction[2][2] = - direction[0][0]
-    print('direction',direction)
+    print('direction', direction)
 
     min = np.where(direction == np.amin(direction))
-    print('max',min)
+    print('max', min)
     result = list(zip(min[0], min[1]))
     print('result', result)
-    pos = (result[0][0], result[0][1])
-    return direction, pos
+    direct = (result[0][0], result[0][1])
+    print('direct', direct)
+    return direct
+
+def check_next_pixel(pos, img):
+    direct = direction(pos, img)
+    if direct[0] == 0:
+        if direct[1] == 0:
+            next = (pos[0] - 1, pos[1] - 1)
+        elif direct[1] == 1:
+            next = (pos[0] - 1, pos[1])
+        else:
+            next = (pos[0] - 1, pos[1] + 1)
+    elif direct[0] == 1:
+        if direct[1] == 0:
+            next = (pos[0], pos[1] - 1)
+        else:
+            next = (pos[0], pos[1] + 1)
+    else:
+        if direct[1] == 0:
+            next = (pos[0] + 1, pos[1] - 1)
+        elif direct[1] == 1:
+            next = (pos[0] + 1, pos[1])
+        else:
+            next = (pos[0] +1, pos[1] + 1)
+    print('next', next)
+    return next
 
 oben_unten(japan())
 direction((1,1), japan())
