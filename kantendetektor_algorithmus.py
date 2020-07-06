@@ -28,7 +28,7 @@ def direction(pos, img):
     print('direction', direction)
 
     min = np.where(direction == np.amin(direction))
-    print('max', min)
+    print('min', min)
     result = list(zip(min[0], min[1]))
     print('result', result)
     direct = (result[0][0], result[0][1])
@@ -36,26 +36,49 @@ def direction(pos, img):
     return direct
 
 def check_next_pixel(pos, img):
+    y = img.shape[0]
+    x = img.shape[1]
     direct = direction(pos, img)
+    # check if next pixel should go up
     if direct[0] == 0:
-        if direct[1] == 0:
-            next = (pos[0] - 1, pos[1] - 1)
-        elif direct[1] == 1:
-            next = (pos[0] - 1, pos[1])
+        # check if we are at the top border
+        if pos[0] != 0:
+            if direct[1] == 0:
+                next = (pos[0] - 1, pos[1] - 1)
+            elif direct[1] == 1:
+                next = (pos[0] - 1, pos[1])
+            else:
+                next = (pos[0] - 1, pos[1] + 1)
+        # if we are at the top border try to go left
+        elif pos[1] != 0:
+            next = (pos[0], pos[1] - 1)
+        # if we are also the the left border go down
         else:
-            next = (pos[0] - 1, pos[1] + 1)
+            next = (pos[0] + 1, pos[1])
+    # check if next pixel should be left or right
     elif direct[0] == 1:
-        if direct[1] == 0:
+        # just check if we are at the left border, if yes go right
+        if direct[1] == 0 and pos[1] != 0:
             next = (pos[0], pos[1] - 1)
         else:
             next = (pos[0], pos[1] + 1)
+    # if no case matched the direction has to be downwards
     else:
-        if direct[1] == 0:
-            next = (pos[0] + 1, pos[1] - 1)
-        elif direct[1] == 1:
-            next = (pos[0] + 1, pos[1])
+        # check if we are at the bottom border
+        if pos[0] < y:
+            if direct[1] == 0:
+                next = (pos[0] + 1, pos[1] - 1)
+            elif direct[1] == 1:
+                next = (pos[0] + 1, pos[1])
+            else:
+                next = (pos[0] +1, pos[1] + 1)
+        # if we are at the bottom border try to move left
+        elif pos[1] != 0:
+            next = (pos[0, pos[1] - 1])
+        # if we are also at the left border move up
         else:
-            next = (pos[0] +1, pos[1] + 1)
+            next = (pos[0] + 1, pos[1])
+
     print('next', next)
     return next
 
