@@ -1,6 +1,8 @@
 from check_neighbours import *
 from bild_einlesen import *
 
+# TODO - Matrix Klon erstellen und Mittelwert der jew. Richtungspixel eintragen
+
 def oben_unten(img):
     x_limit = img.shape[1] - 1
     y_limit = img.shape[0] - 1
@@ -33,11 +35,10 @@ def direction(pos, img):
     print('result', result)
     direct = (result[0][0], result[0][1])
     print('direct', direct)
-    return direct
+    return direction
 
 def check_next_pixel(pos, img):
-    y = img.shape[0]
-    x = img.shape[1]
+    y-achse = img.shape[0]
     direct = direction(pos, img)
     # check if next pixel should go up
     if direct[0] == 0:
@@ -65,7 +66,7 @@ def check_next_pixel(pos, img):
     # if no case matched the direction has to be downwards
     else:
         # check if we are at the bottom border
-        if pos[0] < y:
+        if pos[0] < y-achse:
             if direct[1] == 0:
                 next = (pos[0] + 1, pos[1] - 1)
             elif direct[1] == 1:
@@ -80,7 +81,7 @@ def check_next_pixel(pos, img):
             next = (pos[0] + 1, pos[1])
 
     print('next', next)
-    return next
+    return direction
 
 oben_unten(japan())
 direction((1,1), japan())
