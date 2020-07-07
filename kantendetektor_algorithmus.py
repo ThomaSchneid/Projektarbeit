@@ -3,21 +3,7 @@ from bild_einlesen import *
 
 # TODO - Matrix Klon erstellen und Mittelwert der jew. Richtungspixel eintragen
 
-def oben_unten(img):
-    x_limit = img.shape[1] - 1
-    y_limit = img.shape[0] - 1
-    pos = (1,1)
-    print('top', top(pos, img))
-    print('bottom', bottom(pos, img))
-    print('left', left(pos, img))
-    print('right', right(pos, img))
-    print('diagonal_top_right', diagonal_top_right(pos, img))
-    print('diagonal_top_left', diagonal_top_left(pos, img))
-    print('diagonal_bottom_left', diagonal_bottom_left(pos, img))
-    print('diagonal_bottom_right', diagonal_bottom_right(pos, img))
-
 def direction(pos, img):
-    oben_unten(img)
     direction = np.zeros((3,3))
     direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
     direction[0][1] = top(pos, img) - bottom(pos, img)
@@ -28,60 +14,74 @@ def direction(pos, img):
     direction[2][1] = - direction[0][1]
     direction[2][2] = - direction[0][0]
     print('direction', direction)
-
-    min = np.where(direction == np.amin(direction))
-    print('min', min)
-    result = list(zip(min[0], min[1]))
-    print('result', result)
-    direct = (result[0][0], result[0][1])
-    print('direct', direct)
     return direction
 
-def check_next_pixel(pos, img):
-    y-achse = img.shape[0]
-    direct = direction(pos, img)
+def check_next_pixel(current_position, img):
+    y_achse = img.shape[0]
+    x_achse = img.shape[1]
+
+    # create clone matrix and store values in it
+    clone = np.zeros((y_achse, x_achse))
+    check_matrix = direction(current_position, img)
+
+    min = np.where(check_matrix == np.amin(check_matrix))
+    result = list(zip(min[0], min[1]))
+    direct = (result[0][0], result[0][1])
+    print('direct', direct)
+    print('current_position', current_position)
     # check if next pixel should go up
     if direct[0] == 0:
         # check if we are at the top border
-        if pos[0] != 0:
+        if current_position[0] != 0:
             if direct[1] == 0:
-                next = (pos[0] - 1, pos[1] - 1)
+                next_pixel_position = (current_position[0] - 1, current_position[1] - 1)
+                clone[current_position[0]][current_position[1]] = (check_matrix[0][0], 0)
             elif direct[1] == 1:
-                next = (pos[0] - 1, pos[1])
+                next_pixel_position = (current_position[0] - 1, current_position[1])
+                clone[current_position[0]][current_position[1]] = (check_matrix[0][1], 1)
             else:
-                next = (pos[0] - 1, pos[1] + 1)
+                next_pixel_position = (current_position[0] - 1, current_position[1] + 1)
+                clone[current_position[0]][current_position[1]] = (check_matrix[0][2], 2)
         # if we are at the top border try to go left
-        elif pos[1] != 0:
-            next = (pos[0], pos[1] - 1)
+        elif current_position[1] != 0:
+            next_pixel_position = (current_position[0], current_position[1] - 1)
+            clone[current_position[0]][current_position[1]] = (check_matrix[1][0], 3)
         # if we are also the the left border go down
         else:
-            next = (pos[0] + 1, pos[1])
+            next_pixel_position = (current_position[0] + 1, current_position[1])
+            clone[current_position[0]][current_position[1]] = (check_matrix[2][1], 6)
     # check if next pixel should be left or right
     elif direct[0] == 1:
         # just check if we are at the left border, if yes go right
-        if direct[1] == 0 and pos[1] != 0:
-            next = (pos[0], pos[1] - 1)
+        if direct[1] == 0 and current_position[1] != 0:
+            next_pixel_position = (current_position[0], current_position[1] - 1)
+            clone[current_position[0]][current_position[1]] = (check_matrix[1][0], 3)
         else:
-            next = (pos[0], pos[1] + 1)
+            next_pixel_position = (current_position[0], current_position[1] + 1)
+            clone[current_position[0]][current_position[1]] = (check_matrix[1][2], 4)
     # if no case matched the direction has to be downwards
     else:
         # check if we are at the bottom border
-        if pos[0] < y-achse:
+        if current_position[0] < y_achse:
             if direct[1] == 0:
-                next = (pos[0] + 1, pos[1] - 1)
+                next_pixel_position = (current_position[0] + 1, current_position[1] - 1)
+                clone[current_position[0]][current_position[1]] = (check_matrix[2][0], 5)
             elif direct[1] == 1:
-                next = (pos[0] + 1, pos[1])
+                next_pixel_position = (current_position[0] + 1, current_position[1])
+                clone[current_position[0]][current_position[1]] = (check_matrix[2][1], 6)
             else:
-                next = (pos[0] +1, pos[1] + 1)
+                next_pixel_position = (current_position[0] +1, current_position[1] + 1)
+                clone[current_position[0]][current_position[1]] = (check_matrix[2][2], 7)
         # if we are at the bottom border try to move left
-        elif pos[1] != 0:
-            next = (pos[0, pos[1] - 1])
+        elif current_position[1] != 0:
+            next_pixel_position = (current_position[0, current_position[1] - 1])
+            clone[current_position[0]][current_position[1]] = (check_matrix[1][0], 3)
         # if we are also at the left border move up
         else:
-            next = (pos[0] + 1, pos[1])
+            next_pixel_position = (current_position[0] + 1, current_position[1])
+            clone[current_position[0]][current_position[1]] = (check_matrix[0][1], 1)
 
-    print('next', next)
-    return direction
+    print('next_pixel_position', next_pixel_position)
+    return clone
 
-oben_unten(japan())
 direction((1,1), japan())
