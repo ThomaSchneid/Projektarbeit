@@ -23,9 +23,9 @@ def create_matrix(img):
 
     return img, y_achse, clone
 
-def check_next_pixel(current_position, b[0], b[1], b[2]):
+def check_next_pixel(current_position, b):
 
-    check_matrix = direction(current_position, img)
+    check_matrix = direction(current_position, b[0])
 
     min = np.where(check_matrix == np.amin(check_matrix))
     result = list(zip(min[0], min[1]))
@@ -38,61 +38,63 @@ def check_next_pixel(current_position, b[0], b[1], b[2]):
         if current_position[0] != 0:
             if direct[1] == 0:
                 next_pixel_position = (current_position[0] - 1, current_position[1] - 1)
-                b[3][current_position[0]][current_position[1]] = [check_matrix[0][0], 0]
+                b[2][current_position[0]][current_position[1]] = [check_matrix[0][0], 0]
             elif direct[1] == 1:
                 next_pixel_position = (current_position[0] - 1, current_position[1])
-                b[3][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
+                b[2][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
             else:
                 next_pixel_position = (current_position[0] - 1, current_position[1] + 1)
-                b[current_position[0]][current_position[1]] = [check_matrix[0][2], 2]
+                b[2][current_position[0]][current_position[1]] = [check_matrix[0][2], 2]
         # if we are at the top border try to go left
         elif current_position[1] != 0:
             next_pixel_position = (current_position[0], current_position[1] - 1)
-            b[current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
+            b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
         # if we are also the the left border go down
         else:
             next_pixel_position = (current_position[0] + 1, current_position[1])
-            b[current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
+            b[2][current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
     # check if next pixel should be left or right
     elif direct[0] == 1:
         # just check if we are at the left border, if yes go right
         if direct[1] == 0 and current_position[1] != 0:
             next_pixel_position = (current_position[0], current_position[1] - 1)
-            b[3][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
+            b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
         else:
             next_pixel_position = (current_position[0], current_position[1] + 1)
-            b[3][current_position[0]][current_position[1]] = [check_matrix[1][2], 4]
+            b[2][current_position[0]][current_position[1]] = [check_matrix[1][2], 4]
     # if no case matched the direction has to be downwards
     else:
         # check if we are at the bottom border
         if current_position[0] < b[1]:
             if direct[1] == 0:
                 next_pixel_position = (current_position[0] + 1, current_position[1] - 1)
-                b[3][current_position[0]][current_position[1]] = [check_matrix[2][0], 5]
+                b[2][current_position[0]][current_position[1]] = [check_matrix[2][0], 5]
             elif direct[1] == 1:
                 next_pixel_position = (current_position[0] + 1, current_position[1])
-                b[3][current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
+                b[2][current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
             else:
                 next_pixel_position = (current_position[0] +1, current_position[1] + 1)
-                b[3][current_position[0]][current_position[1]] = [check_matrix[2][2], 7]
+                b[2][current_position[0]][current_position[1]] = [check_matrix[2][2], 7]
         # if we are at the bottom border try to move left
         elif current_position[1] != 0:
             next_pixel_position = (current_position[0, current_position[1] - 1])
-            b[3][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
+            b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
         # if we are also at the left border move up
         else:
             next_pixel_position = (current_position[0] + 1, current_position[1])
-            b[3][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
+            b[2][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
 
     print('next_pixel_position', next_pixel_position)
-    print('clone', clone)
+    #print('clone', b[2])
 
     return next_pixel_position
 
 x = 0
-a = (1, 1)
+current_position = (1, 1)
 b = create_matrix(japan())
 
 while (x < 100):
-    a = check_next_pixel(a, b)
+    current_position = check_next_pixel(current_position, b)
     x += 1
+
+print('x', x)
