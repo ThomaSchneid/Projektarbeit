@@ -1,8 +1,6 @@
 from check_neighbours import *
 from bild_einlesen import *
 
-# TODO - Matrix Klon erstellen und Mittelwert der jew. Richtungspixel eintragen
-
 def direction(pos, img):
     direction = np.zeros((3,3))
     direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
@@ -13,7 +11,6 @@ def direction(pos, img):
     direction[2][0] = - direction[0][2]
     direction[2][1] = - direction[0][1]
     direction[2][2] = - direction[0][0]
-    print('direction', direction)
     return direction
 
 def create_matrix(img):
@@ -23,6 +20,8 @@ def create_matrix(img):
 
     return img, y_achse, clone
 
+# TODO: check if b[2][x][y][z] already has a value and respond according to it
+
 def check_next_pixel(current_position, b):
 
     check_matrix = direction(current_position, b[0])
@@ -30,8 +29,6 @@ def check_next_pixel(current_position, b):
     min = np.where(check_matrix == np.amin(check_matrix))
     result = list(zip(min[0], min[1]))
     direct = (result[0][0], result[0][1])
-    print('direct', direct)
-    print('current_position', current_position)
     # check if next pixel should go up
     if direct[0] == 0:
         # check if we are at the top border
@@ -85,7 +82,7 @@ def check_next_pixel(current_position, b):
             b[2][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
 
     print('next_pixel_position', next_pixel_position)
-    #print('clone', b[2])
+    print('clone', b[2])
 
     return next_pixel_position
 
@@ -96,5 +93,6 @@ b = create_matrix(japan())
 while (x < 100):
     current_position = check_next_pixel(current_position, b)
     x += 1
+    print('current_position', current_position)
 
 print('x', x)
