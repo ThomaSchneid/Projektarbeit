@@ -18,11 +18,13 @@ def create_matrix(img):
     y_achse = img.shape[0]
     clone = np.zeros((y_achse, x_achse, 2))
 
+# Aufbau Clone: (x,y,z)
+
     return img, y_achse, clone
 
 # TODO: check if b[2][x][y][z] already has a value and respond according to it
 
-def check_next_pixel(current_position, b):
+def calculate_next_pixel(current_position, b):
 
     check_matrix = direction(current_position, b[0])
 
@@ -81,8 +83,7 @@ def check_next_pixel(current_position, b):
             next_pixel_position = (current_position[0] + 1, current_position[1])
             b[2][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
 
-    print('next_pixel_position', next_pixel_position)
-    print('clone', b[2])
+    print('clone b[2]', b[2])
 
     return next_pixel_position
 
@@ -90,9 +91,7 @@ x = 0
 current_position = (1, 1)
 b = create_matrix(japan())
 
-while (x < 100):
-    current_position = check_next_pixel(current_position, b)
+while (x < 10):
+    current_position = calculate_next_pixel(current_position, b)
     x += 1
     print('current_position', current_position)
-
-print('x', x)

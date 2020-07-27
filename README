@@ -3,3 +3,16 @@ Before start working make sure you match the following requirements:
 - Use Python 3.7.7
 - pip install opencv-python
 - pip install xlwt
+
+Richtungsrangfolge bei bereits gecheckten Richtungen:
+
+IF TOP:
+    1. TOP
+    2. LEFT
+    3. DOWN
+
+IF LEFT -> GO RIGHT
+
+IF DOWN:
+    1. LEFT
+    2. UP
