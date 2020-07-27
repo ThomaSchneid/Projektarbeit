@@ -3,14 +3,18 @@ from bild_einlesen import *
 
 def direction(pos, img):
     direction = np.zeros((3,3))
-    direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
-    direction[0][1] = top(pos, img) - bottom(pos, img)
+    # matrix(zeilen, spalten)
     direction[0][2] = diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img)
+    direction[0][1] = top(pos, img) - bottom(pos, img)
+    direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
     direction[1][0] = left(pos, img) - right(pos, img)
-    direction[1][2] = - direction[1][0]
-    direction[2][0] = - direction[0][2]
-    direction[2][1] = - direction[0][1]
+    direction[2][0] = - direction[2][0]
+    direction[2][1] = - direction[1][0]
     direction[2][2] = - direction[0][0]
+    direction[1][2] = - direction[0][1]
+
+    print('direction', direction)
+
     return direction
 
 def create_matrix(img):
@@ -35,8 +39,11 @@ def calculate_next_pixel(current_position, b):
     if direct[0] == 0:
         # check if we are at the top border
         if current_position[0] != 0:
+            # we are not at the top border
             if direct[1] == 0:
+                # move to top left
                 next_pixel_position = (current_position[0] - 1, current_position[1] - 1)
+                # fill value from checkmatrix and save top left position we went to with digit 0
                 b[2][current_position[0]][current_position[1]] = [check_matrix[0][0], 0]
             elif direct[1] == 1:
                 next_pixel_position = (current_position[0] - 1, current_position[1])
@@ -72,11 +79,11 @@ def calculate_next_pixel(current_position, b):
                 next_pixel_position = (current_position[0] + 1, current_position[1])
                 b[2][current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
             else:
-                next_pixel_position = (current_position[0] +1, current_position[1] + 1)
+                next_pixel_position = (current_position[0] + 1, current_position[1] + 1)
                 b[2][current_position[0]][current_position[1]] = [check_matrix[2][2], 7]
         # if we are at the bottom border try to move left
         elif current_position[1] != 0:
-            next_pixel_position = (current_position[0, current_position[1] - 1])
+            next_pixel_position = (current_position[0], current_position[1] - 1)
             b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
         # if we are also at the left border move up
         else:
