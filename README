@@ -1,0 +1,5 @@
+Before start working make sure you match the following requirements:
+
+- Use Python 3.7.7
+- pip install opencv-python
+- pip install xlwt
