@@ -73,70 +73,6 @@ def position_of_next_pixel(moving_direction, current_position):
 
     return next_pixel_position
 
-def calculate_next_pixel(current_position, b):
-    check_matrix = direction(current_position, b[0])
-
-    min = np.where(check_matrix == np.amin(check_matrix))
-    result = list(zip(min[0], min[1]))
-    direct = (result[0][0], result[0][1])
-    # check if next pixel should go up
-    if direct[0] == 0:
-        # check if we are at the top border
-        if current_position[0] != 0:
-            # we are not at the top border
-            if direct[1] == 0:
-                # move to top left
-                next_pixel_position = (current_position[0] - 1, current_position[1] - 1)
-                # fill value from checkmatrix and save top left position we went to with digit 0
-                b[2][current_position[0]][current_position[1]] = [check_matrix[0][0], 0]
-            elif direct[1] == 1:
-                next_pixel_position = (current_position[0] - 1, current_position[1])
-                b[2][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
-            else:
-                next_pixel_position = (current_position[0] - 1, current_position[1] + 1)
-                b[2][current_position[0]][current_position[1]] = [check_matrix[0][2], 2]
-        # if we are at the top border try to go left
-        elif current_position[1] != 0:
-            next_pixel_position = (current_position[0], current_position[1] - 1)
-            b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
-        # if we are also the the left border go down
-        else:
-            next_pixel_position = (current_position[0] + 1, current_position[1])
-            b[2][current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
-    # check if next pixel should be left or right
-    elif direct[0] == 1:
-        # just check if we are at the left border, if yes go right
-        if direct[1] == 0 and current_position[1] != 0:
-            next_pixel_position = (current_position[0], current_position[1] - 1)
-            b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
-        else:
-            next_pixel_position = (current_position[0], current_position[1] + 1)
-            b[2][current_position[0]][current_position[1]] = [check_matrix[1][2], 4]
-    # if no case matched the direction has to be downwards
-    else:
-        # check if we are at the bottom border
-        if current_position[0] < b[1]:
-            if direct[1] == 0:
-                next_pixel_position = (current_position[0] + 1, current_position[1] - 1)
-                b[2][current_position[0]][current_position[1]] = [check_matrix[2][0], 5]
-            elif direct[1] == 1:
-                next_pixel_position = (current_position[0] + 1, current_position[1])
-                b[2][current_position[0]][current_position[1]] = [check_matrix[2][1], 6]
-            else:
-                next_pixel_position = (current_position[0] + 1, current_position[1] + 1)
-                b[2][current_position[0]][current_position[1]] = [check_matrix[2][2], 7]
-        # if we are at the bottom border try to move left
-        elif current_position[1] != 0:
-            next_pixel_position = (current_position[0], current_position[1] - 1)
-            b[2][current_position[0]][current_position[1]] = [check_matrix[1][0], 3]
-        # if we are also at the left border move up
-        else:
-            next_pixel_position = (current_position[0] + 1, current_position[1])
-            b[2][current_position[0]][current_position[1]] = [check_matrix[0][1], 1]
-
-    return next_pixel_position
-
-
 def check_if_pixel_was_already_checked():
     print('needs to be done, please give me functionality')
 
@@ -160,8 +96,5 @@ while (x < 10):
     print('next_pixel_position_1', next_pixel_position)
     print()
     print()
-    print('current_position_2', current_position)
-    next_position = calculate_next_pixel(current_position, b)
     x += 1
-    print('next_position_2', next_position)
-    current_position = calculate_next_pixel(current_position, b)        #important for setting a new position
+    current_position = position_of_next_pixel(moving_direction, current_position)        #important for setting a new position
