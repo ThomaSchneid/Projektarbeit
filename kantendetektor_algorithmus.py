@@ -3,8 +3,7 @@ from bild_einlesen import *
 
 
 def direction(pos, img):
-    direction = np.zeros((3, 3))
-    # matrix(zeilen, spalten)
+    direction = np.zeros((3, 3))                        # matrix(zeilen, spalten)
     direction[0][2] = diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img)
     direction[0][1] = top(pos, img) - bottom(pos, img)
     direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
@@ -20,9 +19,7 @@ def direction(pos, img):
 def create_matrix(img):
     x_achse = img.shape[1]
     y_achse = img.shape[0]
-    clone = np.zeros((y_achse, x_achse, 2))
-
-    # Aufbau Clone: (x,y,z)
+    clone = np.zeros((y_achse, x_achse, 2))             # Aufbau Clone: (x,y,z)
 
     return img, y_achse, clone
 
@@ -30,28 +27,27 @@ def create_matrix(img):
 # TODO: check if b[2][x][y][z] already has a value and respond according to it
 
 def next_direction_to_move(current_position, y, direct):
-    if direct[0] == 0:                                      #check for move up
-        if current_position[0] != 0:                        #check for top border
+    if direct[0] == 0:  # check for move up
+        if current_position[0] != 0:  # check for top border
             moving_direction = direct[1]
-        elif current_position[1] != 0:                      #move left cause we are at top border
+        elif current_position[1] != 0:  # move left cause we are at top border
             moving_direction = 3
-        else:                                               #move down if left border
+        else:  # move down if left border
             moving_direction = 6
-    elif direct[0] == 1:                                    #check for left  or right
-        if direct[1] == 0 and current_position[1] != 0:     #move right if left border
+    elif direct[0] == 1:  # check for left  or right
+        if direct[1] == 0 and current_position[1] != 0:  # move right if left border
             moving_direction = 3
         else:
             moving_direction = 4
-    else:                                                   #move down cause no case matches until now
-        if current_position[0] < y:                      #check for bottom border
-            moving_direction = direct[1] + 5                #offset of 5 cause we need 5,6,7 instead of 0,1,2
-        elif current_position[1] != 0:                      #move left if bottom border
+    else:  # move down cause no case matches until now
+        if current_position[0] < y:  # check for bottom border
+            moving_direction = direct[1] + 5  # offset of 5 cause we need 5,6,7 instead of 0,1,2
+        elif current_position[1] != 0:  # move left if bottom border
             moving_direction = 3
-        else:                                               #move up when also at left border
+        else:  # move up when also at left border
             moving_direction = 6
 
     return moving_direction
-
 
 def position_of_next_pixel(moving_direction, current_position):
     if moving_direction == 0:
@@ -73,6 +69,7 @@ def position_of_next_pixel(moving_direction, current_position):
 
     return next_pixel_position
 
+
 def check_if_pixel_was_already_checked():
     print('needs to be done, please give me functionality')
 
@@ -80,21 +77,17 @@ def check_if_pixel_was_already_checked():
 x = 0
 current_position = (1, 1)
 b = create_matrix(japan())
+start = time.time()
 
 while (x < 10):
     check_matrix = direction(current_position, b[0])
     min = np.where(check_matrix == np.amin(check_matrix))
     result = list(zip(min[0], min[1]))
-    direct = (result[0][0], result[0][1])                               #direct(zeile,spalte) from direction matrix
+    direct = (result[0][0], result[0][1])  # direct(zeile,spalte) from direction matrix
     moving_direction = next_direction_to_move(current_position, b[1], direct)
-    next_pixel_position = position_of_next_pixel(moving_direction, current_position)
-    print()
-    print()
-    print('==================================================')
-    print('current_position_1', current_position)
-    print('moving_direction_1', moving_direction)
-    print('next_pixel_position_1', next_pixel_position)
-    print()
-    print()
     x += 1
-    current_position = position_of_next_pixel(moving_direction, current_position)        #important for setting a new position
+    current_position = position_of_next_pixel(moving_direction, current_position)  # important for setting a new position
+
+end = time.time()
+time1 = end - start
+print(time1)
