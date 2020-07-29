@@ -29,48 +29,54 @@ def create_matrix(img):
 def next_direction_to_move(current_position, y, direct):
     if direct[0] == 0:  # check for move up
         if current_position[0] != 0:  # check for top border
-            moving_direction = direct[1]
+            moving_direction = direct[1] + 1
         elif current_position[1] != 0:  # move left cause we are at top border
-            moving_direction = 3
+            moving_direction = 4
         else:  # move down if left border
-            moving_direction = 6
+            moving_direction = 7
     elif direct[0] == 1:  # check for left  or right
         if direct[1] == 0 and current_position[1] != 0:  # move right if left border
-            moving_direction = 3
-        else:
             moving_direction = 4
+        else:
+            moving_direction = 5
     else:  # move down cause no case matches until now
         if current_position[0] < y:  # check for bottom border
-            moving_direction = direct[1] + 5  # offset of 5 cause we need 5,6,7 instead of 0,1,2
+            moving_direction = direct[1] + 6  # offset of 6 cause we need 6,7,8 instead of 1,2,3
         elif current_position[1] != 0:  # move left if bottom border
-            moving_direction = 3
+            moving_direction = 4
         else:  # move up when also at left border
-            moving_direction = 6
+            moving_direction = 7
 
     return moving_direction
 
 def position_of_next_pixel(moving_direction, current_position):
-    if moving_direction == 0:
+    if moving_direction == 1:
         next_pixel_position = (current_position[0] - 1, current_position[1] - 1)
-    elif moving_direction == 1:
-        next_pixel_position = (current_position[0] - 1, current_position[1])
     elif moving_direction == 2:
-        next_pixel_position = (current_position[0] - 1, current_position[1] + 1)
+        next_pixel_position = (current_position[0] - 1, current_position[1])
     elif moving_direction == 3:
-        next_pixel_position = (current_position[0], current_position[1] - 1)
+        next_pixel_position = (current_position[0] - 1, current_position[1] + 1)
     elif moving_direction == 4:
-        next_pixel_position = (current_position[0], current_position[1] + 1)
+        next_pixel_position = (current_position[0], current_position[1] - 1)
     elif moving_direction == 5:
-        next_pixel_position = (current_position[0] + 1, current_position[1] - 1)
+        next_pixel_position = (current_position[0], current_position[1] + 1)
     elif moving_direction == 6:
-        next_pixel_position = (current_position[0] + 1, current_position[1])
+        next_pixel_position = (current_position[0] + 1, current_position[1] - 1)
     elif moving_direction == 7:
+        next_pixel_position = (current_position[0] + 1, current_position[1])
+    elif moving_direction == 8:
         next_pixel_position = (current_position[0] + 1, current_position[1] + 1)
 
     return next_pixel_position
 
+def set_values_to_clone(moving_direction, current_position, clone, check_matrix, direct):
+    clone[current_position][0] = check_matrix[direct]
+    clone[current_position][1] = moving_direction
 
-def check_if_pixel_was_already_checked():
+    return clone
+
+def check_if_pixel_was_already_checked(moving_direction, clone, current_position):
+    #if clone[current_position][1]
     print('needs to be done, please give me functionality')
 
 
@@ -78,6 +84,7 @@ x = 0
 current_position = (1, 1)
 b = create_matrix(japan())
 start = time.time()
+clone = b[2]
 
 while (x < 10):
     check_matrix = direction(current_position, b[0])
@@ -85,6 +92,8 @@ while (x < 10):
     result = list(zip(min[0], min[1]))
     direct = (result[0][0], result[0][1])  # direct(zeile,spalte) from direction matrix
     moving_direction = next_direction_to_move(current_position, b[1], direct)
+    clone = set_values_to_clone(moving_direction, current_position, clone, check_matrix, direct)
+    print(clone)
     x += 1
     current_position = position_of_next_pixel(moving_direction, current_position)  # important for setting a new position
 
