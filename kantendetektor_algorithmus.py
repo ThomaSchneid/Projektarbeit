@@ -39,7 +39,7 @@ def next_direction_to_move(current_position, y, direct):
         elif (current_position[0] != 0) and (3 not in forbidden_directions):  # check for top border
             moving_direction = 3
         elif (current_position[1] != 0) and (4 not in forbidden_directions):  # move left cause we are at top border
-            forbidden_directions.extend((1,2,3))
+            forbidden_directions.extend((1, 2, 3))
             moving_direction = 4
         elif 7 not in forbidden_directions:  # move down if left border
             moving_direction = 7
