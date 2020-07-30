@@ -19,6 +19,7 @@ def direction(pos, img):
 def create_matrix(img):
     global moving_direction_possibilities
     global forbidden_directions
+    forbidden_directions = []
     moving_direction_possibilities = [1,2,3,4,5,6,7,8]
     x_achse = img.shape[1]
     y_achse = img.shape[0]
@@ -30,30 +31,47 @@ def create_matrix(img):
 # TODO: check if b[2][x][y][z] already has a value and respond according to it
 
 def next_direction_to_move(current_position, y, direct):
-    if direct[0] == 0:  # check for move up
-        if current_position[0] != 0:  # check for top border
-            moving_direction = direct[1] + 1
-        elif current_position[1] != 0:  # move left cause we are at top border
+    if (direct[0] == 0) and (not all(k in forbidden_directions for k in (1, 2, 3))):  # check for move up
+        if (current_position[0] != 0) and (1 not in forbidden_directions):  # check for top border
+            moving_direction = 1
+        elif (current_position[0] != 0) and (2 not in forbidden_directions):  # check for top border
+            moving_direction = 2
+        elif (current_position[0] != 0) and (3 not in forbidden_directions):  # check for top border
+            moving_direction = 3
+        elif (current_position[1] != 0) and (4 not in forbidden_directions):  # move left cause we are at top border
             forbidden_directions.extend((1,2,3))
             moving_direction = 4
-        else:  # move down if left border
+        elif 7 not in forbidden_directions:  # move down if left border
             moving_direction = 7
             forbidden_directions.extend((1, 2, 3, 4))
-    elif direct[0] == 1:  # check for left  or right
-        if direct[1] == 0 and current_position[1] != 0:  # move right if left border
-            moving_direction = 4
         else:
+            print("no case for moving_direction left")
+            moving_direction = 9
+    elif (direct[0] == 1) and (not all(k in forbidden_directions for k in (4, 5))):  # check for left  or right
+        if (direct[1] == 0) and (current_position[1] != 0) and (4 not in forbidden_directions):  # move right if left border
+            moving_direction = 4
+        elif 5 not in forbidden_directions:
             moving_direction = 5
-            forbidden_directions.extend(4)
+            forbidden_directions.append(4)
+        else:
+            print("no case for moving_direction left")
+            moving_direction = 9
     else:  # move down cause no case matches until now
-        if current_position[0] < y:  # check for bottom border
-            moving_direction = direct[1] + 6  # offset of 6 cause we need 6,7,8 instead of 1,2,3
-        elif current_position[1] != 0:  # move left if bottom border
+        if (current_position[0] < y) and (6 not in forbidden_directions):  # check for bottom border
+            moving_direction = 6
+        elif (current_position[0] < y) and (7 not in forbidden_directions):  # check for bottom border
+            moving_direction = 7
+        elif (current_position[0] < y) and (8 not in forbidden_directions):  # check for bottom border
+            moving_direction = 8
+        elif (current_position[1] != 0) and (4 not in forbidden_directions):  # move left if bottom border
             moving_direction = 4
             forbidden_directions.extend((6, 7, 8))
-        else:  # move up when also at left border
-            moving_direction = 7
+        elif 5 not in forbidden_directions:  # move right when also at left border
+            moving_direction = 5
             forbidden_directions.extend((4, 6, 7, 8))
+        else:
+            print("no case for moving_direction left")
+            moving_direction = 9
 
     return moving_direction
 
@@ -74,8 +92,11 @@ def position_of_next_pixel(moving_direction, current_position):
         next_pixel_position = (current_position[0] + 1, current_position[1])
     elif moving_direction == 8:
         next_pixel_position = (current_position[0] + 1, current_position[1] + 1)
+    elif moving_direction == 9:
+        print("no_next_pixel_position")
+        next_pixel_position = "moving in circles"
 
-    return next_pixel_position
+    return next_pixel_position #, forbidden_directions
 
 def set_values_to_clone_matrix(moving_direction, current_position, clone, check_matrix, direct):
     clone[current_position][0] = check_matrix[direct]
@@ -85,9 +106,7 @@ def set_values_to_clone_matrix(moving_direction, current_position, clone, check_
 
 def check_if_next_pixel_was_already_checked(moving_direction, clone, next_pixel_position):
     if clone[next_pixel_position][1] != 0:
-
-
-    print('needs to be done, please give me functionality')
+        print('needs to be done, please give me functionality')
 
 
 x = 0
@@ -104,8 +123,22 @@ while (x < 10):
     moving_direction = next_direction_to_move(current_position, b[1], direct)
     clone = set_values_to_clone_matrix(moving_direction, current_position, clone, check_matrix, direct)
     print(clone)
+    temp_current_position = position_of_next_pixel(moving_direction, current_position)  # important for setting a new position
+
+    # check next pixel
+    while clone[temp_current_position][1] != 0:
+        if moving_direction == 9:
+            print("moving in circles detected")
+            clone[temp_current_position][1] = 0
+
+        forbidden_directions.append(moving_direction)
+        print('forbidden_directions', forbidden_directions)
+        next_direction_to_move(current_position, b[1], direct)
+
     x += 1
-    current_position = position_of_next_pixel(moving_direction, current_position)  # important for setting a new position
+    forbidden_directions = []
+    current_position = temp_current_position
+
 
 end = time.time()
 time1 = end - start
