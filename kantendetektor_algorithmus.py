@@ -27,9 +27,6 @@ def create_matrix(img):
 
     return img, y_achse, clone
 
-
-# TODO: check if b[2][x][y][z] already has a value and respond according to it
-
 def next_direction_to_move(current_position, y, direct):
     if (direct[0] == 0) and (not all(k in forbidden_directions for k in (1, 2, 3))):  # check for move up
         if (current_position[0] != 0) and (1 not in forbidden_directions):  # check for top border
@@ -114,6 +111,8 @@ current_position = (1, 1)
 b = create_matrix(japan())
 start = time.time()
 clone = b[2]
+all_moving_directions = []
+all_positions = []
 
 while (x < 10):
     check_matrix = direction(current_position, b[0])
@@ -126,14 +125,14 @@ while (x < 10):
     temp_current_position = position_of_next_pixel(moving_direction, current_position)  # important for setting a new position
 
     # check next pixel
-    while clone[temp_current_position][1] != 0:
+    while (clone[temp_current_position][1] != 0):
         if moving_direction == 9:
             print("moving in circles detected")
             clone[temp_current_position][1] = 0
 
         forbidden_directions.append(moving_direction)
         print('forbidden_directions', forbidden_directions)
-        next_direction_to_move(current_position, b[1], direct)
+        moving_direction = next_direction_to_move(current_position, b[1], direct)
 
     x += 1
     forbidden_directions = []
