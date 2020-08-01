@@ -131,7 +131,6 @@ while (x < 10):
             clone[temp_current_position][1] = 0
 
         forbidden_directions.append(moving_direction)
-        print('forbidden_directions', forbidden_directions)
         moving_direction = next_direction_to_move(current_position, b[1], direct)
 
     x += 1
