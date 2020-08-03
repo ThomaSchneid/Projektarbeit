@@ -1,2 +1,1 @@
-from bild_einlesen import *
-
+def get_starting_point(img, y-achse):

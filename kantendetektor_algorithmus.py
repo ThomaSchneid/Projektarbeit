@@ -1,26 +1,39 @@
 from check_neighbours import *
 from bild_einlesen import *
-
+#from starting_point import *
 
 def direction(pos, img):
+    direction_2 = []
+    direction_2.append(abs(diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)))
+    direction_2.append(abs(top(pos, img) - bottom(pos, img)))
+    direction_2.append(abs(diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img)))
+    direction_2.append(abs(left(pos, img) - right(pos, img)))
+
+    a = direction_2.index(max(direction_2))
+
+    moving_direction_2 = []
+    moving_direction_2.append(value_falling_diagonal(pos, img))
+    moving_direction_2.append(value_top_bottom(pos, img))
+    moving_direction_2.append(value_falling_diagonal(pos, img))
+    moving_direction_2.append(value_left_right(pos, img))
+
+    moving_direction = moving_direction_2[a]
+
     direction = np.zeros((3, 3))                        # matrix(zeilen, spalten)
-    direction[0][2] = diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img)
-    direction[0][1] = top(pos, img) - bottom(pos, img)
-    direction[0][0] = diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)
-    direction[1][0] = left(pos, img) - right(pos, img)
-    direction[2][0] = - direction[2][0]
-    direction[2][1] = - direction[1][0]
-    direction[2][2] = - direction[0][0]
-    direction[1][2] = - direction[0][1]
+    direction[0][2] = abs(diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img))
+    direction[0][1] = abs(top(pos, img) - bottom(pos, img))
+    direction[0][0] = abs(diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img))
+    direction[1][0] = abs(left(pos, img) - right(pos, img))
+    direction[2][0] = value_raising_diagonal(pos, img)
+    direction[2][1] = value_top_bottom(pos, img)
+    direction[2][2] = value_falling_diagonal(pos, img)
+    direction[1][2] = value_left_right(pos, img)
 
     return direction
 
-
 def create_matrix(img):
-    global moving_direction_possibilities
     global forbidden_directions
     forbidden_directions = []
-    moving_direction_possibilities = [1,2,3,4,5,6,7,8]
     x_achse = img.shape[1]
     y_achse = img.shape[0]
     clone = np.zeros((y_achse, x_achse, 2))             # Aufbau Clone: (x,y,z)
@@ -95,8 +108,8 @@ def position_of_next_pixel(moving_direction, current_position):
 
     return next_pixel_position #, forbidden_directions
 
-def set_values_to_clone_matrix(moving_direction, current_position, clone, check_matrix, direct):
-    clone[current_position][0] = check_matrix[direct]
+def set_values_to_clone_matrix(moving_direction, current_position, clone, direction_matrix, direct):
+    clone[current_position][0] = direction_matrix[direct]
     clone[current_position][1] = moving_direction
 
     return clone
@@ -108,19 +121,20 @@ def check_if_next_pixel_was_already_checked(moving_direction, clone, next_pixel_
 
 x = 0
 current_position = (1, 1)
-b = create_matrix(japan())
+b = create_matrix(japan())  #b[0] = image, b[1] = y-achse, b[2] = clone
+#current_position = get_starting_point(b[0], b[1])
 start = time.time()
 clone = b[2]
 all_moving_directions = []
 all_positions = []
 
 while (x < 10):
-    check_matrix = direction(current_position, b[0])
-    min = np.where(check_matrix == np.amin(check_matrix))
+    direction_matrix = direction(current_position, b[0])
+    min = np.where(direction_matrix == np.amin(direction_matrix))
     result = list(zip(min[0], min[1]))
     direct = (result[0][0], result[0][1])  # direct(zeile,spalte) from direction matrix
     moving_direction = next_direction_to_move(current_position, b[1], direct)
-    clone = set_values_to_clone_matrix(moving_direction, current_position, clone, check_matrix, direct)
+    clone = set_values_to_clone_matrix(moving_direction, current_position, clone, direction_matrix, direct)
     print(clone)
     temp_current_position = position_of_next_pixel(moving_direction, current_position)  # important for setting a new position
 
