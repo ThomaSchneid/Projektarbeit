@@ -1,0 +1,2 @@
+\contentsline {section}{\numberline {I}How to measure performance of algorithms}{2}%
+\contentsline {section}{\numberline {II}Canny Edge Detection}{2}%
