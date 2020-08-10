@@ -13,6 +13,10 @@
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
 
+%New commands
+\newcommand{\tief}{\textsubscript}
+\newcommand{\hoch}{\textsuperscript}
+
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
 	\author{Thomas Schneider \\ Matrikel-Nr: 60482 \\ Elektro- und Informationstechnik \\ Hochschule Karlsruhe}
@@ -22,7 +26,10 @@
 	\twocolumn
 	
 	\section{Mathematische Grundlagen}
+
 		\subsection{Gauß Filter}
+
+		\subsection{Gradient}
 	
 	\section{How to measure performance of algorithms}
 	
@@ -44,6 +51,19 @@
 		Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen, je größer die Kerngröße desto besser ist auch der Blur Effekt. Die Rechnezeit steigt jedoch ebenfalls mit steigender Kerngröße, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.
 		
 		\subsection{Gradient Calculation}
-	
+		
+		In diesem Schritt wird sowohl die Intensität als auch die Richtung der Kanten durch die Berechnung des Gradienten ermittelt. Eine Kante wird durch eine merkliche Änderung der Intensität benachbarter Pixel deutlich. Um eine Kante zu erkennen ist es also am einfachsten, einen Filter anzuwenden, welcher die Änderung der Intensität in horizontaler wie vertikaler Richtung markiert.
+		
+		Nach Glättung des Bildes werden nun also die Ableitungen in x (horizontaler) und y (vertikaler) Richtung berechnet. Am effizientesten kann man dies durch eine Faltung des Bildes mit dem Gauß Kern berechnen.
+		
+		Die Intensität und Richtung berechnen sich also zu \\
+		
+		|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$
+
+		$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$
+		
+		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist. Man erkennt allerdings, dass einige Kanten noch zu dick sind und ausgedünnt werden müssen. Außerdem liegen die Intensitätswerte zufällig zwischen 0 und 255 - im Idealfall möchten wir entweder 0 oder 255 als Intensitätswert haben um Kanten deutlich hervorzuheben. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.
+		
+		\subsection{Non Maximum Suppression}
 	
 \end{document}
