@@ -1,2 +1,6 @@
-\contentsline {section}{\numberline {I}How to measure performance of algorithms}{2}%
-\contentsline {section}{\numberline {II}Canny Edge Detection}{2}%
+\contentsline {section}{\numberline {I}Mathematische Grundlagen}{2}%
+\contentsline {subsection}{\numberline {\mbox {I-A}}Gauß Filter}{2}%
+\contentsline {section}{\numberline {II}How to measure performance of algorithms}{2}%
+\contentsline {section}{\numberline {III}Canny Edge Detection}{2}%
+\contentsline {subsection}{\numberline {\mbox {III-A}}Noise Reduction}{2}%
+\contentsline {subsection}{\numberline {\mbox {III-B}}Gradient Calculation}{2}%

@@ -21,9 +21,14 @@
 	\tableofcontents
 	\twocolumn
 	
+	\section{Mathematische Grundlagen}
+		\subsection{Gauß Filter}
+	
 	\section{How to measure performance of algorithms}
+	
+	
 	\section{Canny Edge Detection}
-	Steps:
+	Der Canny Algorithmus lässt sich in folgende 5 Schritte unterteilen:
 	\begin{enumerate}
 		\item Noise reduction
 		\item Gradient calculation
@@ -32,6 +37,13 @@
 		\item Edge Tracking by Hysteresis
 	\end{enumerate}
 	
+		\subsection{Noise Reduction}
+	
+		Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebensten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden. 
+		Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5x5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
+		Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen, je größer die Kerngröße desto besser ist auch der Blur Effekt. Die Rechnezeit steigt jedoch ebenfalls mit steigender Kerngröße, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.
+		
+		\subsection{Gradient Calculation}
 	
 	
 \end{document}
