@@ -12,10 +12,15 @@
 \usepackage{color}
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
+%\usepackage{listings}
+\usepackage{pythonhighlight}
+
 
 %New commands
 \newcommand{\tief}{\textsubscript}
 \newcommand{\hoch}{\textsuperscript}
+\newcommand{\nl}{\newline}
+\newcommand{\formelbox}[1]{\centerline{\fbox{#1}}}
 
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
@@ -25,14 +30,43 @@
 	\tableofcontents
 	\twocolumn
 	
+	\section{Motivation/Einleitung}
+	
 	\section{Mathematische Grundlagen}
 
 		\subsection{Gauß Filter}
-
-		\subsection{Gradient}
+		Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
+		Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
+		\medbreak
+		\formelbox{H\tief{ij} = $\frac{1}{2\pi\sigma\hoch{2}}$ * $\mathrm{e}$\hoch{-$\frac{(i - (k + 1))\hoch{2} + (j - (k + 1))\hoch{2}}{2\sigma\hoch{2}}$}}
+		\medbreak
+		berechnet werden. \nl
+		In Python wird der Gauß Kern folgendermaßen realisiert:
+		
+		\begin{python}
+			def gaussian_kernel(size, sigma=1):
+				size = int(size) // 2
+				x, y = np.mgrid[-size:size + 1,
+								-size:size + 1]
+				normal = 1 / (2.0 * np.pi * sigma ** 2)
+				g = np.exp(-((x ** 2 + y ** 2) / 
+							(2.0 * sigma ** 2))) * normal
+				return g
+		\end{python}		
+	
+		\subsection{Sobel Operator}
+		Der Sobel Operator besteht aus zwei 3$\times$3 Faltungskernen, wobei ein Kern dem jeweils anderen um 90$\circ$ gedreht.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6\linewidth] {../Bilder/sobel_operator}
+			\caption{\textit{Links der Faltungskern für die X- und rechts für die Y-Richtung.}}
+		\end{figure}
+	
+		Für jedes Pixel werden die Komponenten der Matrix aufsummiert um den Grauwert zu erhalten.
 	
 	\section{How to measure performance of algorithms}
-	
+	\textbf{BLA  BLA BLA TODO}
 	
 	\section{Canny Edge Detection}
 	Der Canny Algorithmus lässt sich in folgende 5 Schritte unterteilen:
@@ -46,24 +80,39 @@
 	
 		\subsection{Noise Reduction}
 	
-		Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebensten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden. 
+		Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebendsten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden.
 		Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5x5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
-		Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen, je größer die Kerngröße desto besser ist auch der Blur Effekt. Die Rechnezeit steigt jedoch ebenfalls mit steigender Kerngröße, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.
+		Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern,  desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.
+		
+		Hier auf das Logo der Hochschule Karlsruhe angewendet erkennt man im rechten Bild eine Unschärfe gegenüber dem linken Bild.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth] {../Bilder/hochschule_blur_5_5}
+			\caption{\textit{Links das original und rechts unter Anwendung des Gauß Filters.}}
+		\end{figure}
 		
 		\subsection{Gradient Calculation}
 		
 		In diesem Schritt wird sowohl die Intensität als auch die Richtung der Kanten durch die Berechnung des Gradienten ermittelt. Eine Kante wird durch eine merkliche Änderung der Intensität benachbarter Pixel deutlich. Um eine Kante zu erkennen ist es also am einfachsten, einen Filter anzuwenden, welcher die Änderung der Intensität in horizontaler wie vertikaler Richtung markiert.
 		
-		Nach Glättung des Bildes werden nun also die Ableitungen in x (horizontaler) und y (vertikaler) Richtung berechnet. Am effizientesten kann man dies durch eine Faltung des Bildes mit dem Gauß Kern berechnen.
+		Nach Glättung des Bildes werden nun also die Ableitungen in x (horizontaler) und y (vertikaler) Richtung berechnet. Am effizientesten kann man dies durch eine Faltung des Bildes mit einem Sobel Kern berechnen.
 		
 		Die Intensität und Richtung berechnen sich also zu \\
 		
-		|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$
-
-		$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$
-		
+		\formelbox{|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$}
+		\medbreak
+		\formelbox{$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$}
+		\medbreak
 		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist. Man erkennt allerdings, dass einige Kanten noch zu dick sind und ausgedünnt werden müssen. Außerdem liegen die Intensitätswerte zufällig zwischen 0 und 255 - im Idealfall möchten wir entweder 0 oder 255 als Intensitätswert haben um Kanten deutlich hervorzuheben. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.
 		
 		\subsection{Non Maximum Suppression}
+		
+		Die momentan noch mehr als 1 Pixel breiten Kanten werden nun mit der sogenannten Non-Maximum Suppression ausgedünnt.  Der Algorithmus durchläuft jeden Punkt der Intensitätsmatrix und findet alle Pixel mit dem maximalen Intensitäts- und Richtungswert.\\
+		\\
+		BILD EINFÜGEN
+		\\
+		\\
+		Der Algorithmus prüft die die jeweils gegenüberliegenden Pixel und vergleicht deren Intensitätswerte. Sollte es keine Nachbarpixel mit höheren Intensitätswerten als das aktuelle Pixel geben, so wird das aktuelle Pixel behalten.
 	
 \end{document}

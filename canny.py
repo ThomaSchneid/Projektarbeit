@@ -1,17 +1,25 @@
+import cv2
 import numpy as np
 from scipy import ndimage
-
 
 # NOISE REDUCTION
 # Gaussian 5 x 5 Kernel
 
-def gaussian_kernel(size, sigma=1):
+def gaussian_kernel(size, sigma=1.8):
     size = int(size) // 2
     x, y = np.mgrid[-size:size + 1, -size:size + 1]
     normal = 1 / (2.0 * np.pi * sigma ** 2)
     g = np.exp(-((x ** 2 + y ** 2) / (2.0 * sigma ** 2))) * normal
     return g
 
+
+def gaussian_blur():
+    img = cv2.imread("Bilder/hochschule.png", 0)
+    blur = cv2.GaussianBlur(img, (5, 5), 1.4)
+    final_image = cv2.hconcat((img, blur))
+    cv2.imshow("Show blur effect", final_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 # GRADIENT CALCULATION
 # Sobel Filter

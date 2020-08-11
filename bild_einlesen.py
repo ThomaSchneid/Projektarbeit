@@ -4,11 +4,11 @@ from xlwt import Workbook
 import time
 
 def japan():
-    japan = cv2.imread("japan.png", 0)
+    japan = cv2.imread("Bilder/japan.png", 0)
     return japan
 
 def rauschen():
-    rauschen = cv2.imread("rauschen.png", 0)
+    rauschen = cv2.imread("Bilder/rauschen.png", 0)
     return rauschen
 
 def test_canny(img):
