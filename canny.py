@@ -16,30 +16,34 @@ def gaussian_kernel(size, sigma=1.8):
 def gaussian_blur():
     img = cv2.imread("Bilder/hochschule.png", 0)
     blur = cv2.GaussianBlur(img, (5, 5), 1.4)
-    final_image = cv2.hconcat((img, blur))
-    cv2.imshow("Show blur effect", final_image)
+    cv2.imshow("Show blur effect", blur)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    return blur
 
 # GRADIENT CALCULATION
 # Sobel Filter
 
 def sobel_filter(img):
-    Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
-    Ky = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)
+    Gx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)
+    Gy = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)
 
-    Ix = ndimage.filters.convolve(img, Kx)
-    Iy = ndimage.filters.convolve(img, Ky)
+    Ix = ndimage.filters.convolve(img, Gx).astype(float)
+    Iy = ndimage.filters.convolve(img, Gy).astype(float)
 
     G = np.hypot(Ix, Iy)
     G = G / G.max() * 255
     theta = np.arctan(Iy, Ix)
 
+    cv2.imshow("Image after sobel", G)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
     return G, theta
 
 
 # NON MAXIMUM SUPPRESSION
-# Create a matrix initialized to 0 of the same size of the original gradient itesity matrix
+# Create a matrix initialized to 0 of the same size of the original gradient intesity matrix
 # Identify the edge direction based on the angle  value from the angle matrix
 # Check if the pixel in the same direction has a higher intensity than the pixel that is currently processed
 # Return the image processed with the non-max suppression algorithm
@@ -81,6 +85,9 @@ def non_max_suppression(img, D):
             except IndexError as e:
                 pass
 
+    cv2.imshow("Image after non-max-suppression", Z)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     return Z
 
 
@@ -127,3 +134,9 @@ def hysteresis(img, weak, strong=255):
                 except IndexError as e:
                     pass
     return img
+
+
+def test():
+    blur = gaussian_blur()
+    sobel = sobel_filter(blur)
+    non_max_suppression(sobel[0], sobel[1])

@@ -6,4 +6,4 @@
 \contentsline {section}{\numberline {IV}Canny Edge Detection}{2}%
 \contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{2}%
 \contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{2}%
-\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{2}%
+\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{3}%

@@ -64,6 +64,25 @@
 		\end{figure}
 	
 		Für jedes Pixel werden die Komponenten der Matrix aufsummiert um den Grauwert zu erhalten.
+		
+		In Python realisieren wir den Sobel Filter folgendermaßen:
+		
+		\begin{python}
+			def sobel_filter(img):
+				Gx = np.array([[-1, 0, 1], [-2, 0, 2], 
+							[-1, 0, 1]], np.float32)
+				Gy = np.array([[1, 2, 1], [0, 0, 0],
+							[-1, -2, -1]], np.float32)
+		
+				Ix = ndimage.filters.convolve(img, Gx)
+				Iy = ndimage.filters.convolve(img, Gy)
+		
+				G = np.hypot(Ix, Iy)
+				G = G / G.max() * 255
+				theta = np.arctan(Iy, Ix)
+		
+				return G, theta
+		\end{python}
 	
 	\section{How to measure performance of algorithms}
 	\textbf{BLA  BLA BLA TODO}
@@ -104,7 +123,15 @@
 		\medbreak
 		\formelbox{$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$}
 		\medbreak
-		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist. Man erkennt allerdings, dass einige Kanten noch zu dick sind und ausgedünnt werden müssen. Außerdem liegen die Intensitätswerte zufällig zwischen 0 und 255 - im Idealfall möchten wir entweder 0 oder 255 als Intensitätswert haben um Kanten deutlich hervorzuheben. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.
+		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist. 
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth] {../Bilder/sobel_after_blur}
+			\caption{\textit{Bild nach Anwendung des Sobel Filters}}
+		\end{figure}
+		
+		Man erkennt allerdings, dass die Kanten noch sehr unfein und grob sind und ausgedünnt werden müssen. Außerdem liegen die Intensitätswerte zwischen 0 und 255 - im Idealfall möchten wir entweder 0 oder 255 als Intensitätswert haben um Kanten deutlich hervorzuheben. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.
 		
 		\subsection{Non Maximum Suppression}
 		
