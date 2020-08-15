@@ -154,8 +154,52 @@
 			return Z
 	\end{python}
 	
-	\section{Double Treshold}
-	\textbf{TODO}
+	\section{Double threshold}
+	Der double threshold Filter unterteilt unser Bild in 3 Arten von Pixeln
+	\begin{itemize}
+		\item \textbf{Starke Pixel}
+		\begin{itemize}
+			\item Pixel, deren Intensitätswert hoch genug ist, dass wir uns sicher sein können, dass sie ein Teil der finalen Kante sind.
+		\end{itemize}
+		\item \textbf{Schwache Pixel}
+		\begin{itemize}
+			\item Pixel, deren Intensitätswert nicht hoch genug ist um als starkes Pixel eingestuft zu werden, allerdings hoch genug ist um nicht als unsignifikant für die Kantenerkennung zu sein.
+		\end{itemize}
+		\item \textbf{Andere Pixel}
+		\begin{itemize}
+			\item Alle Pixel, welche keine der anderen beiden Bedingungen erfüllen.
+		\end{itemize}
+	\end{itemize}
+
+	Es wird eine Obergrenze (high threshold) und eine Untergrenze (low threshold) für die Intensitätswerte festgelegt. Ist der Intensitätswert eines Pixels höher als oder gleich der Obergrenze, wird es als starkes Pixel markiert, der Intensitätswert also auf 255 gesetzt. Befindet sich der Intensitätswert des Pixels zwischen Ober- und Untergrenze, wird es als schwaches Pixel markiert. Sollte der Intensitätswert des Pixels kleiner als die Untergrenze sein, wird er auf 0 gesetzt. \nl
+	Die beiden Schwellenwerte werden abhängig vom Eingangsbild berechnet, in unserem Beispiel durch den Faktor 0.05 für die untere und 0.09 für die obere Schwelle. In Python setzen wir die double threshold Funktion folgendermaßen um:
+	\begin{python}
+		def double_threshold(img, lowRatio=0.05, 
+							 highRatio=0.09):
+			highThreshold = img.max() * highRatio
+			lowThreshold = highThreshold * lowRatio
+		
+			M, N = img.shape
+			res = np.zeros((M, N))
+		
+			weak = np.int32(25)
+			strong = np.int32(255)
+			zero = np.int32(0)
+		
+			strong_i, strong_j = np.
+						where(img >= highThreshold)
+			zeros_i, zeros_j = np.
+						where(img < lowThreshold)
+			weak_i, weak_j = np.
+					where((img <= highThreshold) & 
+						  (img >= lowThreshold))
+		
+			res[strong_i, strong_j] = strong
+			res[weak_i, weak_j] = weak
+			res[zeros_i, zeros_j] = zero
+		
+			return res
+	\end{python}
 	
 	\section{How to measure performance of algorithms}
 	\textbf{TODO}
@@ -218,6 +262,14 @@
 		
 		Man kann eine deutliche Ausdünnung der Kanten erkennen, ebenso ist ersichtlich, dass die Intensitätswerte der gefundenen Pixel Kanten noch stark variieren. Mit den folgenden 2 Schritten versuchen wir das so gut als möglich zu kompensieren und die Intensitätswerte zu vereinheitlichen.
 		
-		\subsection{Double treshold}
+		\subsection{Double threshold}
+		
+		Durch die double threshold Funktion markieren wir nun jedes bis jetzt als Kante markiertes Pixel als starkes oder schwaches Pixel und erhalten ein Bild mit nurnoch 3 verschiedenen Intensitätswerten, 255 (starkes Pixel), 25 (schwaches Pixel) und 0 (kein Kantenpixel).
+	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth] {../Bilder/double_threshold_after_nms}
+			\caption{\textit{Bild mit starken (weiss) und schwachen (grau) Pixeln}}
+		\end{figure}
 	
 \end{document}

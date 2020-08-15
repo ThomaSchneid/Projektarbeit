@@ -93,23 +93,28 @@ def non_max_suppression(img, D):
 
 # DOUBLE THRESHOLD
 
-def threshold(img, lowThresholdRatio=0.05, highThresholdRatio=0.09):
-    highThreshold = img.max() * highThresholdRatio;
-    lowThreshold = highThreshold * lowThresholdRatio;
+def double_threshold(img, lowRatio=0.05, highRatio=0.09):
+    highThreshold = img.max() * highRatio
+    lowThreshold = highThreshold * lowRatio
 
     M, N = img.shape
-    res = np.zeros((M, N), dtype=np.int32)
+    res = np.zeros((M, N))
 
     weak = np.int32(25)
     strong = np.int32(255)
+    zero = np.int32(0)
 
     strong_i, strong_j = np.where(img >= highThreshold)
     zeros_i, zeros_j = np.where(img < lowThreshold)
-
     weak_i, weak_j = np.where((img <= highThreshold) & (img >= lowThreshold))
 
     res[strong_i, strong_j] = strong
     res[weak_i, weak_j] = weak
+    res[zeros_i, zeros_j] = zero
+
+    cv2.imshow("Image after double threshold", res)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     return res, weak, strong
 
@@ -140,4 +145,5 @@ def test():
     blur = gaussian_blur()
     sobel = sobel_filter(blur)
     Z = non_max_suppression(sobel[0], sobel[1])
-    return Z
+    res = double_threshold(Z)
+    return res
