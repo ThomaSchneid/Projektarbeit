@@ -2,8 +2,11 @@
 \contentsline {section}{\numberline {II}Mathematische Grundlagen}{2}%
 \contentsline {subsection}{\numberline {\mbox {II-A}}Gauß Filter}{2}%
 \contentsline {subsection}{\numberline {\mbox {II-B}}Sobel Operator}{2}%
-\contentsline {section}{\numberline {III}How to measure performance of algorithms}{2}%
-\contentsline {section}{\numberline {IV}Canny Edge Detection}{2}%
-\contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{2}%
-\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{2}%
-\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{3}%
+\contentsline {subsection}{\numberline {\mbox {II-C}}Non Maximum Suppression}{2}%
+\contentsline {section}{\numberline {III}Double Treshold}{3}%
+\contentsline {section}{\numberline {IV}How to measure performance of algorithms}{3}%
+\contentsline {section}{\numberline {V}Canny Edge Detection}{3}%
+\contentsline {subsection}{\numberline {\mbox {V-A}}Noise Reduction}{3}%
+\contentsline {subsection}{\numberline {\mbox {V-B}}Gradient Calculation}{3}%
+\contentsline {subsection}{\numberline {\mbox {V-C}}Non Maximum Suppression}{4}%
+\contentsline {subsection}{\numberline {\mbox {V-D}}Double treshold}{4}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  15 AUG 2020 00:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  15 AUG 2020 16:46
 entering extended mode
 **./Documentation.tex
 (Documentation.tex
@@ -416,35 +416,52 @@ File: ../Bilder/sobel_operator.png Graphic file (type png)
 <use ../Bilder/sobel_operator.png>
 Package pdftex.def Info: ../Bilder/sobel_operator.png  used on input line 62.
 (pdftex.def)             Requested size: 151.20154pt x 86.63098pt.
-<../Bilder/hochschule_blur_5_5.png, id=9, 577.40718pt x 291.33844pt>
-File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
-<use ../Bilder/hochschule_blur_5_5.png>
-Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
-110.
-(pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
+<../Bilder/nms_how_to.png, id=9, 463.7325pt x 222.8325pt>
+File: ../Bilder/nms_how_to.png Graphic file (type png)
+<use ../Bilder/nms_how_to.png>
+Package pdftex.def Info: ../Bilder/nms_how_to.png  used on input line 92.
+(pdftex.def)             Requested size: 252.0pt x 121.09279pt.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
+6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-
- []
+(C:\Users\Thomas\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+<../Bilder/nms_inspect_pixel.png, id=10, 204.765pt x 194.7275pt>
+File: ../Bilder/nms_inspect_pixel.png Graphic file (type png)
+<use ../Bilder/nms_inspect_pixel.png>
+Package pdftex.def Info: ../Bilder/nms_inspect_pixel.png  used on input line 10
+0.
+(pdftex.def)             Requested size: 201.60077pt x 191.73193pt.
 
 [2
 
- <../Bilder/sobel_operator.png> <../Bilder/hochschule_blur_5_5.png>]
-<../Bilder/sobel_after_blur.png, id=27, 277.035pt x 292.84406pt>
+ <../Bilder/sobel_operator.png> <../Bilder/nms_how_to.png> <../Bilder/nms_inspe
+ct_pixel.png>]
+<../Bilder/hochschule_blur_5_5.png, id=27, 577.40718pt x 291.33844pt>
+File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
+<use ../Bilder/hochschule_blur_5_5.png>
+Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
+183.
+(pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
+
+ []
+
+[3 <../Bilder/hochschule_blur_5_5.png>]
+<../Bilder/sobel_after_blur.png, id=36, 277.035pt x 292.84406pt>
 File: ../Bilder/sobel_after_blur.png Graphic file (type png)
 <use ../Bilder/sobel_after_blur.png>
-Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 130
+Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 203
 .
 (pdftex.def)             Requested size: 126.0pt x 133.19063pt.
+<../Bilder/nms_after_sobel.png, id=37, 289.83281pt x 298.86656pt>
+File: ../Bilder/nms_after_sobel.png Graphic file (type png)
+<use ../Bilder/nms_after_sobel.png>
+Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 215.
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--144
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 138--144
-
- []
+(pdftex.def)             Requested size: 126.0pt x 129.92836pt.
 
 
 ** Conference Paper **
@@ -457,37 +474,40 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3
+[4
 
- <../Bilder/sobel_after_blur.png>] (Documentation.aux) ) 
+ <../Bilder/sobel_after_blur.png> <../Bilder/nms_after_sobel.png>]
+(Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 6855 strings out of 480790
- 97551 string characters out of 2896833
- 798669 words of memory out of 3000000
- 22780 multiletter control sequences out of 15000+200000
- 637896 words of font info for 127 fonts, out of 3000000 for 9000
+ 6955 strings out of 480790
+ 99039 string characters out of 2896833
+ 961669 words of memory out of 3000000
+ 22871 multiletter control sequences out of 15000+200000
+ 638947 words of font info for 130 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,50p,445b,1579s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Thomas/AppDat
-a/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/Thomas/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Thomas/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Use
-rs/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pf
-b><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr5.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Thomas/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Thomas/AppData
-/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/Thomas/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Thomas/A
-ppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/
-AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas
-/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Documentation.pdf (3 pages, 247584 bytes).
+ 36i,10n,50p,681b,1579s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/enc/d
+vips/base/8r.enc}<C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmex10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Thomas/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Thomas/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Thomas/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Thoma
+s/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Use
+rs/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
+><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmsy5.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmsy7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fon
+ts/type1/urw/courier/ucrb8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/
+fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKT
+eX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Thomas/AppData/Local/Programs/
+MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/AppData/Local/Programs
+/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas/AppData/Local/Program
+s/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Documentation.pdf (4 pages, 287355 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
