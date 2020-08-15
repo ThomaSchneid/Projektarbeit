@@ -32,9 +32,14 @@
 	
 	\section{Motivation/Einleitung}
 	
+	\begin{center}
+		\textcolor{red}{\textbf{TODO}}
+	\end{center}
+	
 	\section{Mathematische Grundlagen}
 
 		\subsection{Gauß Filter}
+	
 		Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
 		Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
 		\medbreak
@@ -55,6 +60,7 @@
 		\end{python}		
 	
 		\subsection{Sobel Operator}
+	
 		Der Sobel Operator besteht aus zwei 3$\times$3 Faltungskernen, wobei ein Kern dem jeweils anderen um 90$\circ$ gedreht.
 		
 		\begin{figure}[H]
@@ -84,135 +90,177 @@
 				return G, theta
 		\end{python}
 	
-	\subsection{Non Maximum Suppression}
-	Die Non Maximum Suppression Technik wird angewendet um bereits gefundene Intensitätsmaxima (Kanten) erneut zu prüfen und diese auszudünnen. Hierfür durchläuft der Algorithmus jedes gefundene Kantenpixel und vergleicht, basierend auf dem Gradienten des jeweiligen Pixels, die entsprechenden Nachbarpixel. Sollte eines der Nachbarpixel einen höheren Grauwert als das aktuelle Pixel aufweisen, wird der Grauwert des aktuellen Pixels auf 0 gesetzt. Bildlich kann man sich die Technik folgendermaßen vorstellen
+		\subsection{Non Maximum Suppression}
 	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\linewidth] {../Bilder/nms_how_to}
-		\caption{\textit{Darstellung der Non Maximum Suppression Technik}}
-	\end{figure}
+		Die Non Maximum Suppression Technik wird angewendet um bereits gefundene Intensitätsmaxima (Kanten) erneut zu prüfen und diese auszudünnen. Hierfür durchläuft der Algorithmus jedes gefundene Kantenpixel und vergleicht, basierend auf dem Gradienten des jeweiligen Pixels, die entsprechenden Nachbarpixel. Sollte eines der Nachbarpixel einen höheren Grauwert als das aktuelle Pixel aufweisen, wird der Grauwert des aktuellen Pixels auf 0 gesetzt. Bildlich kann man sich die Technik folgendermaßen vorstellen
+	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth] {../Bilder/nms_how_to}
+			\caption{\textit{Darstellung der Non Maximum Suppression Technik}}
+		\end{figure}
 
-	Schauen wir uns nun das untere, rot umrahmte Pixel etwas genauer an. Die Richtung der Kante wird hier durch den blauen Pfeil symbolisiert und und entspricht einem Winkel von $\frac{\pi}{2}$ (90°).
+		Schauen wir uns nun das untere, rot umrahmte Pixel etwas genauer an. Die Richtung der Kante wird hier durch den blauen Pfeil symbolisiert und und entspricht einem Winkel von $\frac{\pi}{2}$ (90°).
 	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.8\linewidth] {../Bilder/nms_inspect_pixel}
-		\caption{\textit{Nähere Betrachtung eines einzigen Pixels}}
-	\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth] {../Bilder/nms_inspect_pixel}
+			\caption{\textit{Nähere Betrachtung eines einzigen Pixels}}
+		\end{figure}
 	
-	Die Richtung der Kante wird durch den grünen Pfeil dargestellt und verläuft vertikal von oben nach unten. Der Algorithmus prüft nun, ob die Pixel ober- und unterhalb (im Bild blau markiert) des ausgewählten Pixels (rot im Bild markiert) einen höheren Intensitätswert aufweisen. In unserem Beispiel ist der Intensitätswert des unteren Pixels (i + 1, j) höher als der der anderen Beiden (das untere Pixel hat einen Intensitätswert von 255, da es weiß ist). Der Intensitätswert des aktuellen Pixels wird nun auf 0 gesetzt. Hätte keines der beiden anderen Pixel einen höheren Intensitätswert, würde der aktuelle Wert beibehalten werden.\nl
-	Jedes Pixel hat also 2 Hauptkriterien, die Gradientenrichtung und den Intensitätswert. Die Non Maximum Suppression nutzt diese beiden Merkmale und führt folgende Schritte durch:
-	\begin{itemize}
-		\item Eine Matrix mit nullen der gleichen Größe der Gradientenmatrix erstellen
-		\item Kantenrichtung anhand der Gradientenmatrix erkennen
-		\item Prüfen ob Pixel entlang der Kantenrichtung einen höheren Intensitätswert als das aktuelle Pixel haben
-		\item Das mit dem Non Maximum Suppression Algorithmus bearbeitete Bild zurückgeben
-	\end{itemize}
+		Die Richtung der Kante wird durch den grünen Pfeil dargestellt und verläuft vertikal von oben nach unten. Der Algorithmus prüft nun, ob die Pixel ober- und unterhalb (im Bild blau markiert) des ausgewählten Pixels (rot im Bild markiert) einen höheren Intensitätswert aufweisen. In unserem Beispiel ist der Intensitätswert des unteren Pixels (i + 1, j) höher als der der anderen Beiden (das untere Pixel hat einen Intensitätswert von 255, da es weiß ist). Der Intensitätswert des aktuellen Pixels wird nun auf 0 gesetzt. Hätte keines der beiden anderen Pixel einen höheren Intensitätswert, würde der aktuelle Wert beibehalten werden.\nl
+		Jedes Pixel hat also 2 Hauptkriterien, die Gradientenrichtung und den Intensitätswert. Die Non Maximum Suppression nutzt diese beiden Merkmale und führt folgende Schritte durch:
+	
+		\begin{itemize}
+			\item Eine Matrix mit nullen der gleichen Größe der Gradientenmatrix erstellen
+			\item Kantenrichtung anhand der Gradientenmatrix erkennen
+			\item Prüfen ob Pixel entlang der Kantenrichtung einen höheren Intensitätswert als das aktuelle Pixel haben
+			\item Das mit dem Non Maximum Suppression Algorithmus bearbeitete Bild zurückgeben
+		\end{itemize}
 
-	Den Non Maximum Suppression Algorithmus realisieren wir durch folgenden Python Code:
+		Den Non Maximum Suppression Algorithmus realisieren wir durch folgenden Python Code:
 	
-	\begin{python}
-		def non_max_suppression(img, D):
-			M, N = img.shape
-			Z = np.zeros((M, N))
-			angle = D * 180. / np.pi
-			angle[angle < 0] += 180
+		\begin{python}
+			def non_max_suppression(img, D):
+				M, N = img.shape
+				Z = np.zeros((M, N))
+				angle = D * 180. / np.pi
+				angle[angle < 0] += 180
 		
-			for i in range(1, M - 1):
-				for j in range(1, N - 1):
-					try:
-						q = 255
-						r = 255
+				for i in range(1, M - 1):
+					for j in range(1, N - 1):
+						try:
+							q = 255
+							r = 255
 		
-						# angle 0
-						if (0 <= angle[i, j] < 22.5) or 
-						   (157.5 <= angle[i, j] <= 180):
-							q = img[i, j + 1]
-							r = img[i, j - 1]
-						# angle 45
-						elif 22.5 <= angle[i, j] < 67.5:
-							q = img[i + 1, j - 1]
-							r = img[i - 1, j + 1]
-						# angle 90
-						elif 67.5 <= angle[i, j] < 112.5:
-							q = img[i + 1, j]
-							r = img[i - 1, j]
-						# angle 135
-						elif 112.5 <= angle[i, j] < 157.5:
-							q = img[i - 1, j - 1]
-							r = img[i + 1, j + 1]
+							# angle 0
+							if (0 <= angle[i, j] < 22.5) or 
+							   (157.5 <= angle[i, j] <= 180):
+								q = img[i, j + 1]
+								r = img[i, j - 1]
+							# angle 45
+							elif 22.5 <= angle[i, j] < 67.5:
+								q = img[i + 1, j - 1]
+								r = img[i - 1, j + 1]
+							# angle 90
+							elif 67.5 <= angle[i, j] < 112.5:
+								q = img[i + 1, j]
+								r = img[i - 1, j]
+							# angle 135
+							elif 112.5 <= angle[i, j] < 157.5:
+								q = img[i - 1, j - 1]
+								r = img[i + 1, j + 1]
 		
-						if (img[i, j] >= q) and
-						   (img[i, j] >= r):
-							Z[i, j] = img[i, j]
-						else:
-							Z[i, j] = 0
+							if (img[i, j] >= q) and
+						   	   (img[i, j] >= r):
+								Z[i, j] = img[i, j]
+							else:
+								Z[i, j] = 0
 		
-					except IndexError as e:
-						pass
-			return Z
-	\end{python}
+						except IndexError as e:
+							pass
+				return Z
+		\end{python}
 	
-	\section{Double threshold}
-	Der double threshold Filter unterteilt unser Bild in 3 Arten von Pixeln
-	\begin{itemize}
-		\item \textbf{Starke Pixel}
+		\subsection{Double threshold}
+	
+		Der double threshold Filter unterteilt unser Bild in 3 Arten von Pixeln
+	
 		\begin{itemize}
-			\item Pixel, deren Intensitätswert hoch genug ist, dass wir uns sicher sein können, dass sie ein Teil der finalen Kante sind.
+			\item \textbf{Starke Pixel}
+			\begin{itemize}
+				\item Pixel, deren Intensitätswert hoch genug ist, dass wir uns sicher sein können, dass sie ein Teil der finalen Kante sind.
+			\end{itemize}
+			\item \textbf{Schwache Pixel}
+			\begin{itemize}
+				\item Pixel, deren Intensitätswert nicht hoch genug ist um als starkes Pixel eingestuft zu werden, allerdings hoch genug ist um nicht als unsignifikant für die Kantenerkennung zu sein.
+			\end{itemize}
+			\item \textbf{Andere Pixel}
+			\begin{itemize}
+				\item Alle Pixel, welche keine der anderen beiden Bedingungen erfüllen.
+			\end{itemize}
 		\end{itemize}
-		\item \textbf{Schwache Pixel}
-		\begin{itemize}
-			\item Pixel, deren Intensitätswert nicht hoch genug ist um als starkes Pixel eingestuft zu werden, allerdings hoch genug ist um nicht als unsignifikant für die Kantenerkennung zu sein.
-		\end{itemize}
-		\item \textbf{Andere Pixel}
-		\begin{itemize}
-			\item Alle Pixel, welche keine der anderen beiden Bedingungen erfüllen.
-		\end{itemize}
-	\end{itemize}
 
-	Es wird eine Obergrenze (high threshold) und eine Untergrenze (low threshold) für die Intensitätswerte festgelegt. Ist der Intensitätswert eines Pixels höher als oder gleich der Obergrenze, wird es als starkes Pixel markiert, der Intensitätswert also auf 255 gesetzt. Befindet sich der Intensitätswert des Pixels zwischen Ober- und Untergrenze, wird es als schwaches Pixel markiert. Sollte der Intensitätswert des Pixels kleiner als die Untergrenze sein, wird er auf 0 gesetzt. \nl
-	Die beiden Schwellenwerte werden abhängig vom Eingangsbild berechnet, in unserem Beispiel durch den Faktor 0.05 für die untere und 0.09 für die obere Schwelle. In Python setzen wir die double threshold Funktion folgendermaßen um:
-	\begin{python}
-		def double_threshold(img, lowRatio=0.05, 
-							 highRatio=0.09):
-			highThreshold = img.max() * highRatio
-			lowThreshold = highThreshold * lowRatio
-		
-			M, N = img.shape
-			res = np.zeros((M, N))
-		
-			weak = np.int32(25)
-			strong = np.int32(255)
-			zero = np.int32(0)
-		
-			strong_i, strong_j = np.
-						where(img >= highThreshold)
-			zeros_i, zeros_j = np.
-						where(img < lowThreshold)
-			weak_i, weak_j = np.
-					where((img <= highThreshold) & 
-						  (img >= lowThreshold))
-		
-			res[strong_i, strong_j] = strong
-			res[weak_i, weak_j] = weak
-			res[zeros_i, zeros_j] = zero
-		
-			return res
-	\end{python}
+		Es wird eine Obergrenze (high threshold) und eine Untergrenze (low threshold) für die Intensitätswerte festgelegt. Ist der Intensitätswert eines Pixels höher als oder gleich der Obergrenze, wird es als starkes Pixel markiert, der Intensitätswert also auf 255 gesetzt. Befindet sich der Intensitätswert des Pixels zwischen Ober- und Untergrenze, wird es als schwaches Pixel markiert. Sollte der Intensitätswert des Pixels kleiner als die Untergrenze sein, wird er auf 0 gesetzt. \nl
+		Die beiden Schwellenwerte werden abhängig vom Eingangsbild berechnet, in unserem Beispiel durch den Faktor 0.05 für die untere und 0.09 für die obere Schwelle. In Python setzen wir die double threshold Funktion folgendermaßen um:
 	
-	\section{How to measure performance of algorithms}
-	\textbf{TODO}
+		\begin{python}
+			def double_threshold(img, lowRatio=0.05, 
+								 highRatio=0.09):
+				highThreshold = img.max() * highRatio
+				lowThreshold = highThreshold * lowRatio
+			
+				M, N = img.shape
+				res = np.zeros((M, N))
+			
+				strong = np.int32(255)
+				weak = np.int32(25)
+				zero = np.int32(0)
+			
+				strong_i, strong_j = np.
+							where(img >= highThreshold)
+				zeros_i, zeros_j = np.
+							where(img < lowThreshold)
+				weak_i, weak_j = np.
+						where((img <= highThreshold) & 
+							  (img >= lowThreshold))
+			
+				res[strong_i, strong_j] = strong
+				res[weak_i, weak_j] = weak
+				res[zeros_i, zeros_j] = zero
+			
+				return res
+		\end{python}
+
+		\subsection{Kantenverfolgung durch Hysterese}
+		
+		Durch eine Hysterese wird festgelegt, ab welcher Kantenstärke ein Pixel zu einer Kante gehört. Mithilfe zweier Schwellwerte T\tief{1} < T\tief{2} wird jedes Pixel eines Bildes überprüft. Sobald ein Pixel einen Intensitätswert über T\tief{2} hat, wird diesem Pixel gefolgt und jedes Pixel entlang der so gefundenen Kante, dessen Intensitätswert größer T\tief{1} ist, als Element dieser Kante markiert.
+		
+		Wir realisieren unsere Hysterese Funktion in Python folgendermaßen:
+		
+		\begin{python}
+			def hysteresis(img, weak, strong=255):
+				M, N = img.shape
+				for i in range(1, M - 1):
+					for j in range(1, N - 1):
+						if img[i, j] == weak:
+							try:
+								if ((img[i + 1, j - 1] == strong) or 
+									(img[i + 1, j] == strong) or 
+									(img[i + 1, j + 1] == strong) or 
+									(img[i, j - 1] == strong) or 
+									(img[i, j + 1] == strong) or 
+									(img[i - 1, j - 1] == strong) or 
+									(img[i - 1, j] == strong) or 
+									(img[i - 1, j + 1] == strong)):
+									img[i, j] = strong
+								else:
+									img[i, j] = 0
+							
+							except IndexError as e:
+								pass
+				
+				return img
+			
+		\end{python}
+	
+		\section{How to measure performance of algorithms}
+		
+		\begin{center}
+			\textcolor{red}{\textbf{TODO}}
+		\end{center}
 	
 	\section{Canny Edge Detection}
-	Der Canny Algorithmus lässt sich in folgende 5 Schritte unterteilen:
-	\begin{enumerate}
-		\item Noise reduction
-		\item Gradient calculation
-		\item Non-maximum suppression
-		\item Double treshold
-		\item Edge Tracking by Hysteresis
-	\end{enumerate}
+	
+		Der Canny Algorithmus lässt sich in folgende 5 Schritte unterteilen:
+	
+		\begin{enumerate}
+			\item Noise reduction
+			\item Gradient calculation
+			\item Non-maximum suppression
+			\item Double treshold
+			\item Edge Tracking by Hysteresis
+		\end{enumerate}
 	
 		\subsection{Noise Reduction}
 	
@@ -270,6 +318,25 @@
 			\centering
 			\includegraphics[width=0.5\linewidth] {../Bilder/double_threshold_after_nms}
 			\caption{\textit{Bild mit starken (weiss) und schwachen (grau) Pixeln}}
+		\end{figure}
+	
+		\subsection{Hysteresis}
+		
+		Zuletzt werden noch einmal alle Pixel geprüft und falls einer der direkten Nachbarn ein starkes Pixel ist, wird das aktuelle Pixel - falls es kein starkes Pixel ist - in ein starkes Pixel umgewandelt, indem der Intensitätswert auf 255 gesetzt wird.\nl
+		Wenn ein Pixel kein starkes Pixel in der Nachbarschaft hat, wird sein Intensitätswert zu  0 gesetzt.
+	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth] {../Bilder/no_strong_pixel_around}
+			\caption{\textit{Ein Pixel ohne starkes Pixel in der Nachbarschaft}}
+		\end{figure}
+	
+		Hat ein Pixel ein starkes Pixel in der Nachbarschaft, wird sein Intensitätswert auf 255 gesetzt, es selbst zu einem starken Pixel.
+	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth] {../Bilder/one_strong_pixel_around}
+			\caption{\textit{Ein Pixel mit einem starken Pixel in der Nachbarschaft}}
 		\end{figure}
 	
 \end{document}

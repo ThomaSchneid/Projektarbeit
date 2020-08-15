@@ -100,8 +100,8 @@ def double_threshold(img, lowRatio=0.05, highRatio=0.09):
     M, N = img.shape
     res = np.zeros((M, N))
 
-    weak = np.int32(25)
     strong = np.int32(255)
+    weak = np.int32(25)
     zero = np.int32(0)
 
     strong_i, strong_j = np.where(img >= highThreshold)
@@ -138,6 +138,10 @@ def hysteresis(img, weak, strong=255):
                         img[i, j] = 0
                 except IndexError as e:
                     pass
+
+    cv2.imshow("Final image", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     return img
 
 
@@ -146,4 +150,5 @@ def test():
     sobel = sobel_filter(blur)
     Z = non_max_suppression(sobel[0], sobel[1])
     res = double_threshold(Z)
-    return res
+    final = hysteresis(res[0], res[1])
+    return final
