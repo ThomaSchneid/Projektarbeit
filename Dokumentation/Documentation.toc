@@ -12,3 +12,4 @@
 \contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{4}%
 \contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{5}%
 \contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{5}%
+\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{5}%
