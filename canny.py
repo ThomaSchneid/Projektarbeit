@@ -50,7 +50,7 @@ def sobel_filter(img):
 
 def non_max_suppression(img, D):
     M, N = img.shape
-    Z = np.zeros((M, N), dtype=np.int32)
+    Z = np.zeros((M, N))
     angle = D * 180. / np.pi
     angle[angle < 0] += 180
 
@@ -139,4 +139,5 @@ def hysteresis(img, weak, strong=255):
 def test():
     blur = gaussian_blur()
     sobel = sobel_filter(blur)
-    non_max_suppression(sobel[0], sobel[1])
+    Z = non_max_suppression(sobel[0], sobel[1])
+    return Z
