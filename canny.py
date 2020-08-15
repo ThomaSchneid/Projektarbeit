@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import time
 from scipy import ndimage
 
 def gaussian_kernel(size, sigma=1.8):
@@ -31,9 +32,10 @@ def sobel_filter(img):
     cv2.imshow("Image after sobel", G)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    return G, theta
+    return G, theta, Ix, Gx
 
 def non_max_suppression(img, D):
+    start = time.time()
     M, N = img.shape
     Z = np.zeros((M, N))
     angle = D * 180. / np.pi
@@ -69,11 +71,12 @@ def non_max_suppression(img, D):
 
             except IndexError as e:
                 pass
-
+    end = time.time()
+    tt = end - start
     cv2.imshow("Image after non-max-suppression", Z)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    return Z
+    return Z, tt
 
 def double_threshold(img, lowRatio=0.05, highRatio=0.09):
     highThreshold = img.max() * highRatio
