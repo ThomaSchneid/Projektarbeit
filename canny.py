@@ -127,6 +127,6 @@ def test():
     blur = gaussian_blur()
     sobel = sobel_filter(blur)
     Z = non_max_suppression(sobel[0], sobel[1])
-    res = double_threshold(Z)
+    res = double_threshold(Z[0])
     final = hysteresis(res[0], res[1])
     return final

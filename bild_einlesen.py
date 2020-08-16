@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from xlwt import Workbook
 import time
 
 def japan():
@@ -20,17 +19,6 @@ def test_canny(img):
     print(end - start)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
-def fill_workbook(img):
-    wb = Workbook()
-    sheet1 = wb.add_sheet('Sheet 1')
-
-    for x in range(0,255):
-        for y in range(0,255):
-            sheet1.write(x, y, int(img[y][x]))
-
-
-    wb.save('xlwt example.xls')
 
 def schwelle(img):
     start = time.time()

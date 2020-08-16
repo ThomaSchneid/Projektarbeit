@@ -21,6 +21,7 @@
 \newcommand{\hoch}{\textsuperscript}
 \newcommand{\nl}{\newline}
 \newcommand{\formelbox}[1]{\centerline{\fbox{#1}}}
+\newcommand{\nin}{\noindent}
 
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
@@ -32,9 +33,14 @@
 	
 	\section{Motivation/Einleitung}
 	
-	\begin{center}
-		\textcolor{red}{\textbf{TODO}}
-	\end{center}
+	Wenn es um Bild- und Objekterkennung geht ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert und erkennt Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so Leistungsstark und Effizient wie das menschliche Auge. Nicht nur ist der Canny Algorithmus der wohl bekannteste, sondern auch der am meist benutzte.\nl
+	Der Canny-Algorithmus benutzt mehrere Stufen um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Nachdem ich meine Seminararbeit der Kantenverfolgung gewidmet habe, kam ich nicht umher, mit dem Canny-Algorithmus in Berührung zu kommen.
+	Neben all der Faszination stellte sich mir schnell die Frage, wieso der Canny-Algorithmus so aufgebaut ist, wie er es ist. \nl
+	Er durchläuft jedes Pixel eines Bildes mehrmals um so zum gewünschten Ergebnis zu kommen. 
+	Diese Projektarbeit befasst sich mit Focus peaking, dem markieren scharf gestellter Objekte in einem Bild, und speziell dem Teilgebiet der Kantenverfolgung und ob sie die Performance aktueller Algorithmen verbessern kann. 
+	Expliziter der Canny Algorithmus wird hier als Beispiel herangezogen, da er einer der besten Kantenerkennungsalgorithmen zurzeit ist.
+	Ziel ist es, nicht das komplette Bild durchlaufen zu müssen, sondern - sobald eine Kante detektiert wurde - der Kante zu folgen und so schneller scharf gestellte Objekte zu erkennen. 
+	Im Teilbereich der Hochgeschwindigkeitsfotografie könnte man damit schneller Objekte durch Autofokus scharf stellen und so die Bildqualität steigern.
 	
 	\section{Mathematische Grundlagen}
 
@@ -121,6 +127,8 @@
 			\item Prüfen ob Pixel entlang der Kantenrichtung einen höheren Intensitätswert als das aktuelle Pixel haben
 			\item Das mit dem Non Maximum Suppression Algorithmus bearbeitete Bild zurückgeben
 		\end{itemize}
+
+		\pagebreak
 
 		Den Non Maximum Suppression Algorithmus realisieren wir durch folgenden Python Code:
 	
@@ -232,6 +240,8 @@
 		
 		Durch eine Hysterese wird festgelegt, ab welcher Kantenstärke ein Pixel zu einer Kante gehört. Mithilfe zweier Schwellwerte T\tief{1} < T\tief{2} wird jedes Pixel eines Bildes überprüft. Sobald ein Pixel einen Intensitätswert über T\tief{2} hat, wird diesem Pixel gefolgt und jedes Pixel entlang der so gefundenen Kante, dessen Intensitätswert größer T\tief{1} ist, als Element dieser Kante markiert.
 		
+		\pagebreak
+		
 		Wir realisieren unsere Hysterese Funktion in Python folgendermaßen:
 		
 		\begin{python}
@@ -280,27 +290,29 @@
 	Im Folgenden werden die Laufzeiten der einzelnen Funktionen sowie im Abschluss des gesamten Canny Algorithmus berechnet.\nl
 	Zusätzlich betrachten wir - sofern möglich - den jeweils schlechtesten und besten Fall.\nl
 	
+	\pagebreak
+	
 		\subsection{Gauß Filter}
 
 		Die Kosten für den Gauß Filter ergibt sich der Laufzeitaufwand hiermit zu: \nl
 	
 		\formelbox{ T(n)\tief{Gauß} = c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} }
 		
-		Da wir hier jede Zeile einmal durchlaufen müssen ist der schlechteste Fall gleich dem besten Fall.
+		\nin Da wir hier jede Zeile einmal durchlaufen müssen ist der schlechteste Fall gleich dem besten Fall.
 
 		\subsection{Sobel Filter}
 
 		Der Sobel Filter hat ähnlich zum Gauß Filter einen geringen Laufzeitaufwand im Vergleich zum Gesamtaufwand:\nl
 	
 		\formelbox{ T(n)\tief{Sobel} = (c\tief{5} + c\tief{6}) * 2 + c\tief{7} + c\tief{8} + c\tief{9} }
-	
-		Der Sobel Filter ist nur vom jeweiligen Eingangsbild abhängig, jede Zeile muss einmal durchlaufen werden. Je größer das Bild, desto größer auch der Rechenaufwand. Auch hier entspricht der schlechteste Fall gleich dem besten Fall.
+			
+		\nin Der Sobel Filter ist nur vom jeweiligen Eingangsbild abhängig, jede Zeile muss einmal durchlaufen werden. Je größer das Bild, desto größer auch der Rechenaufwand. Auch hier entspricht der schlechteste Fall gleich dem besten Fall.
 	
 		\subsection{Non Maximum Supression}
 	
 		Den größten Rechenaufwand beansprucht die Non Maximum Suppression. Hier ergibt sich der benötigte Laufzeitaufwand zu: \nl
 	
-		\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.4\textwidth}{
 			\begin{center}
 				T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
 				(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 3 * c\tief{20} + c\tief{21} + \\
@@ -313,55 +325,11 @@
 			\end{center}
 		}}
 		
-%		Wir unterscheiden den Laufzeitaufwand nun für den best- sowie den schlechtmöglichsten Fall: \nl
-%		
-%			\subsubsection{Bestmöglicher Fall}
-%		
-%			Im Bestmöglichen Fall liegt jeder Winkel zwischen 0° und 22.5° oder 157.5° und 180° und der Intensitätswert eines jeden Pixels des Bildes ist höher als der seiner Nachbarn in Gradientenrichtung. In diesem Fall kann man mit folgenden Annahmen Rechnen:\nl
-%		
-%			\formelbox{\parbox{0.5\textwidth}{
-%			\begin{center}
-%				A0 = Y = ((M - 2) * (N - 2)); \\
-%				A45 = A90 = A135 = 0; \\			
-%			\end{center}
-%			}}
-%			
-%			Womit sich der Laufzeitaufwand vereinfacht zu: \nl
-%			
-%			\formelbox{\parbox{0.5\textwidth}{
-%				\begin{center}
-%					T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
-%					(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 2 * c\tief{19} + \\
-%					c\tief{21} + c\tief{22}) * ((M - 2) * (N - 2)) \\
-%				\end{center}
-%			}}
-%		
-%			\subsubsection{Schlechtester Fall}
-%			
-%			Im schlechtesten Fall liegt jeder Winkel zwischen 112.5° und 157.5° und der Intensitätswert eines jeden Pixels des Bildes ist niedriger als der seiner Nachbarn in Gradientenrichtung. In diesem Fall kann man mit folgenden Annahmen Rechnen:\nl
-%			
-%			\formelbox{\parbox{0.5\textwidth}{
-%					\begin{center}
-%						A135 = ((M - 2) * (N - 2)); \\
-%						A0 = A45 = A90 = Y = 0; \\			
-%					\end{center}
-%			}}
-%		
-%			Womit sich der worst-case Laufzeitaufwand folgendermaßen gestaltet:\nl
-%			
-%			\formelbox{\parbox{0.5\textwidth}{
-%				\begin{center}
-%					T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
-%					(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 2 * c\tief{19} + 3 * c\tief{20} + c\tief{21} + \\
-%					c\tief{23}) * ((M - 2) * (N - 2)) \\
-%				\end{center}
-%			}}
-		
 		\subsection{Double threshold}
 		
 		Die double Threshold Methode beansprucht folgenden Laufzeitaufwand: \nl
 	
-		\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.4\textwidth}{
 			\begin{center}
 				T(n)\tief{double threshold} = c\tief{10} + c\tief{11} + 3 * c\tief{17} + \\
 				c\tief{26} + c\tief{27} + 2 * c\tief{28} + c\tief{29} + 3 * c\tief{30}
@@ -372,7 +340,7 @@
 	
 		Letztendlich noch der Laufzeitaufwand der Hysterese mit: \nl
 	
-		\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.4\textwidth}{
 			\begin{center}
 				T(n)\tief{hysterese} = c\tief{10} + c\tief{14} * (M - 2) + \\
 				(c\tief{15} + c\tief{16} + c\tief{23} + c\tief{31} + c\tief{32} + c\tief{33}) * ((M - 2) * (N - 2)) - \\
@@ -381,11 +349,13 @@
 			\end{center}
 		}}
 
-		\subsection{Komplette Laufzeit}
+		\pagebreak
 
-		Für die komplette Laufzeit T(n)\tief{Canny} des Algorithmus ergibt sich somit zu:
+		\subsection{Komplette Laufzeit}
+		
+		Die komplette Laufzeit T(n)\tief{Canny} des Algorithmus ergibt sich somit zu:
 	
-		\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.4\textwidth}{
 			\begin{center}
 				T(n)\tief{Canny} = \\
 				c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
@@ -405,7 +375,7 @@
 	
 		Mit\nl
 	 
-		\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.3\textwidth}{
 			\begin{center}
 				A0 + A45 + A90 + A135 = ((M - 2) * (N - 2)); \\
 				Z - T = S; \\
@@ -415,9 +385,9 @@
 	
 		}}
 
-		Kann man die Gleichung folgendermaßen vereinfachen:\nl
+		kann man die Gleichung folgendermaßen vereinfachen:\nl
 
-		\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.4\textwidth}{
 			\begin{center}
 				T(n)\tief{Canny} = \\
 				c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
@@ -437,7 +407,7 @@
 			
 			Im besten Fall (in welchem es trotzdem noch eine Kante im Bild gibt) kann man folgende Annahmen treffen:\nl
 			
-			\formelbox{\parbox{0.5\textwidth}{
+			\formelbox{\parbox{0.4\textwidth}{
 					\begin{center}
 						A45 = A90 = A135 = S = 0; \\
 						A0 = Y = L; \\
@@ -445,7 +415,7 @@
 					\end{center}
 			}}
 		
-			\formelbox{\parbox{0.5\textwidth}{
+			\formelbox{\parbox{0.4\textwidth}{
 					\begin{center}
 						T(n)\tief{Canny} = \\
 						c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
@@ -463,14 +433,14 @@
 			
 			Analog können für den schlimmsten Fall folgende Annahmen getroffen werden:\nl
 			
-			\formelbox{\parbox{0.5\textwidth}{
+			\formelbox{\parbox{0.4\textwidth}{
 				\begin{center}
 					A0 = A45 = A90 = Y = Z = T = 0; \\
 					S = L; \\
 				\end{center}
 			}}
 		
-			\formelbox{\parbox{0.5\textwidth}{
+			\formelbox{\parbox{0.4\textwidth}{
 				\begin{center}
 					T(n)\tief{Canny} = \\
 					c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
@@ -523,6 +493,8 @@
 		
 		Man erkennt allerdings, dass die Kanten noch sehr unfein, grob und breit sind. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.
 		
+		\pagebreak
+		
 		\subsection{Non Maximum Suppression}
 		
 		Die momentan noch mehr als 1 Pixel breiten Kanten werden nun mit der sogenannten Non-Maximum Suppression Technik ausgedünnt. Hierbei wird jedes Pixel durchlaufen. Abhängig vom Gradienten, welcher uns die Richtung der Kante angibt, werden die Intensitätswerte der beiden Nachbarpixel des jeweiligen Pixels mit dem Intensitätswert des aktuellen Pixels verglichen. Ist einer der beiden Nachbarwerte größer, so wird der Grauwert des aktuellen Pixels auf Null gesetzt, andernfalls bleibt er unverändert. Nach einem erfolgreichen Durchlauf wurden alle Pixel entlang der Kante mit maximalen Intensitätswerten behalten. 
@@ -563,14 +535,186 @@
 			\includegraphics[width=0.8\linewidth] {../Bilder/one_strong_pixel_around}
 			\caption{\textit{Ein Pixel mit einem starken Pixel in der Nachbarschaft}}
 		\end{figure}
+	
+		Das Finale Bild mit den detektierten Kanten sieht nun folgendermaßen aus:
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth] {../Bilder/hysteresis_after_threshold}
+			\caption{\textit{Finales Bild}}
+		\end{figure}
+	
 	\section{Effizienzgewinn durch Kantenverfolgung}
 	
-	\subsection{Idee}
+		\subsection{Idee}
 	
-	Sobald eine Kante gefunden wurde ist es nicht mehr notwendig, jedes einzelne Pixel des kompletten Bildes zu überprüfen. Man kann die Kante entlang laufen und so nur die relevanten Bereiche des Bildes untersuchen, was den Rechenaufwand enorm verringert. 
-	Es wurde schnell klar, dass Kantenverfolgung hier nicht zielführend ist, da es sich sehr sehr schnell im Kreis drehen kann. <- Ideen und Rechnungen zeigen.
-	\begin{center}
-		\textcolor{red}{\textbf{TODO}}
-	\end{center}
+		Sobald eine Kante gefunden wurde ist es nicht mehr notwendig, jedes einzelne Pixel des kompletten Bildes zu überprüfen. Es soll der Kante gefolgt werden und auf dem Weg die entsprechenden Nachbarpixel der Kante zu 0 setzen und als "bearbeitet" markieren. So muss man nicht mehr jedes Pixel des Bildes untersuchen sondern erheblich weniger.\nl
+		
+		Sobald ein Kantenpixel gefunden wurde, werden - ähnlich zum Canny-Algorithmus - die Nachbarn überprüft und der Gradient gebildet. So findet man das nächste Pixel der Kante. Das aktuelle Pixel erhält den Grauwert 255, den 7 übrigen Nachbarn wird der Intensitätswert 0 zugewiesen und der Algorithmus navigiert zum nächsten Pixel.\nl
+		
+		Dadurch, dass man - sobald eine Kante detektiert wurde - 7 Nachbarpixel auf 0 setzt und diese nicht erneut überprüfen muss ergibt sich ein nicht unerheblicher performance Gewinn mindestens des Faktors 7.\nl
+		
+		Dadurch, dass ein Bild im Schnitt nur zwischen 5\% und 10\% aus Kanten beseht, müssen diese zur Realisierung der Idee erst einmal detektiert werden.
+		Hierzu gab es folgende Ansätze:\nl
+		Man durchläuft beide Diagonalen des Bildes und folgt allen Kanten, welche man dort gefunden hat.
+		Die Wahrscheinlichkeit, dass man durch diese Methode eine Kante findet, ist sehr hoch. Natürlich gibt es auch Bilder, welche keine Kanten auf den Diagonalen haben. Um hier nicht unnötige Laufzeit zu verschwenden, durchläuft man alle horizontalen, beginnend bei der ersten und dann immer im Abstand von 5 Pixeln. So durchläuft man nicht das komplette Bild und sollte definitiv eine Kante finden.
+		
+		Zur Berechnung der nächsten Richtung diente mir anfangs folgender Code:
+		
+		\begin{python}
+			def direction(pos, img):
+				direction = np.zeros((3, 3))
+				direction[0][2] = abs(diagonal_top_right
+									(pos, img) - diagonal_bottom_left
+									(pos, img))
+				direction[0][1] = abs(top(pos, img) - 
+									bottom(pos, img))
+				direction[0][0] = abs(diagonal_top_left
+								(pos, img) - diagonal_bottom_right
+								(pos, img))
+				direction[1][0] = abs(left(pos, img) - 
+									right(pos, img))
+				direction[2][0] = value_raising_diagonal
+									(pos, img)
+				direction[2][1] = value_top_bottom
+									(pos, img)
+				direction[2][2] = value_falling_diagonal
+									(pos, img)
+				direction[1][2] = value_left_right
+									(pos, img)
+				
+				return direction
+		\end{python}
+		
+		\pagebreak
+		
+		Die Richtung (der Gradient) wurde dabei nach folgendem Algorithmus berechnet:
+		
+		\begin{python}
+			def next_direction_to_move(current_position, 
+										y, direct):
+				if (direct[0] == 0) and (not all
+				(k in forbidden_directions for k in 
+				(1, 2, 3))):  # check for move up
+					if (current_position[0] != 0) and 
+					(1 not in forbidden_directions):  
+					# check for top border
+						moving_direction = 1
+					elif (current_position[0] != 0) and 
+					(2 not in forbidden_directions):  
+					# check for top border
+						moving_direction = 2
+					elif (current_position[0] != 0) and 
+					(3 not in forbidden_directions):  
+					# check for top border
+						moving_direction = 3
+					elif (current_position[1] != 0) and 
+					(4 not in forbidden_directions):  
+					# move left cause we are at top border
+						forbidden_directions.extend((1, 2, 3))
+					moving_direction = 4
+						elif 7 not in forbidden_directions:  
+						# move down if left border
+					moving_direction = 7
+						forbidden_directions.
+						extend((1, 2, 3, 4))
+					else:
+						print("no case for moving_direction 
+						left")
+						moving_direction = 9
+				elif (direct[0] == 1) and (not all(k in 
+				forbidden_directions for k in (4, 5))):  
+				# check for left  or right
+					if (direct[1] == 0) and 
+					(current_position[1] != 0) and 
+					(4 not in forbidden_directions):  
+					# move right if left border
+						moving_direction = 4
+					elif 5 not in forbidden_directions:
+						moving_direction = 5
+						forbidden_directions.append(4)
+					else:
+						print("no case for moving_direction 
+						left")
+						moving_direction = 9
+				else:  # move down cause no 
+				case matches until now
+					if (current_position[0] < y) and 
+					(6 not in forbidden_directions):  
+					# check for bottom border
+						moving_direction = 6
+					elif (current_position[0] < y) and 
+					(7 not in forbidden_directions):  
+					# check for bottom border
+						moving_direction = 7
+					elif (current_position[0] < y) and 
+					(8 not in forbidden_directions):  
+					# check for bottom border
+						moving_direction = 8
+					elif (current_position[1] != 0) and 
+					(4 not in forbidden_directions):  
+					# move left if bottom border
+						moving_direction = 4
+						forbidden_directions.
+						extend((6, 7, 8))
+					elif 5 not in forbidden_directions:  
+					# move right when also at left border
+						moving_direction = 5
+						forbidden_directions.
+						extend((4, 6, 7, 8))
+					else:
+						print("no case for moving_direction 
+						left")
+						moving_direction = 9
+				
+				return moving_direction
+		\end{python}
+	
+		Ebenso war der Code zur Bestimmung des nächsten Pixels auf eine sehr triviale Weise vorhanden:
+	
+		\begin{python}
+			def position_of_next_pixel(moving_direction, 
+									current_position):
+				if moving_direction == 1:
+					next_pixel_position = 
+					(current_position[0] - 1,
+					 current_position[1] - 1)
+				elif moving_direction == 2:
+					next_pixel_position = 
+					(current_position[0] - 1, 
+					current_position[1])
+				elif moving_direction == 3:
+					next_pixel_position = 
+					(current_position[0] - 1, 
+					current_position[1] + 1)
+				elif moving_direction == 4:
+					next_pixel_position = 
+					(current_position[0], 
+					current_position[1] - 1)
+				elif moving_direction == 5:
+					next_pixel_position = 
+					(current_position[0], 
+					current_position[1] + 1)
+				elif moving_direction == 6:
+					next_pixel_position = 
+					(current_position[0] + 1, 
+					current_position[1] - 1)
+				elif moving_direction == 7:
+					next_pixel_position = 
+					(current_position[0] + 1, 
+					current_position[1])
+				elif moving_direction == 8:
+					next_pixel_position = 
+					(current_position[0] + 1, 
+					current_position[1] + 1)
+				elif moving_direction == 9:
+					print("no_next_pixel_position")
+					next_pixel_position = 
+					"moving in circles"
+				
+				return next_pixel_position
+		\end{python}
+	
+	
 	
 \end{document}

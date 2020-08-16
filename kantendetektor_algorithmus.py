@@ -1,25 +1,9 @@
 from check_neighbours import *
 from bild_einlesen import *
-#from starting_point import *
 
 def direction(pos, img):
-    direction_2 = []
-    direction_2.append(abs(diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img)))
-    direction_2.append(abs(top(pos, img) - bottom(pos, img)))
-    direction_2.append(abs(diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img)))
-    direction_2.append(abs(left(pos, img) - right(pos, img)))
 
-    a = direction_2.index(max(direction_2))
-
-    moving_direction_2 = []
-    moving_direction_2.append(value_falling_diagonal(pos, img))
-    moving_direction_2.append(value_top_bottom(pos, img))
-    moving_direction_2.append(value_falling_diagonal(pos, img))
-    moving_direction_2.append(value_left_right(pos, img))
-
-    moving_direction = moving_direction_2[a]
-
-    direction = np.zeros((3, 3))                        # matrix(zeilen, spalten)
+    direction = np.zeros((3, 3))
     direction[0][2] = abs(diagonal_top_right(pos, img) - diagonal_bottom_left(pos, img))
     direction[0][1] = abs(top(pos, img) - bottom(pos, img))
     direction[0][0] = abs(diagonal_top_left(pos, img) - diagonal_bottom_right(pos, img))
@@ -28,7 +12,6 @@ def direction(pos, img):
     direction[2][1] = value_top_bottom(pos, img)
     direction[2][2] = value_falling_diagonal(pos, img)
     direction[1][2] = value_left_right(pos, img)
-
     return direction
 
 def create_matrix(img):
@@ -36,7 +19,7 @@ def create_matrix(img):
     forbidden_directions = []
     x_achse = img.shape[1]
     y_achse = img.shape[0]
-    clone = np.zeros((y_achse, x_achse, 2))             # Aufbau Clone: (x,y,z)
+    clone = np.zeros((y_achse, x_achse, 2))
 
     return img, y_achse, clone
 
@@ -106,7 +89,7 @@ def position_of_next_pixel(moving_direction, current_position):
         print("no_next_pixel_position")
         next_pixel_position = "moving in circles"
 
-    return next_pixel_position #, forbidden_directions
+    return next_pixel_position
 
 def set_values_to_clone_matrix(moving_direction, current_position, clone, direction_matrix, direct):
     clone[current_position][0] = direction_matrix[direct]
