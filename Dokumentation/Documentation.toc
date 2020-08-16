@@ -13,11 +13,12 @@
 \contentsline {subsection}{\numberline {\mbox {III-E}}Hysterese}{4}%
 \contentsline {subsection}{\numberline {\mbox {III-F}}Komplette Laufzeit}{4}%
 \contentsline {subsubsection}{\numberline {\mbox {III-F}1}Laufzeit im besten Fall}{5}%
+\contentsline {subsubsection}{\numberline {\mbox {III-F}2}Lauftzeit im schlimmsten Fall}{5}%
 \contentsline {section}{\numberline {IV}Kantenerkennung mit dem Canny Algorithmus}{5}%
 \contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{5}%
 \contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{5}%
 \contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{6}%
-\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{6}%
-\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{6}%
+\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{7}%
+\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{7}%

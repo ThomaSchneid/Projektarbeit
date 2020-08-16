@@ -458,6 +458,30 @@
 						c\tief{31} * L + c\tief{32} * (L - Z) + c\tief{33} * Z \\
 					\end{center}
 			}}	
+		
+			\subsubsection{Lauftzeit im schlimmsten Fall}
+			
+			Analog können für den schlimmsten Fall folgende Annahmen getroffen werden:\nl
+			
+			\formelbox{\parbox{0.5\textwidth}{
+				\begin{center}
+					A0 = A45 = A90 = Y = Z = T = 0; \\
+					S = L; \\
+				\end{center}
+			}}
+		
+			\formelbox{\parbox{0.5\textwidth}{
+				\begin{center}
+					T(n)\tief{Canny} = \\
+					c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
+					c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
+					c\tief{14} * 2 * (M - 2) + c\tief{15} * 2 * L + c\tief{16} * 2 * L + \\
+					c\tief{17} * 6 * L + c\tief{18} * L + c\tief{19} * 2 * L + \\
+					c\tief{20} * 3 * L + c\tief{21} * L + c\tief{23} * L + c\tief{26} + \\
+					c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + c\tief{31} * L + \\
+					c\tief{32} * L + c\tief{33} * L \\
+				\end{center}
+			}}
 	
 	\section{Kantenerkennung mit dem Canny Algorithmus}
 		

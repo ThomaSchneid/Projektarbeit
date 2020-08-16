@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  16 AUG 2020 19:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  16 AUG 2020 19:32
 entering extended mode
 **./Documentation.tex
 (Documentation.tex
@@ -511,58 +511,65 @@ Underfull \hbox (badness 10000) in paragraph at lines 438--439
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 464--465
+
+ []
 
 <../Bilder/hochschule_blur_5_5.png, id=35, 577.40718pt x 291.33844pt>
 File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
 <use ../Bilder/hochschule_blur_5_5.png>
 Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
-476.
+500.
 (pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 486--487
+[5 <../Bilder/hochschule_blur_5_5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 510--511
 
  []
 
-<../Bilder/sobel_after_blur.png, id=36, 277.035pt x 292.84406pt>
+<../Bilder/sobel_after_blur.png, id=41, 277.035pt x 292.84406pt>
 File: ../Bilder/sobel_after_blur.png Graphic file (type png)
 <use ../Bilder/sobel_after_blur.png>
-Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 496
+Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 520
 .
 (pdftex.def)             Requested size: 126.0pt x 133.19063pt.
-[5 <../Bilder/hochschule_blur_5_5.png>]
-<../Bilder/nms_after_sobel.png, id=43, 289.83281pt x 298.86656pt>
+<../Bilder/nms_after_sobel.png, id=42, 289.83281pt x 298.86656pt>
 File: ../Bilder/nms_after_sobel.png Graphic file (type png)
 <use ../Bilder/nms_after_sobel.png>
-Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 508.
+Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 532.
 
 (pdftex.def)             Requested size: 126.0pt x 129.92836pt.
 
-Underfull \hbox (badness 3209) in paragraph at lines 516--517
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 3209) in paragraph at lines 540--541
 \T1/ptm/m/n/10 jedes bis jetzt als Kante markiertes Pixel als starkes
  []
 
-<../Bilder/double_threshold_after_nms.png, id=44, 280.79906pt x 293.59688pt>
+<../Bilder/double_threshold_after_nms.png, id=43, 280.79906pt x 293.59688pt>
 File: ../Bilder/double_threshold_after_nms.png Graphic file (type png)
 <use ../Bilder/double_threshold_after_nms.png>
 Package pdftex.def Info: ../Bilder/double_threshold_after_nms.png  used on inpu
-t line 520.
+t line 544.
 (pdftex.def)             Requested size: 126.0pt x 131.74104pt.
-<../Bilder/no_strong_pixel_around.png, id=45, 283.0575pt x 121.45375pt>
+<../Bilder/no_strong_pixel_around.png, id=44, 283.0575pt x 121.45375pt>
 File: ../Bilder/no_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/no_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/no_strong_pixel_around.png  used on input li
-ne 531.
+ne 555.
 (pdftex.def)             Requested size: 201.60077pt x 86.50517pt.
-<../Bilder/one_strong_pixel_around.png, id=46, 282.05376pt x 121.45375pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <../Bilder/sobel_after_blur.png> <../Bilder/nms_after_sobel.png> <../Bilder
+/double_threshold_after_nms.png>]
+<../Bilder/one_strong_pixel_around.png, id=52, 282.05376pt x 121.45375pt>
 File: ../Bilder/one_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/one_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/one_strong_pixel_around.png  used on input l
-ine 539.
+ine 563.
 (pdftex.def)             Requested size: 201.60077pt x 86.81096pt.
-[6 <../Bilder/sobel_after_blur.png> <../Bilder/nms_after_sobel.png> <../Bilder/
-double_threshold_after_nms.png> <../Bilder/no_strong_pixel_around.png> <../Bild
-er/one_strong_pixel_around.png>]
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -576,6 +583,7 @@ Before submitting the final camera ready copy, remember to:
 
 [7
 
+ <../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.png>
 ] (Documentation.aux) ) 
 Here is how much of TeX's memory you used:
  7024 strings out of 480790
@@ -604,7 +612,7 @@ KTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Thomas/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Documentation.pdf (7 pages, 320331 bytes).
+Output written on Documentation.pdf (7 pages, 321324 bytes).
 PDF statistics:
  110 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
