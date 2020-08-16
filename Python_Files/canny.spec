@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['canny.py'],
-             pathex=['C:\\Users\\Thomas\\PycharmProjects\\Projektarbeit'],
+             pathex=['C:\\Users\\Thomas\\PycharmProjects\\Projektarbeit\\Python_Files'],
              binaries=[],
              datas=[],
              hiddenimports=[],
