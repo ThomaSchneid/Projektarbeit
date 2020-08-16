@@ -2,20 +2,22 @@ import cv2
 import numpy as np
 import time
 from scipy import ndimage
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+from tkinter.messagebox import *
+import matplotlib.pyplot as plt
 
 def gaussian_kernel(size, sigma=1.8):
     size = int(size) // 2   # c1 * 1
     x, y = np.mgrid[-size:size + 1, -size:size + 1]     # c2 * 1
     normal = 1 / (2.0 * np.pi * sigma ** 2)     # c3 * 1
     g = np.exp(-((x ** 2 + y ** 2) / (2.0 * sigma ** 2))) * normal      # c4 * 1
+
     return g
 
-def gaussian_blur():
-    img = cv2.imread("Bilder/hochschule.png", 0)
+def gaussian_blur(img):
     blur = cv2.GaussianBlur(img, (5, 5), 1.4)
-    cv2.imshow("Show blur effect", blur)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+
     return blur
 
 def sobel_filter(img):
@@ -29,13 +31,9 @@ def sobel_filter(img):
     G = G / G.max() * 255   # c8 * 1
     theta = np.arctan(Iy, Ix)   # c9 * 1
 
-    cv2.imshow("Image after sobel", G)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     return G, theta, Ix, Gx
 
 def non_max_suppression(img, D):
-    start = time.time()
     M, N = img.shape    # c10 * 1
     Z = np.zeros((M, N))    # c11 * 1
     angle = D * 180. / np.pi    # c12 * 1
@@ -71,12 +69,8 @@ def non_max_suppression(img, D):
 
             except IndexError as e:     # c24 * 0
                 pass    # c25 * 0
-    end = time.time()
-    tt = end - start
-    cv2.imshow("Image after non-max-suppression", Z)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-    return Z, tt
+
+    return Z
 
 def double_threshold(img, lowRatio=0.05, highRatio=0.09):
     highThreshold = img.max() * highRatio   # c26 * 1
@@ -97,9 +91,6 @@ def double_threshold(img, lowRatio=0.05, highRatio=0.09):
     res[weak_i, weak_j] = weak      # c30 * 1
     res[zeros_i, zeros_j] = zero    # c30 * 1
 
-    cv2.imshow("Image after double threshold", res)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     return res, weak, strong
 
 def hysteresis(img, weak, strong=255):
@@ -118,15 +109,36 @@ def hysteresis(img, weak, strong=255):
                 except IndexError as e:     # c24 * 0
                     pass    # c25 * 0
 
-    cv2.imshow("Final image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     return img
 
-def test():
-    blur = gaussian_blur()
+def run():
+    Tk().withdraw()
+    showinfo('Picture',
+             'Select you Image, you can Add Images you want to the Directory /Projektarbeit/Bilder')
+    imag = askopenfilename(initialdir="/Bilder")
+    img = cv2.imread(imag, 0)
+    start = time.time()
+    blur = gaussian_blur(img)
     sobel = sobel_filter(blur)
     Z = non_max_suppression(sobel[0], sobel[1])
-    res = double_threshold(Z[0])
+    res = double_threshold(Z)
     final = hysteresis(res[0], res[1])
+    end = time.time()
+    Time = format(end - start, '.5g')
+
+    plt.subplot(331), plt.imshow(img, cmap='gray')
+    plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+    plt.subplot(332), plt.imshow(blur, cmap='gray')
+    plt.title('Blur effect'), plt.xticks([]), plt.yticks([])
+    plt.subplot(333), plt.imshow(sobel[0], cmap='gray')
+    plt.title('Sobel Filter'), plt.xticks([]), plt.yticks([])
+    plt.subplot(334), plt.imshow(Z, cmap='gray')
+    plt.title('NMS Algorithm'), plt.xticks([]), plt.yticks([])
+    plt.subplot(335), plt.imshow(res[0], cmap='gray')
+    plt.title('Threshold Effect'), plt.xticks([]), plt.yticks([])
+    plt.subplot(336), plt.imshow(final, cmap='gray')
+    plt.title('Final image'), plt.xticks([]), plt.yticks([])
+    plt.figtext(0.3, 0.3, 'Benötigte Zeit: ' + Time + ' Sekunden', fontsize=8, va="top", ha="left")
+    plt.show()
+
     return final
