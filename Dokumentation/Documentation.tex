@@ -50,12 +50,14 @@
 		
 		\begin{python}
 			def gaussian_kernel(size, sigma=1):
-				size = int(size) // 2
+				size = int(size) // 2   # c1 * 1
 				x, y = np.mgrid[-size:size + 1,
-								-size:size + 1]
-				normal = 1 / (2.0 * np.pi * sigma ** 2)
+				-size:size + 1]     # c2 * 1
+				normal = 1 / 
+				(2.0 * np.pi * sigma ** 2)     # c3 * 1
 				g = np.exp(-((x ** 2 + y ** 2) / 
-							(2.0 * sigma ** 2))) * normal
+				(2.0 * sigma ** 2))) * normal      # c4 * 1
+				
 				return g
 		\end{python}		
 	
@@ -75,17 +77,19 @@
 		
 		\begin{python}
 			def sobel_filter(img):
-				Gx = np.array([[-1, 0, 1], [-2, 0, 2], 
-							[-1, 0, 1]], np.float32)
+				Gx = np.array([[-1, 0, 1], [-2, 0, 2],
+				[-1, 0, 1]], np.float32)     #c5 * 1
 				Gy = np.array([[1, 2, 1], [0, 0, 0],
-							[-1, -2, -1]], np.float32)
-		
-				Ix = ndimage.filters.convolve(img, Gx)
-				Iy = ndimage.filters.convolve(img, Gy)
-		
-				G = np.hypot(Ix, Iy)
-				G = G / G.max() * 255
-				theta = np.arctan(Iy, Ix)
+				[-1, -2, -1]], np.float32)     #c5 * 1
+				
+				Ix = ndimage.filters.convolve(img, Gx).
+				astype(float)    # c6 * 1
+				Iy = ndimage.filters.convolve(img, Gy).
+				astype(float)    # c6 * 1
+				
+				G = np.hypot(Ix, Iy)    # c7 * 1
+				G = G / G.max() * 255   # c8 * 1
+				theta = np.arctan(Iy, Ix)   # c9 * 1
 		
 				return G, theta
 		\end{python}
@@ -122,43 +126,52 @@
 	
 		\begin{python}
 			def non_max_suppression(img, D):
-				M, N = img.shape
-				Z = np.zeros((M, N))
-				angle = D * 180. / np.pi
-				angle[angle < 0] += 180
-		
-				for i in range(1, M - 1):
-					for j in range(1, N - 1):
-						try:
-							q = 255
-							r = 255
-		
+				M, N = img.shape    # c10 * 1
+				Z = np.zeros((M, N))    # c11 * 1
+				angle = D * 180. / np.pi    # c12 * 1
+				angle[angle < 0] += 180     # c13 * 1
+				
+				for i in range(1, M - 1):   # c14 * (M - 2)
+					for j in range(1, N - 1):   
+					# c15 * ((M - 2) * (N - 2))
+						try:    # c16 * ((M - 2) * (N - 2))
+							q = 255    # c17 * ((M - 2) * (N - 2))
+							r = 255    # c17 * ((M - 2) * (N - 2))
+							
 							# angle 0
 							if (0 <= angle[i, j] < 22.5) or 
-							   (157.5 <= angle[i, j] <= 180):
-								q = img[i, j + 1]
-								r = img[i, j - 1]
+							(157.5 <= angle[i, j] <= 180):  
+							# c18 * ((M - 2) * (N - 2))
+								q = img[i, j + 1]   # c19 * A0
+								r = img[i, j - 1]   # c19 * A0
 							# angle 45
-							elif 22.5 <= angle[i, j] < 67.5:
-								q = img[i + 1, j - 1]
-								r = img[i - 1, j + 1]
+							elif 22.5 <= angle[i, j] < 67.5:    
+							# c20 * (((M - 2) * (N - 2)) - A0)
+								q = img[i + 1, j - 1]   # c19 * A45
+								r = img[i - 1, j + 1]   # c19 * A45
 							# angle 90
-							elif 67.5 <= angle[i, j] < 112.5:
-								q = img[i + 1, j]
-								r = img[i - 1, j]
+							elif 67.5 <= angle[i, j] < 112.5:   
+							# c20 * (((M - 2) * (N - 2)) - 
+							# A0 - A45)
+								q = img[i + 1, j]   # c19 * A90
+								r = img[i - 1, j]   # c19 * A90
 							# angle 135
-							elif 112.5 <= angle[i, j] < 157.5:
-								q = img[i - 1, j - 1]
-								r = img[i + 1, j + 1]
-		
-							if (img[i, j] >= q) and
-						   	   (img[i, j] >= r):
-								Z[i, j] = img[i, j]
+							elif 112.5 <= angle[i, j] < 157.5:  
+							# c20 * (((M - 2) * (N - 2)) - 
+							# A0 - A45 - A90)
+								q = img[i - 1, j - 1]   # c19 * A135
+								r = img[i + 1, j + 1]   # c19 * A135
+							
+							if (img[i, j] >= q) and 
+							(img[i, j] >= r):   
+							# c21 * ((M - 2) * (N - 2))
+								Z[i, j] = img[i, j]     # c22 * Y
 							else:
-								Z[i, j] = 0
-		
-						except IndexError as e:
-							pass
+								Z[i, j] = 0     # c23 * (((M - 2) * 
+								# (N - 2)) - Y)
+						
+						except IndexError as e:     # c24 * 0
+							pass    # c24 * 0
 				return Z
 		\end{python}
 	
@@ -187,27 +200,30 @@
 		\begin{python}
 			def double_threshold(img, lowRatio=0.05, 
 								 highRatio=0.09):
-				highThreshold = img.max() * highRatio
-				lowThreshold = highThreshold * lowRatio
-			
-				M, N = img.shape
-				res = np.zeros((M, N))
-			
-				strong = 255
-				weak = 25
-				zero = 0
-			
+ 				highThreshold = img.max() * highRatio   
+				# c26 * 1
+				lowThreshold = highThreshold * lowRatio     
+				# c27 * 1
+				
+				M, N = img.shape     # c10 * 1
+				res = np.zeros((M, N))  # c11 * 1
+				
+				strong = 255  # c17 * 1
+				weak = 25     # c17 * 1
+				zero = 0      # c17 * 1
+				
 				strong_i, strong_j = np.
-							where(img >= highThreshold)
+				where(img >= highThreshold)     # c28 * 1
 				zeros_i, zeros_j = np.
-							where(img < lowThreshold)
-				weak_i, weak_j = np.
-						where((img <= highThreshold) & 
-							  (img >= lowThreshold))
-			
-				res[strong_i, strong_j] = strong
-				res[weak_i, weak_j] = weak
-				res[zeros_i, zeros_j] = zero
+				where(img < lowThreshold)     # c28 * 1
+				weak_i, weak_j = np.where(
+				(img <= highThreshold) & 
+				(img >= lowThreshold))   # c29 * 1
+				
+				res[strong_i, strong_j] = strong    
+				# c30 * 1
+				res[weak_i, weak_j] = weak      # c30 * 1
+				res[zeros_i, zeros_j] = zero    # c30 * 1
 			
 				return res
 		\end{python}
@@ -220,138 +236,71 @@
 		
 		\begin{python}
 			def hysteresis(img, weak, strong=255):
-				M, N = img.shape
-				for i in range(1, M - 1):
-					for j in range(1, N - 1):
-						if img[i, j] == weak:
-							try:
+ 				M, N = img.shape    # c10 * 1
+				for i in range(1, M - 1):   # c14 * (M - 2)
+					for j in range(1, N - 1):   
+					# c15 * ((M - 2) * (N - 2))
+						if img[i, j] == weak:   
+						# c31 * ((M - 2) * (N - 2))
+							try:    
+							# c16 * (((M - 2) * (N - 2)) - Z)
 								if ((img[i + 1, j - 1] == strong) or 
-									(img[i + 1, j] == strong) or 
-									(img[i + 1, j + 1] == strong) or 
-									(img[i, j - 1] == strong) or 
-									(img[i, j + 1] == strong) or 
-									(img[i - 1, j - 1] == strong) or 
-									(img[i - 1, j] == strong) or 
-									(img[i - 1, j + 1] == strong)):
-									img[i, j] = strong
+								(img[i + 1, j] == strong) or 
+								(img[i + 1, j + 1] == strong) or 
+								(img[i, j - 1] == strong) or 
+								(img[i, j + 1] == strong) or 
+								(img[i - 1, j - 1] == strong) or 
+								(img[i - 1, j] == strong) or 
+								(img[i - 1, j + 1] == strong)):  
+								# c32 * (((M - 2) * (N - 2)) - Z)
+									img[i, j] = strong  
+									# c33 * (((M - 2) * 
+									# (N - 2)) - Z - S)
 								else:
-									img[i, j] = 0
-							
-							except IndexError as e:
-								pass
-				
+									img[i, j] = 0   
+									# c23 * (((M - 2) * 
+									# (N - 2)) - Z - T)
+							except IndexError as e:     
+							# c24 * 0
+								pass    # c25 * 0
 				return img
-			
 		\end{python}
 	
 	\section{Laufzeiteffizienz eines Algorithmus}
 	
 	Nun wollen wir die Laufzeit des genannten Algorithmus betrachten. Hierzu zählen wir für eine gegebene Eingabe alle Anweisungen x mit einer Zeit t\tief{x}, welche von der Art von x abhängig ist. Folgende Annahmen setzen wir voraus: \nl
+	
 	\begin{itemize}
 		\item Das Ausführen einer Zeile Code benötigt einen konstanten Zeitaufwand
 		\item Verschiedene Zeilen (verschiedene Operationen) benötigen einen unterschiedlichen Zeitaufwand
 	\end{itemize}
 	
-	Den benötigten, konstanten Zeitaufwand, welchen eine Zeile z also benötigt, bezeichnen wir im Folgenden mit c\tief{x}.
-	Schauen wir uns also den benötigten Zeitaufwand für die jeweiligen Methoden des Algorithmus an:\nl
+	Der benötigte, konstante Zeitaufwand, welchen eine Zeile z also benötigt, wird mit c\tief{x} bezeichnet.
+	Im vorherigen Abschnitt ist in den Kommentaren des Python Codes bereits der jeweilige Zeitaufwand jeder Zeile vermerkt.
+	Im Folgenden werden die Laufzeiten der einzelnen Funktionen sowie im Abschluss des gesamten Canny Algorithmus berechnet.\nl
+	Zusätzlich betrachten wir - sofern möglich - den jeweils schlechtesten und besten Fall.\nl
 	
-	\begin{itemize}
-		\item Gauß Filter
-	\end{itemize}
-	
-	\begin{python}
-		size = int(size) // 2   # c1 * 1
-		x, y = np.mgrid[-size:size + 1,
-		-size:size + 1]     # c2 * 1
-		normal = 1 / 
-		(2.0 * np.pi * sigma ** 2)     # c3 * 1
-		g = np.exp(-((x ** 2 + y ** 2) / 
-		(2.0 * sigma ** 2))) * normal      # c4 * 1
-	\end{python}
+		\subsection{Gauß Filter}
 
-	Somit ergibt sich für die Laufzeit T(n)\tief{Gauß} des Gauß Filters:\nl
+		Die Kosten für den Gauß Filter ergibt sich der Laufzeitaufwand hiermit zu: \nl
 	
-	\formelbox{ T(n)\tief{Gauß} = c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} }
-	
-	\begin{itemize}
-		\item Sobel Filter
-	\end{itemize}
+		\formelbox{ T(n)\tief{Gauß} = c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} }
+		
+		Da wir hier jede Zeile einmal durchlaufen müssen ist der schlechteste Fall gleich dem besten Fall.
 
-	\begin{python}
-  		Gx = np.array([[-1, 0, 1], [-2, 0, 2],
-		    [-1, 0, 1]], np.float32)     #c5 * 1
-		Gy = np.array([[1, 2, 1], [0, 0, 0],
-		[-1, -2, -1]], np.float32)     #c5 * 1
-		
-		Ix = ndimage.filters.convolve(img, Gx).
-			astype(float)    # c6 * 1
-		Iy = ndimage.filters.convolve(img, Gy).
-			astype(float)    # c6 * 1
-		
-		G = np.hypot(Ix, Iy)    # c7 * 1
-		G = G / G.max() * 255   # c8 * 1
-		theta = np.arctan(Iy, Ix)   # c9 * 1
-	\end{python}	
+		\subsection{Sobel Filter}
+
+		Der Sobel Filter hat ähnlich zum Gauß Filter einen geringen Laufzeitaufwand im Vergleich zum Gesamtaufwand:\nl
 	
-	Somit ergibt sich für die Laufzeit T(n)\tief{Sobel} des Sobel Filters:\nl
+		\formelbox{ T(n)\tief{Sobel} = (c\tief{5} + c\tief{6}) * 2 + c\tief{7} + c\tief{8} + c\tief{9} }
 	
-	\formelbox{ T(n)\tief{Sobel} = (c\tief{5} + c\tief{6}) * 2 + c\tief{7} + c\tief{8} + c\tief{9} }
+		Der Sobel Filter ist nur vom jeweiligen Eingangsbild abhängig, jede Zeile muss einmal durchlaufen werden. Je größer das Bild, desto größer auch der Rechenaufwand. Auch hier entspricht der schlechteste Fall gleich dem besten Fall.
 	
-	\begin{itemize}
-		\item Non Maximum Suppression
-	\end{itemize}
+		\subsection{Non Maximum Supression}
 	
-	\begin{python}
- 		M, N = img.shape    # c10 * 1
-		Z = np.zeros((M, N))    # c11 * 1
-		angle = D * 180. / np.pi    # c12 * 1
-		angle[angle < 0] += 180     # c13 * 1
-		
-		for i in range(1, M - 1):   # c14 * (M - 2)
-			for j in range(1, N - 1):   
-			# c15 * ((M - 2) * (N - 2))
-				try:    # c16 * ((M - 2) * (N - 2))
-					q = 255     # c17 * ((M - 2) * (N - 2))
-					r = 255     # c17 * ((M - 2) * (N - 2))
-					
-					# angle 0
-					if (0 <= angle[i, j] < 22.5) or 
-					   (157.5 <= angle[i, j] <= 180):  
-					   # c18 * ((M - 2) * (N - 2))
-						q = img[i, j + 1]   # c19 * A0
-						r = img[i, j - 1]   # c19 * A0
-					# angle 45
-					elif 22.5 <= angle[i, j] < 67.5:    
-					# c20 * (((M - 2) * (N - 2)) - A0)
-						q = img[i + 1, j - 1]   # c19 * A45
-						r = img[i - 1, j + 1]   # c19 * A45
-					# angle 90
-					elif 67.5 <= angle[i, j] < 112.5:   
-					# c20 * (((M - 2) * (N - 2)) - 
-					# A0 - A45)
-						q = img[i + 1, j]   # c19 * A90
-						r = img[i - 1, j]   # c19 * A90
-					# angle 135
-					elif 112.5 <= angle[i, j] < 157.5:  
-					# c20 * (((M - 2) * (N - 2)) - 
-					# A0 - A45 - A90)
-						q = img[i - 1, j - 1]   # c19 * A135
-						r = img[i + 1, j + 1]   # c19 * A135
-					
-					if (img[i, j] >= q) and (img[i, j] >= r):   
-					# c21 * ((M - 2) * (N - 2))
-						Z[i, j] = img[i, j]     # c22 * Y
-					else:
-						Z[i, j] = 0     # c23 * (((M - 2) * 
-											   # (N - 2)) - Y)
-				
-				except IndexError as e:     # c24 * 0
-				pass    # c24 * 0
-	\end{python}
+		Den größten Rechenaufwand beansprucht die Non Maximum Suppression. Hier ergibt sich der benötigte Laufzeitaufwand zu: \nl
 	
-	Somit ergibt sich für die Laufzeit T(n)\tief{nms} der Non Maximum Suppression Filters:\nl
-	
-	\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.5\textwidth}{
 			\begin{center}
 				T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
 				(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 3 * c\tief{20} + c\tief{21} + \\
@@ -364,86 +313,77 @@
 			\end{center}
 		}}
 		
-	\begin{itemize}
-		\item Double threshold
-	\end{itemize}
-
-	\begin{python}
- 		highThreshold = img.max() * highRatio   
-  		# c26 * 1
-		lowThreshold = highThreshold * lowRatio     
-		# c27 * 1
+%		Wir unterscheiden den Laufzeitaufwand nun für den best- sowie den schlechtmöglichsten Fall: \nl
+%		
+%			\subsubsection{Bestmöglicher Fall}
+%		
+%			Im Bestmöglichen Fall liegt jeder Winkel zwischen 0° und 22.5° oder 157.5° und 180° und der Intensitätswert eines jeden Pixels des Bildes ist höher als der seiner Nachbarn in Gradientenrichtung. In diesem Fall kann man mit folgenden Annahmen Rechnen:\nl
+%		
+%			\formelbox{\parbox{0.5\textwidth}{
+%			\begin{center}
+%				A0 = Y = ((M - 2) * (N - 2)); \\
+%				A45 = A90 = A135 = 0; \\			
+%			\end{center}
+%			}}
+%			
+%			Womit sich der Laufzeitaufwand vereinfacht zu: \nl
+%			
+%			\formelbox{\parbox{0.5\textwidth}{
+%				\begin{center}
+%					T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
+%					(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 2 * c\tief{19} + \\
+%					c\tief{21} + c\tief{22}) * ((M - 2) * (N - 2)) \\
+%				\end{center}
+%			}}
+%		
+%			\subsubsection{Schlechtester Fall}
+%			
+%			Im schlechtesten Fall liegt jeder Winkel zwischen 112.5° und 157.5° und der Intensitätswert eines jeden Pixels des Bildes ist niedriger als der seiner Nachbarn in Gradientenrichtung. In diesem Fall kann man mit folgenden Annahmen Rechnen:\nl
+%			
+%			\formelbox{\parbox{0.5\textwidth}{
+%					\begin{center}
+%						A135 = ((M - 2) * (N - 2)); \\
+%						A0 = A45 = A90 = Y = 0; \\			
+%					\end{center}
+%			}}
+%		
+%			Womit sich der worst-case Laufzeitaufwand folgendermaßen gestaltet:\nl
+%			
+%			\formelbox{\parbox{0.5\textwidth}{
+%				\begin{center}
+%					T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
+%					(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 2 * c\tief{19} + 3 * c\tief{20} + c\tief{21} + \\
+%					c\tief{23}) * ((M - 2) * (N - 2)) \\
+%				\end{center}
+%			}}
 		
-		M, N = img.shape     # c10 * 1
-		res = np.zeros((M, N))  # c11 * 1
+		\subsection{Double threshold}
 		
-		strong = 255  # c17 * 1
-		weak = 25     # c17 * 1
-		zero = 0      # c17 * 1
-		
-		strong_i, strong_j = np.
-		where(img >= highThreshold)     # c28 * 1
-		zeros_i, zeros_j = np.
-		where(img < lowThreshold)     # c28 * 1
-		weak_i, weak_j = np.where((img <= highThreshold) 
-		& (img >= lowThreshold))   # c29 * 1
-		
-		res[strong_i, strong_j] = strong    # c30 * 1
-		res[weak_i, weak_j] = weak      # c30 * 1
-		res[zeros_i, zeros_j] = zero    # c30 * 1
-	\end{python}
+		Die double Threshold Methode beansprucht folgenden Laufzeitaufwand: \nl
 	
-	Somit ergibt sich für die Laufzeit T(n)\tief{double threshold} der double threshold Technik:\nl
-	
-	\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.5\textwidth}{
 			\begin{center}
 				T(n)\tief{double threshold} = c\tief{10} + c\tief{11} + 3 * c\tief{17} + \\
 				c\tief{26} + c\tief{27} + 2 * c\tief{28} + c\tief{29} + 3 * c\tief{30}
 			\end{center}
-	}}
+		}}
 		
-	\begin{itemize}
-		\item Hysterese
-	\end{itemize}
-
-	\begin{python}
- 		M, N = img.shape    # c10 * 1
-		for i in range(1, M - 1):   # c14 * (M - 2)
-			for j in range(1, N - 1):   
-			# c15 * ((M - 2) * (N - 2))
-				if img[i, j] == weak:   
-				# c31 * ((M - 2) * (N - 2))
-				try:    # c16 * (((M - 2) * (N - 2)) - Z)
-					if ((img[i + 1, j - 1] == strong) or 
-						(img[i + 1, j] == strong) or 
-						(img[i + 1, j + 1] == strong) or 
-						(img[i, j - 1] == strong) or 
-						(img[i, j + 1] == strong) or 
-						(img[i - 1, j - 1] == strong) or 
-						(img[i - 1, j] == strong) or 
-						(img[i - 1, j + 1] == strong)):  
-						# c32 * (((M - 2) * (N - 2)) - Z)
-						img[i, j] = strong  
-						# c33 * (((M - 2) * (N - 2)) - Z - S)
-					else:
-						img[i, j] = 0   
-						# c23 * (((M - 2) * (N - 2)) - Z - T)
-				except IndexError as e:     # c24 * 0
-					pass    # c25 * 0
-	\end{python}
+		\subsection{Hysterese}
 	
-	Somit ergibt sich für die Laufzeit T(n)\tief{hysterese} der Hysterese: \nl
+		Letztendlich noch der Laufzeitaufwand der Hysterese mit: \nl
 	
-	\formelbox{\parbox{0.5\textwidth}{
+		\formelbox{\parbox{0.5\textwidth}{
 			\begin{center}
 				T(n)\tief{hysterese} = c\tief{10} + c\tief{14} * (M - 2) + \\
 				(c\tief{15} + c\tief{16} + c\tief{23} + c\tief{31} + c\tief{32} + c\tief{33}) * ((M - 2) * (N - 2)) - \\
 				Z * (c\tief{15} + c\tief{23} + c\tief{32} + c\tief{33}) - \\
 				S * c\tief{33} - T * c\tief{23} \\
 			\end{center}
-	}}
+		}}
 
-	Für die komplette Laufzeit T(n)\tief{Canny} des Algorithmus ergibt sich also:
+		\subsection{Komplette Laufzeit}
+
+		Für die komplette Laufzeit T(n)\tief{Canny} des Algorithmus ergibt sich somit zu:
 	
 		\formelbox{\parbox{0.5\textwidth}{
 			\begin{center}
@@ -461,8 +401,63 @@
 				c\tief{31} * ((M - 2) * (N - 2)) + c\tief{32} * (((M - 2) * (N - 2)) - Z) + \\
 				c\tief{33} * (((M - 2) * (N - 2)) - Z - S) \\
 			\end{center}
-	}}
+		}}
+	
+		Mit\nl
+	 
+		\formelbox{\parbox{0.5\textwidth}{
+			\begin{center}
+				A0 + A45 + A90 + A135 = ((M - 2) * (N - 2)); \\
+				Z - T = S; \\
+				Z - S = T; \\
+				((M - 2) * (N - 2)) $\widehat{=}$ L; \\
+			\end{center}
+	
+		}}
 
+		Kann man die Gleichung folgendermaßen vereinfachen:\nl
+
+		\formelbox{\parbox{0.5\textwidth}{
+			\begin{center}
+				T(n)\tief{Canny} = \\
+				c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
+				c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
+				c\tief{14} * 2 * (M - 2) + c\tief{15} * (2 * L - Z) + \\
+				c\tief{16} * 2 * L + c\tief{17} * 6 * L + c\tief{18} * L + \\
+				c\tief{19} * 2 * L + c\tief{20} * (-9 * A0 -6 * A45 -3 * A90 + 3 * L) + \\
+				c\tief{21} * L + c\tief{22} * Y + c\tief{23} * (2 * L - Y - S) + \\
+				c\tief{26} + c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + \\
+				c\tief{31} * L + c\tief{32} * L - Z) + c\tief{33} * (L - T) \\
+			\end{center}
+		}}
+	
+		L hängt hierbei von der Größe des Eingangsbildes ab. Je größer das Eingangsbild, desto größer auch L und desto mehr Laufzeitaufwand ist nötig.
+		
+			\subsubsection{Laufzeit im besten Fall}
+			
+			Im besten Fall (in welchem es trotzdem noch eine Kante im Bild gibt) kann man folgende Annahmen treffen:\nl
+			
+			\formelbox{\parbox{0.5\textwidth}{
+					\begin{center}
+						A45 = A90 = A135 = S = 0; \\
+						A0 = Y = L; \\
+						Z + T = L; \\
+					\end{center}
+			}}
+		
+			\formelbox{\parbox{0.5\textwidth}{
+					\begin{center}
+						T(n)\tief{Canny} = \\
+						c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
+						c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
+						c\tief{14} * 2 * (M - 2) + c\tief{15} * (2 * L - Z) + \\
+						c\tief{16} * 2 * L + c\tief{17} * 6 * L + c\tief{18} * L + \\
+						c\tief{19} * 2 * L + \\
+						c\tief{21} * L + c\tief{22} * Y + \\
+						c\tief{26} + c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + \\
+						c\tief{31} * L + c\tief{32} * (L - Z) + c\tief{33} * Z \\
+					\end{center}
+			}}	
 	
 	\section{Kantenerkennung mit dem Canny Algorithmus}
 		

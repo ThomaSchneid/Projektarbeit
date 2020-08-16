@@ -114,7 +114,7 @@ def hysteresis(img, weak, strong=255):
                                     img[i - 1, j + 1] == strong)):  # c32 * (((M - 2) * (N - 2)) - Z)
                         img[i, j] = strong  # c33 * (((M - 2) * (N - 2)) - Z - S)
                     else:
-                        img[i, j] = 0   # c23 * c33 * (((M - 2) * (N - 2)) - Z - T)
+                        img[i, j] = 0   # c23 * (((M - 2) * (N - 2)) - Z - T)
                 except IndexError as e:     # c24 * 0
                     pass    # c25 * 0
 
