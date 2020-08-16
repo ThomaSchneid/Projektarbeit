@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  16 AUG 2020 22:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  17 AUG 2020 00:05
 entering extended mode
 **./Documentation.tex
 (Documentation.tex
@@ -603,6 +603,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 555--556
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
+Underfull \hbox (badness 2334) in paragraph at lines 718--721
+\T1/ptm/m/n/10 die einzel-nen Stati wie neuer Grauw-ert, Rich-tung und
+ []
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 718--721
+\T1/ptm/m/n/10 und verän-dert wieder ab-spe-ich-ern. Ger-ade bei gröÿeren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 718--721
+\T1/ptm/m/n/10 Ebenso ist mit dem beschriebe-nen Vorge-hen nicht
+ []
+
+
+Underfull \hbox (badness 3849) in paragraph at lines 718--721
+\T1/ptm/m/n/10 sichergestellt, dass man alle Kan-ten findet. Um auch
+ []
+
+
+Underfull \hbox (badness 2142) in paragraph at lines 718--721
+\T1/ptm/m/n/10 Trotz an-fänglicher, guter Fortschritte hatte der ge-plante
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 718--721
+\T1/ptm/m/n/10 eine Ef-fizien-zsteigerung des Canny-Algorithmus durch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
+[]\T1/ptm/m/it/10 https://www.kuppelwieser.net/index.php/technik/15-
+ []
+
+
+Overfull \hbox (17.0549pt too wide) in paragraph at lines 731--732
+[]\T1/ptm/m/it/10 https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/ 
+
+ []
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -614,9 +654,7 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[9
-
-] (Documentation.aux) ) 
+[9] (Documentation.aux) ) 
 Here is how much of TeX's memory you used:
  7102 strings out of 480790
  101835 string characters out of 2896833
@@ -625,26 +663,26 @@ Here is how much of TeX's memory you used:
  638947 words of font info for 130 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,50p,682b,1779s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/enc
-/dvips/base/8r.enc}<C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Thomas/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Thomas/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Thomas/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Tho
-mas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/U
-sers/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.p
-fb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmsy5.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/f
-onts/type1/urw/courier/ucrb8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTe
-X/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Thomas/AppData/Local/Programs/Mi
-KTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Thomas/AppData/Local/Program
-s/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Documentation.pdf (9 pages, 344410 bytes).
+{C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/e
+nc/dvips/base/8r.enc}<C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmex10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Thomas/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Thomas/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Thomas/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/T
+homas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:
+/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7
+.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmsy5.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX
+/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiK
+TeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Thomas/AppData/Local/Programs/
+MiKTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Thomas/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Documentation.pdf (9 pages, 347649 bytes).
 PDF statistics:
  118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

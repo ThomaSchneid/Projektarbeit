@@ -22,3 +22,5 @@
 \contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{7}%
 \contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{7}%
 \contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{7}%
+\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny-Algorithmus}{9}%
+\contentsline {section}{\numberline {VII}Literaturverzeichnis}{9}%

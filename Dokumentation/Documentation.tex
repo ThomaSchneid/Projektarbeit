@@ -715,6 +715,20 @@
 				return next_pixel_position
 		\end{python}
 	
+		Hierbei traf ich auf das Problem, dass die Einsparung der Laufzeit durch direktes bearbeiten der Kantennachbarn sehr schnell wieder verloren geht und zwar dadurch, dass man mehrere Matrizen der Größe des Bildes benötigt um die einzelnen Stati wie neuer Grauwert, Richtung und ein \textit{bereits bearbeitet} Flag zu speichern. Diese muss man immer wieder abrufen, also die Matrizen laden, bearbeiten und verändert wieder abspeichern. Gerade bei größeren Bildern oder wenn eine Kante nicht mit dem Durchlaufen der Diagonalen gefunden wird, übersteigt die Laufzeit des geplanten Algorithmus die des Canny Algorithmus schnell.\nl
+		Ebenso ist mit dem beschriebenen Vorgehen nicht sichergestellt, dass man alle Kanten findet. Um auch Objekte zum Beispiel am Rand zu finden müsste man das komplette Bild erneut mit einem Hysterese Algorithmus bearbeiten. \nl
+		Trotz anfänglicher, guter Fortschritte hatte der geplante Algorithmus deshalb leider keine Aussicht auf Erfolg und eine Effizienzsteigerung des Canny-Algorithmus durch Kantenverfolgung ist mit dieser Methode nicht möglich.
+		
+	\section{Laufzeitoptimierung des Canny-Algorithmus}
 	
+	Ein schwarz-weiß Bild hat einige schwarze Pixel, also Pixel mit dem Intensitätswert 0. Der obige Canny prüft jedes Pixel viele Male. Einige dieser Cases kann man jedoch auslassen, da sie nicht geprüft werden müssen. So sind zum Beispiel Pixel mit einem Intensitätswert von 0 kein Teil einer Kante und man kann die Prüfung dieses Pixels überspringen.
 	
+	\section{Literaturverzeichnis}
+		\begin{itemize}
+			\item \textit{http://www9.in.tum.de/seminare/hs.SS06.EAMA/material/\\01\_ausarbeitung.pdf}
+			\item \textit{https://www.kuppelwieser.net/index.php/technik/15-bildverarbeitung/40-canny-algorithmus}
+			\item \textit{http://mi.informatik.uni-siegen.de/teaching/lectures/EI/\\script/10eiComplexity.pdf}
+			\item \textit{https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/\\BA\_Tamou.pdf}
+			\item \textit{https://en.wikipedia.org/wiki/Canny\_edge\_detector}
+		\end{itemize}
 \end{document}
