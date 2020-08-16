@@ -193,9 +193,9 @@
 				M, N = img.shape
 				res = np.zeros((M, N))
 			
-				strong = np.int32(255)
-				weak = np.int32(25)
-				zero = np.int32(0)
+				strong = 255
+				weak = 25
+				zero = 0
 			
 				strong_i, strong_j = np.
 							where(img >= highThreshold)
@@ -244,23 +244,229 @@
 			
 		\end{python}
 	
-		\section{How to measure performance of algorithms}
+	\section{Laufzeiteffizienz eines Algorithmus}
+	
+	Nun wollen wir die Laufzeit des genannten Algorithmus betrachten. Hierzu zählen wir für eine gegebene Eingabe alle Anweisungen x mit einer Zeit t\tief{x}, welche von der Art von x abhängig ist. Folgende Annahmen setzen wir voraus: \nl
+	\begin{itemize}
+		\item Das Ausführen einer Zeile Code benötigt einen konstanten Zeitaufwand
+		\item Verschiedene Zeilen (verschiedene Operationen) benötigen einen unterschiedlichen Zeitaufwand
+	\end{itemize}
+	
+	Den benötigten, konstanten Zeitaufwand, welchen eine Zeile z also benötigt, bezeichnen wir im Folgenden mit c\tief{x}.
+	Schauen wir uns also den benötigten Zeitaufwand für die jeweiligen Methoden des Algorithmus an:\nl
+	
+	\begin{itemize}
+		\item Gauß Filter
+	\end{itemize}
+	
+	\begin{python}
+		size = int(size) // 2   # c1 * 1
+		x, y = np.mgrid[-size:size + 1,
+		-size:size + 1]     # c2 * 1
+		normal = 1 / 
+		(2.0 * np.pi * sigma ** 2)     # c3 * 1
+		g = np.exp(-((x ** 2 + y ** 2) / 
+		(2.0 * sigma ** 2))) * normal      # c4 * 1
+	\end{python}
+
+	Somit ergibt sich für die Laufzeit T(n)\tief{Gauß} des Gauß Filters:\nl
+	
+	\formelbox{ T(n)\tief{Gauß} = c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} }
+	
+	\begin{itemize}
+		\item Sobel Filter
+	\end{itemize}
+
+	\begin{python}
+  		Gx = np.array([[-1, 0, 1], [-2, 0, 2],
+		    [-1, 0, 1]], np.float32)     #c5 * 1
+		Gy = np.array([[1, 2, 1], [0, 0, 0],
+		[-1, -2, -1]], np.float32)     #c5 * 1
 		
-		\begin{center}
-			\textcolor{red}{\textbf{TODO}}
-		\end{center}
+		Ix = ndimage.filters.convolve(img, Gx).
+			astype(float)    # c6 * 1
+		Iy = ndimage.filters.convolve(img, Gy).
+			astype(float)    # c6 * 1
+		
+		G = np.hypot(Ix, Iy)    # c7 * 1
+		G = G / G.max() * 255   # c8 * 1
+		theta = np.arctan(Iy, Ix)   # c9 * 1
+	\end{python}	
 	
-	\section{Canny Edge Detection}
+	Somit ergibt sich für die Laufzeit T(n)\tief{Sobel} des Sobel Filters:\nl
 	
-		Der Canny Algorithmus lässt sich in folgende 5 Schritte unterteilen:
+	\formelbox{ T(n)\tief{Sobel} = (c\tief{5} + c\tief{6}) * 2 + c\tief{7} + c\tief{8} + c\tief{9} }
 	
-		\begin{enumerate}
-			\item Noise reduction
-			\item Gradient calculation
-			\item Non-maximum suppression
-			\item Double treshold
-			\item Edge Tracking by Hysteresis
-		\end{enumerate}
+	\begin{itemize}
+		\item Non Maximum Suppression
+	\end{itemize}
+	
+	\begin{python}
+ 		M, N = img.shape    # c10 * 1
+		Z = np.zeros((M, N))    # c11 * 1
+		angle = D * 180. / np.pi    # c12 * 1
+		angle[angle < 0] += 180     # c13 * 1
+		
+		for i in range(1, M - 1):   # c14 * (M - 2)
+			for j in range(1, N - 1):   
+			# c15 * ((M - 2) * (N - 2))
+				try:    # c16 * ((M - 2) * (N - 2))
+					q = 255     # c17 * ((M - 2) * (N - 2))
+					r = 255     # c17 * ((M - 2) * (N - 2))
+					
+					# angle 0
+					if (0 <= angle[i, j] < 22.5) or 
+					   (157.5 <= angle[i, j] <= 180):  
+					   # c18 * ((M - 2) * (N - 2))
+						q = img[i, j + 1]   # c19 * A0
+						r = img[i, j - 1]   # c19 * A0
+					# angle 45
+					elif 22.5 <= angle[i, j] < 67.5:    
+					# c20 * (((M - 2) * (N - 2)) - A0)
+						q = img[i + 1, j - 1]   # c19 * A45
+						r = img[i - 1, j + 1]   # c19 * A45
+					# angle 90
+					elif 67.5 <= angle[i, j] < 112.5:   
+					# c20 * (((M - 2) * (N - 2)) - 
+					# A0 - A45)
+						q = img[i + 1, j]   # c19 * A90
+						r = img[i - 1, j]   # c19 * A90
+					# angle 135
+					elif 112.5 <= angle[i, j] < 157.5:  
+					# c20 * (((M - 2) * (N - 2)) - 
+					# A0 - A45 - A90)
+						q = img[i - 1, j - 1]   # c19 * A135
+						r = img[i + 1, j + 1]   # c19 * A135
+					
+					if (img[i, j] >= q) and (img[i, j] >= r):   
+					# c21 * ((M - 2) * (N - 2))
+						Z[i, j] = img[i, j]     # c22 * Y
+					else:
+						Z[i, j] = 0     # c23 * (((M - 2) * 
+											   # (N - 2)) - Y)
+				
+				except IndexError as e:     # c24 * 0
+				pass    # c24 * 0
+	\end{python}
+	
+	Somit ergibt sich für die Laufzeit T(n)\tief{nms} der Non Maximum Suppression Filters:\nl
+	
+	\formelbox{\parbox{0.5\textwidth}{
+			\begin{center}
+				T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
+				(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 3 * c\tief{20} + c\tief{21} + \\
+				c\tief{23}) * ((M - 2) * (N - 2)) + \\
+				(2 * c\tief{19} - 9 * c\tief{20}) * A0 + \\
+				(2 * c\tief{19} - 6 * c\tief{20}) * A45 + \\
+				(2 * c\tief{19} - 3 * c\tief{20}) * A90 + \\
+				c\tief{19} * 2 * A135 + \\ 
+				(c\tief{22} - c\tief{23}) * Y
+			\end{center}
+		}}
+		
+	\begin{itemize}
+		\item Double threshold
+	\end{itemize}
+
+	\begin{python}
+ 		highThreshold = img.max() * highRatio   
+  		# c26 * 1
+		lowThreshold = highThreshold * lowRatio     
+		# c27 * 1
+		
+		M, N = img.shape     # c10 * 1
+		res = np.zeros((M, N))  # c11 * 1
+		
+		strong = 255  # c17 * 1
+		weak = 25     # c17 * 1
+		zero = 0      # c17 * 1
+		
+		strong_i, strong_j = np.
+		where(img >= highThreshold)     # c28 * 1
+		zeros_i, zeros_j = np.
+		where(img < lowThreshold)     # c28 * 1
+		weak_i, weak_j = np.where((img <= highThreshold) 
+		& (img >= lowThreshold))   # c29 * 1
+		
+		res[strong_i, strong_j] = strong    # c30 * 1
+		res[weak_i, weak_j] = weak      # c30 * 1
+		res[zeros_i, zeros_j] = zero    # c30 * 1
+	\end{python}
+	
+	Somit ergibt sich für die Laufzeit T(n)\tief{double threshold} der double threshold Technik:\nl
+	
+	\formelbox{\parbox{0.5\textwidth}{
+			\begin{center}
+				T(n)\tief{double threshold} = c\tief{10} + c\tief{11} + 3 * c\tief{17} + \\
+				c\tief{26} + c\tief{27} + 2 * c\tief{28} + c\tief{29} + 3 * c\tief{30}
+			\end{center}
+	}}
+		
+	\begin{itemize}
+		\item Hysterese
+	\end{itemize}
+
+	\begin{python}
+ 		M, N = img.shape    # c10 * 1
+		for i in range(1, M - 1):   # c14 * (M - 2)
+			for j in range(1, N - 1):   
+			# c15 * ((M - 2) * (N - 2))
+				if img[i, j] == weak:   
+				# c31 * ((M - 2) * (N - 2))
+				try:    # c16 * (((M - 2) * (N - 2)) - Z)
+					if ((img[i + 1, j - 1] == strong) or 
+						(img[i + 1, j] == strong) or 
+						(img[i + 1, j + 1] == strong) or 
+						(img[i, j - 1] == strong) or 
+						(img[i, j + 1] == strong) or 
+						(img[i - 1, j - 1] == strong) or 
+						(img[i - 1, j] == strong) or 
+						(img[i - 1, j + 1] == strong)):  
+						# c32 * (((M - 2) * (N - 2)) - Z)
+						img[i, j] = strong  
+						# c33 * (((M - 2) * (N - 2)) - Z - S)
+					else:
+						img[i, j] = 0   
+						# c23 * (((M - 2) * (N - 2)) - Z - T)
+				except IndexError as e:     # c24 * 0
+					pass    # c25 * 0
+	\end{python}
+	
+	Somit ergibt sich für die Laufzeit T(n)\tief{hysterese} der Hysterese: \nl
+	
+	\formelbox{\parbox{0.5\textwidth}{
+			\begin{center}
+				T(n)\tief{hysterese} = c\tief{10} + c\tief{14} * (M - 2) + \\
+				(c\tief{15} + c\tief{16} + c\tief{23} + c\tief{31} + c\tief{32} + c\tief{33}) * ((M - 2) * (N - 2)) - \\
+				Z * (c\tief{15} + c\tief{23} + c\tief{32} + c\tief{33}) - \\
+				S * c\tief{33} - T * c\tief{23} \\
+			\end{center}
+	}}
+
+	Für die komplette Laufzeit T(n)\tief{Canny} des Algorithmus ergibt sich also:
+	
+		\formelbox{\parbox{0.5\textwidth}{
+			\begin{center}
+				T(n)\tief{Canny} = \\
+				c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
+				c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
+				c\tief{14} * 2 * (M - 2) + c\tief{15} * (2 * ((M - 2) * (N - 2)) - Z) + \\
+				c\tief{16} * 2 * ((M - 2) * (N - 2)) + c\tief{17} * 6 * ((M - 2) * (N - 2)) + \\
+				c\tief{18} * ((M - 2) * (N - 2)) + \\
+				c\tief{19} * 2 * (A0 + A45 + A90 + A135) + \\
+				c\tief{20} * (-9 * A0 -6 * A45 -3 * A90 + 3 * ((M - 2) * (N - 2))) + \\
+				c\tief{21} * ((M - 2) * (N - 2)) + c\tief{22} * Y + \\
+				c\tief{23} * (2 * ((M - 2) * (N - 2)) - T - Y - Z) + \\
+				c\tief{26} + c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + \\
+				c\tief{31} * ((M - 2) * (N - 2)) + c\tief{32} * (((M - 2) * (N - 2)) - Z) + \\
+				c\tief{33} * (((M - 2) * (N - 2)) - Z - S) \\
+			\end{center}
+	}}
+
+	
+	\section{Kantenerkennung mit dem Canny Algorithmus}
+		
+		Im folgenden sind die oben genannten Schritte des Canny Algorithmus einzeln in Python realisiert und auf ein Bild angewendet.		
 	
 		\subsection{Noise Reduction}
 	
@@ -340,6 +546,10 @@
 		\end{figure}
 	\section{Effizienzgewinn durch Kantenverfolgung}
 	
+	\subsection{Idee}
+	
+	Sobald eine Kante gefunden wurde ist es nicht mehr notwendig, jedes einzelne Pixel des kompletten Bildes zu überprüfen. Man kann die Kante entlang laufen und so nur die relevanten Bereiche des Bildes untersuchen, was den Rechenaufwand enorm verringert. 
+	Es wurde schnell klar, dass Kantenverfolgung hier nicht zielführend ist, da es sich sehr sehr schnell im Kreis drehen kann. <- Ideen und Rechnungen zeigen.
 	\begin{center}
 		\textcolor{red}{\textbf{TODO}}
 	\end{center}

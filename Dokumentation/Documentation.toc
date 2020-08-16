@@ -5,11 +5,12 @@
 \contentsline {subsection}{\numberline {\mbox {II-C}}Non Maximum Suppression}{2}%
 \contentsline {subsection}{\numberline {\mbox {II-D}}Double threshold}{3}%
 \contentsline {subsection}{\numberline {\mbox {II-E}}Kantenverfolgung durch Hysterese}{3}%
-\contentsline {section}{\numberline {III}How to measure performance of algorithms}{4}%
-\contentsline {section}{\numberline {IV}Canny Edge Detection}{4}%
-\contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{4}%
-\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{4}%
-\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{4}%
-\contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{5}%
-\contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{5}%
-\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{5}%
+\contentsline {section}{\numberline {III}Laufzeiteffizienz eines Algorithmus}{4}%
+\contentsline {section}{\numberline {IV}Kantenerkennung mit dem Canny Algorithmus}{5}%
+\contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{5}%
+\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{5}%
+\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{6}%
+\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{7}%
+\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{7}%

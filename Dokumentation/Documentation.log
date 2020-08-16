@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  15 AUG 2020 22:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.7)  16 AUG 2020 16:52
 entering extended mode
 **./Documentation.tex
 (Documentation.tex
@@ -438,31 +438,76 @@ Package pdftex.def Info: ../Bilder/nms_inspect_pixel.png  used on input line 10
 
  <../Bilder/sobel_operator.png> <../Bilder/nms_how_to.png> <../Bilder/nms_inspe
 ct_pixel.png>] [3]
-<../Bilder/hochschule_blur_5_5.png, id=32, 577.40718pt x 291.33844pt>
-File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
-<use ../Bilder/hochschule_blur_5_5.png>
-Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
-275.
-(pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 285--286
+Underfull \hbox (badness 10000) in paragraph at lines 249--251
 
  []
 
-<../Bilder/sobel_after_blur.png, id=33, 277.035pt x 292.84406pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
+
+ []
+
+
+Underfull \hbox (badness 2213) in paragraph at lines 352--353
+[]\T1/ptm/m/n/10 Somit ergibt sich für die Laufzeit T(n)$[]$ der Non
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 352--353
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 396--397
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<../Bilder/hochschule_blur_5_5.png, id=35, 577.40718pt x 291.33844pt>
+File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
+<use ../Bilder/hochschule_blur_5_5.png>
+Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
+481.
+(pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
+ [5 <../Bilder/hochschule_blur_5_5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
+
+ []
+
+<../Bilder/sobel_after_blur.png, id=40, 277.035pt x 292.84406pt>
 File: ../Bilder/sobel_after_blur.png Graphic file (type png)
 <use ../Bilder/sobel_after_blur.png>
-Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 295
+Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 501
 .
 (pdftex.def)             Requested size: 126.0pt x 133.19063pt.
-<../Bilder/nms_after_sobel.png, id=34, 289.83281pt x 298.86656pt>
+<../Bilder/nms_after_sobel.png, id=41, 289.83281pt x 298.86656pt>
 File: ../Bilder/nms_after_sobel.png Graphic file (type png)
 <use ../Bilder/nms_after_sobel.png>
-Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 307.
+Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 513.
 
 (pdftex.def)             Requested size: 126.0pt x 129.92836pt.
-[4 <../Bilder/hochschule_blur_5_5.png> <../Bilder/sobel_after_blur.png>]
-Underfull \hbox (badness 3209) in paragraph at lines 315--316
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 3209) in paragraph at lines 521--522
 \T1/ptm/m/n/10 jedes bis jetzt als Kante markiertes Pixel als starkes
  []
 
@@ -470,22 +515,24 @@ Underfull \hbox (badness 3209) in paragraph at lines 315--316
 File: ../Bilder/double_threshold_after_nms.png Graphic file (type png)
 <use ../Bilder/double_threshold_after_nms.png>
 Package pdftex.def Info: ../Bilder/double_threshold_after_nms.png  used on inpu
-t line 319.
+t line 525.
 (pdftex.def)             Requested size: 126.0pt x 131.74104pt.
 <../Bilder/no_strong_pixel_around.png, id=43, 283.0575pt x 121.45375pt>
 File: ../Bilder/no_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/no_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/no_strong_pixel_around.png  used on input li
-ne 330.
+ne 536.
 (pdftex.def)             Requested size: 201.60077pt x 86.50517pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<../Bilder/one_strong_pixel_around.png, id=44, 282.05376pt x 121.45375pt>
+ [6 <../Bilder/sobel_after_blur.png> <../Bilder/nms_after_sobel.png> <../Bilder
+/double_threshold_after_nms.png>]
+<../Bilder/one_strong_pixel_around.png, id=52, 282.05376pt x 121.45375pt>
 File: ../Bilder/one_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/one_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/one_strong_pixel_around.png  used on input l
-ine 338.
+ine 544.
 (pdftex.def)             Requested size: 201.60077pt x 86.81096pt.
 
 
@@ -499,39 +546,40 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5 <../Bilder/nms_after_sobel.png> <../Bilder/double_threshold_after_nms.png> <
-../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.png>]
-(Documentation.aux) ) 
+[7
+
+ <../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.png>
+] (Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7023 strings out of 480790
- 100466 string characters out of 2896833
- 984699 words of memory out of 3000000
- 22936 multiletter control sequences out of 15000+200000
+ 7024 strings out of 480790
+ 100478 string characters out of 2896833
+ 1155699 words of memory out of 3000000
+ 22937 multiletter control sequences out of 15000+200000
  638947 words of font info for 130 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,50p,682b,1775s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/enc/d
-vips/base/8r.enc}<C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Thomas/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Thomas/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Thomas/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Thoma
-s/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Use
-rs/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
-><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmsy5.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmsy7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fon
-ts/type1/urw/courier/ucrb8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/
-fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKT
-eX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Thomas/AppData/Local/Programs/
-MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/AppData/Local/Programs
-/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas/AppData/Local/Program
-s/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Documentation.pdf (5 pages, 309271 bytes).
+ 36i,10n,50p,682b,1777s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/enc
+/dvips/base/8r.enc}<C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Thomas/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Thomas/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Thomas/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Tho
+mas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/U
+sers/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.p
+fb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy5.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTeX/f
+onts/type1/urw/courier/ucrb8a.pfb><C:/Users/Thomas/AppData/Local/Programs/MiKTe
+X/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Thomas/AppData/Local/Programs/Mi
+KTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/Thomas/AppData/Local/Program
+s/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Thomas/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Thomas/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Documentation.pdf (7 pages, 323801 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
+ 110 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
