@@ -22,8 +22,8 @@ def post_rectangle_with_edges_in_picture(small_imag):
             if small_imag[i][j] >= 255:
                 small_imag[i][j] = 255
 
-    small_imag[3, 2:13] = small_imag[27, 2:13] = 23
-    small_imag[3:27, 2] = small_imag[3:27, 13] = 23
+    small_imag[3:5, 2:13] = small_imag[27:29, 2:13] = 23
+    small_imag[3:27, 2:4] = small_imag[3:27, 13:15] = 23
 
     return small_imag
 
@@ -56,15 +56,20 @@ def sobel_filter(img):
 def edge_finder():
     return 0
 
-def starter(img):
-    blur = gaussian_blur(img)
+def starter():
+    images = get_small_image_matrix_from_picture()
+    small = images[1]
+    small_image = post_rectangle_with_edges_in_picture(small)
+    blur = gaussian_blur(small_image)
     sobel = sobel_filter(blur)
-    plt.subplot(131), plt.imshow(blur, cmap='gray')
+    plt.subplot(231), plt.imshow(small_image, cmap='gray')
+    plt.title('small_image'), plt.xticks([]), plt.yticks([])
+    plt.subplot(232), plt.imshow(blur, cmap='gray')
     plt.title('Blur'), plt.xticks([]), plt.yticks([])
-    plt.subplot(132), plt.imshow(sobel[0], cmap='gray')
+    plt.subplot(233), plt.imshow(sobel[0], cmap='gray')
     plt.title('Sobel_G'), plt.xticks([]), plt.yticks([])
-    plt.subplot(133), plt.imshow(sobel[1], cmap='gray')
+    plt.subplot(234), plt.imshow(sobel[1], cmap='gray')
     plt.title('Sobel_Theta'), plt.xticks([]), plt.yticks([])
     plt.show()
 
-    return blur, sobel[0], sobel[1]
+    return images[0], images[1], small_image
