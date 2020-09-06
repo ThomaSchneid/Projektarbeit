@@ -13,21 +13,20 @@ def create_whitescreen(image):
     return image
 
 def spiral(img, diff):
-    x_length = img.shape[1]
-    y_length = img.shape[0]
-
+    x_length = img.shape[1] - 1
+    y_length = img.shape[0] - 1
     px = 0
 
-    while (y_length - (2 * px)) >= diff and (x_length - (2 * px)) >= diff:
+    while (y_length - 2 * px) >= diff and (x_length - 2 * px) >= diff:
         px += diff
         # links nach rechts oben
-        img[px, px:x_length - (1 + px)] = 0
+        img[px, px:x_length - px] = 0
         # oben nach unten hinten
-        img[px:y_length - (1 + px), x_length - (1 + px)] = 0
+        img[px:y_length - px, x_length - px] = 0
         # links nach rechts unten
-        img[y_length - (1 + px), px:x_length - (1 + px)] = 0
+        img[y_length - px, px:x_length - px] = 0
         # oben nach unten vorne
-        img[px:y_length - (1 + px), px] = 0
+        img[px:y_length - px, px] = 0
     return img
 
 
