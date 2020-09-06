@@ -58,11 +58,11 @@ def edge_finder():
 
 def starter():
     images = get_small_image_matrix_from_picture()
-    small = images[1]
-    small_image = post_rectangle_with_edges_in_picture(small)
-    blur = gaussian_blur(small_image)
+    small_imag = images[1]
+    b = post_rectangle_with_edges_in_picture(small_imag)
+    blur = gaussian_blur(b)
     sobel = sobel_filter(blur)
-    plt.subplot(231), plt.imshow(small_image, cmap='gray')
+    plt.subplot(231), plt.imshow(b, cmap='gray')
     plt.title('small_image'), plt.xticks([]), plt.yticks([])
     plt.subplot(232), plt.imshow(blur, cmap='gray')
     plt.title('Blur'), plt.xticks([]), plt.yticks([])
@@ -72,4 +72,4 @@ def starter():
     plt.title('Sobel_Theta'), plt.xticks([]), plt.yticks([])
     plt.show()
 
-    return images[0], images[1], small_image
+    return images[0], images[1], b
