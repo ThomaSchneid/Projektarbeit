@@ -33,3 +33,8 @@ def spiral(img, diff):
             img[i, px] = 0
     return img
 
+def check_pixel():
+
+
+
+    return 0
