@@ -1,3 +1,7 @@
+##########################
+###  CHECK MAIN PIXEL  ###
+##########################
+
 def top(pos, img, diff):
     list = [-1,0,1]
     sum_top = 0
@@ -75,34 +79,169 @@ def bottom_right(pos, img, diff):
 
     return sum_bottom_right/((3 * diff + 1) - 1)
 
-def value_top_bottom(pos, img):
-    if img[pos[0] - 1][pos[1]] > img[pos[0] + 1][pos[1]]:
-        moving_direction = 2
+##########################
+## CHECK CURRENT PIXEL ##
+##########################
+
+def check_pixel(pos, image, diff):
+    check_array = []
+
+    check_array.append(top_left(pos, image, diff) - bottom_right(pos, image, diff))
+    check_array.append(top(pos, image, diff) - bottom(pos, image, diff))
+    check_array.append(top_right(pos, image, diff) - bottom_left(pos, image, diff))
+    check_array.append(right(pos, image, diff) - left(pos, image, diff))
+
+    maxim = max(check_array, key = abs)
+    #todo Schwelle ersetzen
+    if abs(maxim) > 20:
+        direction = check_array.index(maxim)
+        # Wenn es keine Kante ist wird dem Pixel der Wert 255 zugeordnet
     else:
-        moving_direction = 7
+        direction = 255
+    return direction
 
-    return moving_direction
+##########################
+# CHECK NEIGHBOUR PIXEL  #
+##########################
 
-def value_left_right(pos, img):
-    if img[pos[0]][pos[1] - 1] > img[pos[0]][pos[1] + 1]:
-        moving_direction = 4
-    else:
-        moving_direction = 5
+def check_first_pixel_up_down_front(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        pixel = check_pixel((i - 1, px + 1), img, diff)
+        whitescreen[i - 1, px + 1] = pixel
+        if pixel != 255:
+            check_second_pixel_up_down_front(whitescreen, img, i - 1, px + 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 1:
+        pixel = check_pixel((i, px + 1), img, diff)
+        whitescreen[i, px + 1] = pixel
+        if pixel != 255:
+            check_second_pixel_up_down_front(whitescreen, img, i, px + 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 2:
+        pixel = check_pixel((i + 1, px + 1), img, diff)
+        whitescreen[i + 1, px + 1] = pixel
+        if pixel != 255:
+            check_second_pixel_up_down_front(whitescreen, img, i + 1, px + 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    return
 
-    return moving_direction
+def check_second_pixel_up_down_front(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        whitescreen[i - 1, px + 1] = check_pixel((i - 1, px + 1), img, diff)
+    elif dir == 1:
+        whitescreen[i, px + 1] = check_pixel((i, px + 1), img, diff)
+    elif dir == 2:
+        whitescreen[i + 1, px + 1] = check_pixel((i + 1, px + 1), img, diff)
+    elif dir == 3:
+        whitescreen[i + 1, px] = check_pixel((i + 1, px), img, diff)
+        whitescreen[i - 1, px] = check_pixel((i - 1, px), img, diff)
+    return
 
-def value_falling_diagonal(pos, img):
-    if img[pos[0] - 1][pos[1] - 1] > img[pos[0] + 1][pos[1] + 1]:
-        moving_direction = 1
-    else:
-        moving_direction = 8
+def check_first_pixel_left_right_bottom(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        pixel = check_pixel((i - 1, px + 1), img, diff)
+        whitescreen[i - 1, px + 1] = pixel
+        if pixel != 255:
+            check_second_pixel_left_right_bottom(whitescreen, img, i - 1, px + 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 2:
+        pixel = check_pixel((i - 1, px - 1), img, diff)
+        whitescreen[i - 1, px - 1] = pixel
+        if pixel != 255:
+            check_second_pixel_left_right_bottom(whitescreen, img, i - 1, px - 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 3:
+        pixel = check_pixel((i - 1, px), img, diff)
+        whitescreen[i - 1, px] = pixel
+        if pixel != 255:
+            check_second_pixel_left_right_bottom(whitescreen, img, i - 1, px, diff, pixel)
+    return
 
-    return moving_direction
+def check_second_pixel_left_right_bottom(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        whitescreen[i - 1, px + 1] = check_pixel((i - 1, px + 1), img, diff)
+    elif dir == 1:
+        whitescreen[i, px + 1] = check_pixel((i, px + 1), img, diff)
+        whitescreen[i, px - 1] = check_pixel((i, px - 1), img, diff)
+    elif dir == 2:
+        whitescreen[i - 1, px - 1] = check_pixel((i - 1, px - 1), img, diff)
+    elif dir == 3:
+        whitescreen[i - 1, px] = check_pixel((i - 1, px), img, diff)
+    return
 
-def value_raising_diagonal(pos, img):
-    if img[pos[0] - 1][pos[1] + 1] > img[pos[0] + 1][pos[1] - 1]:
-        moving_direction = 3
-    else:
-        moving_direction = 6
+def check_first_pixel_up_down_back(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        pixel = check_pixel((i + 1, px - 1), img, diff)
+        whitescreen[i + 1, px - 1] = pixel
+        if pixel != 255:
+            check_second_pixel_up_down_back(whitescreen, img, i + 1, px - 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 1:
+        pixel = check_pixel((i, px - 1), img, diff)
+        whitescreen[i, px - 1] = pixel
+        if pixel != 255:
+            check_second_pixel_up_down_back(whitescreen, img, i, px - 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 2:
+        pixel = check_pixel((i - 1, px - 1), img, diff)
+        whitescreen[i - 1, px - 1] = pixel
+        if pixel != 255:
+            check_second_pixel_up_down_back(whitescreen, img, i - 1, px - 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    return
 
-    return moving_direction
+def check_second_pixel_up_down_back(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        whitescreen[i + 1, px - 1] = check_pixel((i + 1, px - 1), img, diff)
+    elif dir == 1:
+        whitescreen[i, px - 1] = check_pixel((i, px - 1), img, diff)
+    elif dir == 2:
+        whitescreen[i - 1, px - 1] = check_pixel((i - 1, px - 1), img, diff)
+    elif dir == 3:
+        whitescreen[i + 1, px] = check_pixel((i + 1, px), img, diff)
+        whitescreen[i - 1, px] = check_pixel((i - 1, px), img, diff)
+    return
+
+def check_first_pixel_left_right_top(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        pixel = check_pixel((i + 1, px - 1), img, diff)
+        whitescreen[i + 1, px - 1] = pixel
+        if pixel != 255:
+            check_second_pixel_left_right_bottom(whitescreen, img, i + 1, px - 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 2:
+        pixel = check_pixel((i + 1, px + 1), img, diff)
+        whitescreen[i + 1, px + 1] = pixel
+        if pixel != 255:
+            check_second_pixel_left_right_bottom(whitescreen, img, i + 1, px + 1, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    elif dir == 3:
+        pixel = check_pixel((i + 1, px), img, diff)
+        whitescreen[i + 1, px] = pixel
+        if pixel != 255:
+            check_second_pixel_left_right_bottom(whitescreen, img, i + 1, px, diff, pixel)
+        else:
+            whitescreen[i, px] = 255
+    return
+
+def check_second_pixel_left_right_top(whitescreen, img, i, px, diff, dir):
+    if dir == 0:
+        whitescreen[i + 1, px - 1] = check_pixel((i + 1, px - 1), img, diff)
+    elif dir == 1:
+        whitescreen[i, px + 1] = check_pixel((i, px + 1), img, diff)
+        whitescreen[i, px - 1] = check_pixel((i, px - 1), img, diff)
+    elif dir == 2:
+        whitescreen[i + 1, px + 1] = check_pixel((i + 1, px + 1), img, diff)
+    elif dir == 3:
+        whitescreen[i + 1, px] = check_pixel((i + 1, px), img, diff)
+    return
