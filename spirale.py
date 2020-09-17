@@ -1,8 +1,6 @@
 from Python.check_neighbours import *
 from helper import *
-import cv2
 from scipy import ndimage
-import numpy as np
 import matplotlib.pyplot as plt
 import time
 
