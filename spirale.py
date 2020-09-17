@@ -1,17 +1,10 @@
 from Python.check_neighbours import *
+from helper import *
 import cv2
 from scipy import ndimage
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-
-def load_image():
-    image = cv2.imread("Bilder/Camera_obscura.jpg", 0)
-    return image
-
-def create_whitescreen(image):
-    whitescreen = np.full((image.shape), 255)
-    return whitescreen
 
 def spiral(img, diff):
     start = time.time()
