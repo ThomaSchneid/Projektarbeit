@@ -33,18 +33,44 @@
 	
 	\section{Motivation/Einleitung}
 	
-	Wenn es um Bild- und Objekterkennung geht ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert und erkennt Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so Leistungsstark und Effizient wie das menschliche Auge. Nicht nur ist der Canny Algorithmus der wohl bekannteste, sondern auch der am meist benutzte.\nl
-	Der Canny-Algorithmus benutzt mehrere Stufen um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Nachdem ich meine Seminararbeit der Kantenverfolgung gewidmet habe, kam ich nicht umher, mit dem Canny-Algorithmus in Berührung zu kommen.
-	Neben all der Faszination stellte sich mir schnell die Frage, wieso der Canny-Algorithmus so aufgebaut ist, wie er es ist. \nl
-	Er durchläuft jedes Pixel eines Bildes mehrmals um so zum gewünschten Ergebnis zu kommen. 
-	Diese Projektarbeit befasst sich mit Focus peaking, dem markieren scharf gestellter Objekte in einem Bild, und speziell dem Teilgebiet der Kantenverfolgung und ob sie die Performance aktueller Algorithmen verbessern kann. 
-	Expliziter der Canny Algorithmus wird hier als Beispiel herangezogen, da er einer der besten Kantenerkennungsalgorithmen zurzeit ist.
-	Ziel ist es, nicht das komplette Bild durchlaufen zu müssen, sondern - sobald eine Kante detektiert wurde - der Kante zu folgen und so schneller scharf gestellte Objekte zu erkennen. 
-	Im Teilbereich der Hochgeschwindigkeitsfotografie könnte man damit schneller Objekte durch Autofokus scharf stellen und so die Bildqualität steigern.
+	Wenn es um Bild- und Objekterkennung geht ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so Leistungsstark und Effizient wie das menschliche Auge. Nicht nur ist der Canny Algorithmus der wohl bekannteste, sondern auch der am meist benutzte.\nl
+	Der Canny-Algorithmus benutzt mehrere Stufen um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Während ich meine Seminararbeit im Bereich der Kantenverfolgung geschrieben habe, kam ich nicht umhin auch erste Erfahrungen mit dem Canny-Algorithmus zu sammeln.
+	Präzise und mit durchschnittlich \textcolor{red}{TODO ZEITWERT CANNY NACHSCHLAGE} x Sekunden für ein durchschnittliches, mit einer digitalkamera aufgenommenes Bild auch extrem schnell findet dieser Algorithmus alle Kanten des Bildes, markiert diese und gibt das so veränderte Bild zurück.\nl
+	Neben all der Faszination stellte sich mir schnell die Frage, ob man den Algorithmus nicht durch Kantenverfolgung statt der reinen Kantenerkennung noch schneller machen könne. Mit dieser Frage beschäftige ich mich nachfolgend, werde einen Kantenverfolgungsalgorithmus entwickeln und evaluieren ob und zu was für einem eventuellen Preis man den Canny-Algorithmus so verschnellern kann.\nl
+	Um den nachfolgenden Gedankengängen besser folgen zu können, schauen wir uns zuerst einmal vereinfacht an,  mit welchen Schritten der Canny-Algorithmus zum Ziel kommt. Die genannten Methoden werden im wieteren Verlauf dieses Dokuments mathematisch näher beleuchtet.\nl
+	Der Canny Algorithmus lässt sich in 5 Schritte unterteilen:
 	
-	\section{Mathematische Grundlagen}
+	\begin{enumerate}
+		\item Entfernen von Rauschen \textcolor{red}{Schöner FORMULIEREN}
+		\item Suchen der Kanten im Bild
+		\item Ausdünnen der gefunden Kanten
+		\item Klassifizierung der Kantenpixel
+		\item Vervollständigung der Kante
+	\end{enumerate}
+	
+	Zuallererst wird vorhandenes Rauschen, welches unter anderem die Grauwerte der einzelnen Bildpixel verfälschen kann, im Bild entfernt. Dies ist ein Schritt, um welchen man auch bei Anwendung einer Kantenverfolgungsmethode nicht umhin kommt.\nl
+	Anschließend wird für jedes Pixel ein Grauwert und der gradient berechnet. Dies geschieht für jedes einzelne Pixel des Bildes.\nl
+	Die so gefundenen Kantenpixel wurden schon alle Kanten im Bild erkannt, allerdings sind diese noch sehr grob und unfein. Indem erneut alle Pixel des Bildes durchlaufen und die jeweiligen direkten Nachbarn in gradientenrichtung geprüft und die entsprechenden Grauwerte gegebenenfalls angepasst werden. So werden grobe, unfeine und breite Kanten ausgedünnt und feiner dargestellt.\nl
+	Durch eine nochmalige Prüfung eines jeden Pixels werden die noch vorhandenen Kantenpixel klassifiziert und als starkes, schwaches oder kein Kantenpixel eingestuft, was das Kantenbild nochmal etwas verfeinert.\nl
+	Abschließend werden eventuelle Lücken in Kanten durch ein Hystereseverfahren geschlossen, wofür ebenfalls alle Pixel des Bildes durchlaufen werden müssen.\nl
+	Insgesamt durchlaufen wir das komplette Bild also mehrmals um einzelne Kantenpixel zu finden, diese zu klassifizieren und im Nachhinein die eventuell falsch klassifizierten oder gefundenen wieder zu korrigieren.\nl
+	Genau hier greift meine Idee der involvierung einer Kantenverfolgung an. Wenn wir bereits im ersten Durchlauf ein Kantenpixel finden, können wir komplette Kante durch verfolgen der Kantenrichtung und Erkennung der anderen Pixel auf dem Weg erhalten. Dies würde die Anzahl der Zugriffe auf ein Pixel reduzieren und damit die Geschwindigkeit des Algorithmus erhöhen.\nl
+	Gerade auf dem Gebiet des Auto-Focus und der Hochgeschwindigkeitsfotografie ist eine Geschwindigkeitssteigerung um bereits wenige Millisekunden ein enormer Gewinn.\nl
+	
+	Im Folgenden erläutere ich die einzelnen Methoden des Canny Algorithmus mathematisch genauer, werde meine Ansätze sowie meinen Algorithmus präsentieren und ihn direkt mit dem Canny Algorithmus vergleichen um zu sehen ob und welche Performancesteigerungen es gibt.
+	
+	\section{Begriffsdefinitioen und Erklärungen}
 
-		\subsection{Gauß Filter}
+		\subsection{Was zeichnet eine Kante aus?}
+		
+		\subsection{Rauschen}
+			\subsubsection{Wie entsteht Rauschen in digitalen Bildern}
+			
+			\subsubsection{Auswirkungen von Rauschen}
+			
+			\subsubsection{Methoden zur Rauschunterdrückung}
+		
+			\subsubsection{Gauß Filter}
 	
 		Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
 		Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
@@ -550,7 +576,7 @@
 	
 		Sobald eine Kante gefunden wurde ist es nicht mehr notwendig, jedes einzelne Pixel des kompletten Bildes zu überprüfen. Es soll der Kante gefolgt werden und auf dem Weg die entsprechenden Nachbarpixel der Kante zu 0 setzen und als "bearbeitet" markieren. So muss man nicht mehr jedes Pixel des Bildes untersuchen sondern erheblich weniger.\nl
 		
-		Sobald ein Kantenpixel gefunden wurde, werden - ähnlich zum Canny-Algorithmus - die Nachbarn überprüft und der Gradient gebildet. So findet man das nächste Pixel der Kante. Das aktuelle Pixel erhält den Grauwert 255, den 7 übrigen Nachbarn wird der Intensitätswert 0 zugewiesen und der Algorithmus navigiert zum nächsten Pixel.\nl
+		Sobald ein Kantenpixel gefunden wurde, werden - ähnlich zum Canny Algorithmus - die Nachbarn überprüft und der Gradient gebildet. So findet man das nächste Pixel der Kante. Das aktuelle Pixel erhält den Grauwert 255, den 7 übrigen Nachbarn wird der Intensitätswert 0 zugewiesen und der Algorithmus navigiert zum nächsten Pixel.\nl
 		
 		Dadurch, dass man - sobald eine Kante detektiert wurde - 7 Nachbarpixel auf 0 setzt und diese nicht erneut überprüfen muss ergibt sich ein nicht unerheblicher performance Gewinn mindestens des Faktors 7.\nl
 		
@@ -717,9 +743,9 @@
 	
 		Hierbei traf ich auf das Problem, dass die Einsparung der Laufzeit durch direktes bearbeiten der Kantennachbarn sehr schnell wieder verloren geht und zwar dadurch, dass man mehrere Matrizen der Größe des Bildes benötigt um die einzelnen Stati wie neuer Grauwert, Richtung und ein \textit{bereits bearbeitet} Flag zu speichern. Diese muss man immer wieder abrufen, also die Matrizen laden, bearbeiten und verändert wieder abspeichern. Gerade bei größeren Bildern oder wenn eine Kante nicht mit dem Durchlaufen der Diagonalen gefunden wird, übersteigt die Laufzeit des geplanten Algorithmus die des Canny Algorithmus schnell.\nl
 		Ebenso ist mit dem beschriebenen Vorgehen nicht sichergestellt, dass man alle Kanten findet. Um auch Objekte zum Beispiel am Rand zu finden müsste man das komplette Bild erneut mit einem Hysterese Algorithmus bearbeiten. \nl
-		Trotz anfänglicher, guter Fortschritte hatte der geplante Algorithmus deshalb leider keine Aussicht auf Erfolg und eine Effizienzsteigerung des Canny-Algorithmus durch Kantenverfolgung ist mit dieser Methode nicht möglich.
+		Trotz anfänglicher, guter Fortschritte hatte der geplante Algorithmus deshalb leider keine Aussicht auf Erfolg und eine Effizienzsteigerung des Canny Algorithmus durch Kantenverfolgung ist mit dieser Methode nicht möglich.
 		
-	\section{Laufzeitoptimierung des Canny-Algorithmus}
+	\section{Laufzeitoptimierung des Canny Algorithmus}
 	
 	Ein schwarz-weiß Bild hat einige schwarze Pixel, also Pixel mit dem Intensitätswert 0. Der obige Canny prüft jedes Pixel viele Male. Einige dieser Cases kann man jedoch auslassen, da sie nicht geprüft werden müssen. So sind zum Beispiel Pixel mit einem Intensitätswert von 0 kein Teil einer Kante und man kann die Prüfung dieses Pixels überspringen.
 	

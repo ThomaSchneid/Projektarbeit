@@ -1,26 +1,31 @@
 \contentsline {section}{\numberline {I}Motivation/Einleitung}{2}%
-\contentsline {section}{\numberline {II}Mathematische Grundlagen}{2}%
-\contentsline {subsection}{\numberline {\mbox {II-A}}Gauß Filter}{2}%
-\contentsline {subsection}{\numberline {\mbox {II-B}}Sobel Operator}{2}%
-\contentsline {subsection}{\numberline {\mbox {II-C}}Non Maximum Suppression}{2}%
-\contentsline {subsection}{\numberline {\mbox {II-D}}Double threshold}{3}%
-\contentsline {subsection}{\numberline {\mbox {II-E}}Kantenverfolgung durch Hysterese}{4}%
-\contentsline {section}{\numberline {III}Laufzeiteffizienz eines Algorithmus}{4}%
+\contentsline {section}{\numberline {II}Begriffsdefinitioen und Erklärungen}{2}%
+\contentsline {subsection}{\numberline {\mbox {II-A}}Was zeichnet eine Kante aus?}{2}%
+\contentsline {subsection}{\numberline {\mbox {II-B}}Rauschen}{2}%
+\contentsline {subsubsection}{\numberline {\mbox {II-B}1}Wie entsteht Rauschen in digitalen Bildern}{2}%
+\contentsline {subsubsection}{\numberline {\mbox {II-B}2}Auswirkungen von Rauschen}{2}%
+\contentsline {subsubsection}{\numberline {\mbox {II-B}3}Methoden zur Rauschunterdrückung}{2}%
+\contentsline {subsubsection}{\numberline {\mbox {II-B}4}Gauß Filter}{2}%
+\contentsline {subsection}{\numberline {\mbox {II-C}}Sobel Operator}{3}%
+\contentsline {subsection}{\numberline {\mbox {II-D}}Non Maximum Suppression}{3}%
+\contentsline {subsection}{\numberline {\mbox {II-E}}Double threshold}{4}%
+\contentsline {subsection}{\numberline {\mbox {II-F}}Kantenverfolgung durch Hysterese}{4}%
+\contentsline {section}{\numberline {III}Laufzeiteffizienz eines Algorithmus}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-A}}Gauß Filter}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-B}}Sobel Filter}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-C}}Non Maximum Supression}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-D}}Double threshold}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-E}}Hysterese}{5}%
-\contentsline {subsection}{\numberline {\mbox {III-F}}Komplette Laufzeit}{5}%
-\contentsline {subsubsection}{\numberline {\mbox {III-F}1}Laufzeit im besten Fall}{5}%
+\contentsline {subsection}{\numberline {\mbox {III-F}}Komplette Laufzeit}{6}%
+\contentsline {subsubsection}{\numberline {\mbox {III-F}1}Laufzeit im besten Fall}{6}%
 \contentsline {subsubsection}{\numberline {\mbox {III-F}2}Lauftzeit im schlimmsten Fall}{6}%
 \contentsline {section}{\numberline {IV}Kantenerkennung mit dem Canny Algorithmus}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{7}%
-\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{7}%
-\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{7}%
-\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny-Algorithmus}{9}%
-\contentsline {section}{\numberline {VII}Literaturverzeichnis}{9}%
+\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{8}%
+\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{8}%
+\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny Algorithmus}{10}%
+\contentsline {section}{\numberline {VII}Literaturverzeichnis}{10}%
