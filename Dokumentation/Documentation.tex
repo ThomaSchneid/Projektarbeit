@@ -61,7 +61,20 @@
 	
 	\section{Begriffsdefinitioen und Erklärungen}
 
-		\subsection{Was zeichnet eine Kante aus?}
+		\subsection{Was ist eine Kante}
+			Eine Kante zeichnet sich dadurch aus, dass sich der Intensitätswert innerhalb weniger Pixel stark ändert.
+			Hierbei muss allerdings nicht jeder Intensitätswertunterschied auch eine Kante sein, meist bewertet ein Algorithmus ob der Intensitätswertunterschied groß genug ist, als dass es sich um eine Kante handelt.
+			
+		\subsection{Pixelnachbarn}
+			Unter Nachbarschaft versteht man in der Bildverarbeitung einen fest definierten Bereich um ein Pixel. Die zwei Grundkonzepte der Nachbarschaft sind die Vierer-Nachbarschaft (auch D-Nachbarschaft genannt) und die Achter-Nachbarschaft (\textit{Fig. 1}). 
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.6\linewidth] {../Dokumentation/Bilder/nachbarschaft}
+				\caption{\textit{Vierer-Nachbarschaft (links) und Achter-Nachbarschaft (rechts)}}
+			\end{figure}
+			
+			Wir benutzen im weiteren Verlauf stets die Achter-Nachbarschaft, da wir auch die diagonalen Nachbarn eines Pixels in die Kantenberechnung mit einbeziehen.
 		
 		\subsection{Rauschen}
 			\subsubsection{Wie entsteht Rauschen in digitalen Bildern}
