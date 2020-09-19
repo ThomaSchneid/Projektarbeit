@@ -22,6 +22,8 @@
 \newcommand{\nl}{\newline}
 \newcommand{\formelbox}[1]{\centerline{\fbox{#1}}}
 \newcommand{\nin}{\noindent}
+\newcommand{\nlparagraph}[1]{\paragraph{#1}\mbox{}\\}
+\newcommand{\nlsubsubsection}[1]{\subsubsection{#1}\mbox{}\\}
 
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
@@ -77,19 +79,20 @@
 			Wir benutzen im weiteren Verlauf stets die Achter-Nachbarschaft, da wir auch die diagonalen Nachbarn eines Pixels in die Kantenberechnung mit einbeziehen.
 		
 		\subsection{Rauschen}
-			Bei Rauschen handelt es sich oftmals um Störungen, welche die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, verändern. Je mehr Pixel dadurch in ihren Werten verändert werden, desto höher ist das Rauschen im Bild. 
+			Bei Rauschen handelt es sich oftmals um Störungen, welche die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, verändern. Je mehr Pixel dadurch in ihren Werten verändert werden, desto höher ist das Rauschen im Bild.\nl 
 			
-			\subsubsection{Wie entsteht Rauschen in digitalen Bildern}
+			\nlsubsubsection{Wie entsteht Rauschen in digitalen Bildern}
 				Bei Digitalkameras kann es aufgrund unterschiedlicher Ursachen zu Rauschen kommen.\nl
-				Zum einen kommt es zum sogenannten Quantenrauschen. Die riesige Lichtmenge, welche auf einen elektronischen Sensor fällt besteht aus vielen Elemtarteilchen, den sogenannten Photonen. Obwohl ein Lichtstrom für das menschliche Auge gleichmäßig aussieht, treffen die Photonen zufällig auf die einzelnen Pixel des Sensors. Wenn man eine große Sensorfläche über eine lange Zeit hinweg observiert wird man eine gleichmäßige Verteilung der Photonen feststellen. Observiert man hingegen einen kleinen Sensor für nur einen kurzen Zeitabschnitt wird man feststellen, dass die einzelnen Pixel des Sensors unterschiedlich viele Photonen empfangen haben. Nimmt man ein stark belichtetes, helles Bild auf, so treffen - da es viel Licht gibt - viele Photonen auf den Sensor. Dies fürht dazu, dass man die zufällige Verteilung, das Rauschen im fertigen Bild weniger stark wahrnimmt.
 				
-				Möchte man nun ein stark belichtetes Bild aufnehmen, so ist der Effekt des Quantenrauschens weniger bemerkbar.	
+				\nlparagraph{Quantenrauschen}					
+					Die riesige Lichtmenge, welche auf einen elektronischen Sensor fällt besteht aus vielen Elemtarteilchen, den sogenannten Photonen. Obwohl ein Lichtstrom für das menschliche Auge gleichmäßig aussieht, treffen die Photonen zufällig auf die einzelnen Pixel des Sensors. Wenn man eine große Sensorfläche über eine lange Zeit hinweg observiert wird man eine gleichmäßige Verteilung der Photonen feststellen. Observiert man hingegen einen kleinen Sensor für nur einen kurzen Zeitabschnitt wird man feststellen, dass die einzelnen Pixel des Sensors unterschiedlich viele Photonen empfangen haben. Nimmt man ein stark belichtetes, helles Bild auf, so treffen - da es viel Licht gibt - viele Photonen auf den Sensor. Dies fürht dazu, dass man die zufällige Verteilung, das Rauschen im fertigen Bild weniger stark wahrnimmt.\nl
+				
 			
-			\subsubsection{Auswirkungen von Rauschen}
+			\nlsubsubsection{Auswirkungen von Rauschen}
 			
-			\subsubsection{Methoden zur Rauschunterdrückung}
+			\nlsubsubsection{Methoden zur Rauschunterdrückung}
 		
-			\subsubsection{Gauß Filter}
+			\nlsubsubsection{Gauß Filter}
 	
 		Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
 		Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
@@ -448,7 +451,7 @@
 	
 		L hängt hierbei von der Größe des Eingangsbildes ab. Je größer das Eingangsbild, desto größer auch L und desto mehr Laufzeitaufwand ist nötig.
 		
-			\subsubsection{Laufzeit im besten Fall}
+			\nlsubsubsection{Laufzeit im besten Fall}
 			
 			Im besten Fall (in welchem es trotzdem noch eine Kante im Bild gibt) kann man folgende Annahmen treffen:\nl
 			
@@ -474,7 +477,7 @@
 					\end{center}
 			}}	
 		
-			\subsubsection{Lauftzeit im schlimmsten Fall}
+			\nlsubsubsection{Lauftzeit im schlimmsten Fall}
 			
 			Analog können für den schlimmsten Fall folgende Annahmen getroffen werden:\nl
 			

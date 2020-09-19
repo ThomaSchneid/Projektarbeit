@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  19 SEP 2020 14:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  19 SEP 2020 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -348,20 +348,20 @@ File: l3backend-pdftex.def 2020-09-01 L3 backend support: PDF output (pdfTeX)
 (./Documentation.aux)
 \openout1 = `Documentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 -- Lines per column: 56 (exact).
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -406,67 +406,67 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 1466) in paragraph at lines 51--59
+Underfull \hbox (badness 1466) in paragraph at lines 53--61
 []\T1/ptm/m/n/10 Zuallererst wird vorhan-denes Rauschen, welches unter
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 51--59
+Underfull \hbox (badness 1776) in paragraph at lines 53--61
 \T1/ptm/m/n/10 un-fein. In-dem erneut alle Pixel des Bildes durch-laufen
  []
 
 
-Underfull \hbox (badness 2680) in paragraph at lines 51--59
+Underfull \hbox (badness 2680) in paragraph at lines 53--61
 \T1/ptm/m/n/10 die noch vorhan-de-nen Kan-ten-pixel klas-si-fiziert und als
  []
 
 
-Underfull \hbox (badness 5217) in paragraph at lines 51--59
+Underfull \hbox (badness 5217) in paragraph at lines 53--61
 \T1/ptm/m/n/10 Genau hier greift meine Idee der in-volvierung einer
  []
 
 
-Underfull \hbox (badness 6396) in paragraph at lines 51--59
+Underfull \hbox (badness 6396) in paragraph at lines 53--61
 \T1/ptm/m/n/10 ein Kan-ten-pixel finden, kön-nen wir kom-plette Kante
  []
 
 
-Underfull \hbox (badness 1783) in paragraph at lines 51--59
+Underfull \hbox (badness 1783) in paragraph at lines 53--61
 \T1/ptm/m/n/10 durch ver-fol-gen der Kan-ten-rich-tung und Erken-nung der
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 51--59
+Underfull \hbox (badness 2221) in paragraph at lines 53--61
 \T1/ptm/m/n/10 an-deren Pixel auf dem Weg er-hal-ten. Dies würde die
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 53--61
 \T1/ptm/m/n/10 Gerade auf dem Ge-biet des Auto-Focus und
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 53--61
 \T1/ptm/m/n/10 der Hochgeschwindigkeits-fo-tografie ist eine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 53--61
 
  []
 
 
-Underfull \hbox (badness 3861) in paragraph at lines 69--70
+Underfull \hbox (badness 3861) in paragraph at lines 71--72
 []\T1/ptm/m/n/10 Unter Nach-barschaft ver-steht man in der Bild-ver-ar-
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 69--70
+Underfull \hbox (badness 1688) in paragraph at lines 71--72
 \T1/ptm/m/n/10 zwei Grund-konzepte der Nach-barschaft sind die Vierer-
  []
 
 
-Underfull \hbox (badness 3281) in paragraph at lines 69--70
+Underfull \hbox (badness 3281) in paragraph at lines 71--72
 \T1/ptm/m/n/10 Nachbarschaft (auch D-Nachbarschaft genannt) und die
  []
 
@@ -474,21 +474,70 @@ Underfull \hbox (badness 3281) in paragraph at lines 69--70
 File: ../Dokumentation/Bilder/nachbarschaft.png Graphic file (type png)
 <use ../Dokumentation/Bilder/nachbarschaft.png>
 Package pdftex.def Info: ../Dokumentation/Bilder/nachbarschaft.png  used on inp
-ut line 73.
+ut line 75.
 (pdftex.def)             Requested size: 151.20154pt x 65.64583pt.
 
-Underfull \hbox (badness 2689) in paragraph at lines 77--78
+Underfull \hbox (badness 2689) in paragraph at lines 79--80
 []\T1/ptm/m/n/10 Wir be-nutzen im weit-eren Ver-lauf stets die Achter-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
+
  []
 
 [2
 
  <../Dokumentation/Bilder/nachbarschaft.png>]
+Underfull \hbox (badness 4543) in paragraph at lines 84--86
+\T1/ptm/m/n/10 Bei Dig-italka-m-eras kann es auf-grund un-ter-schiedlicher
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
+\T1/ptm/m/n/10 Sen-sor fällt besteht aus vie-len El-em-tarteilchen, den
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 87--89
+\T1/ptm/m/n/10 so-ge-nan-nten Pho-to-nen. Ob-wohl ein Licht-strom für das
+ []
+
+
+Underfull \hbox (badness 4792) in paragraph at lines 87--89
+\T1/ptm/m/n/10 wird man eine gle-ich-mäÿige Verteilung der Pho-to-nen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
+
+ []
+
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
-2.
+5.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -496,38 +545,38 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 <../Bilder/sobel_operator.png, id=15, 282.05376pt x 161.60374pt>
 File: ../Bilder/sobel_operator.png Graphic file (type png)
 <use ../Bilder/sobel_operator.png>
-Package pdftex.def Info: ../Bilder/sobel_operator.png  used on input line 121.
+Package pdftex.def Info: ../Bilder/sobel_operator.png  used on input line 124.
 (pdftex.def)             Requested size: 151.20154pt x 86.63098pt.
 <../Bilder/nms_how_to.png, id=16, 463.7325pt x 222.8325pt>
 File: ../Bilder/nms_how_to.png Graphic file (type png)
 <use ../Bilder/nms_how_to.png>
-Package pdftex.def Info: ../Bilder/nms_how_to.png  used on input line 154.
+Package pdftex.def Info: ../Bilder/nms_how_to.png  used on input line 157.
 (pdftex.def)             Requested size: 252.0pt x 121.09279pt.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-58.
+61.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-<../Bilder/nms_inspect_pixel.png, id=17, 204.765pt x 194.7275pt>
+) [3 <../Bilder/sobel_operator.png> <../Bilder/nms_how_to.png>]
+<../Bilder/nms_inspect_pixel.png, id=32, 204.765pt x 194.7275pt>
 File: ../Bilder/nms_inspect_pixel.png Graphic file (type png)
 <use ../Bilder/nms_inspect_pixel.png>
 Package pdftex.def Info: ../Bilder/nms_inspect_pixel.png  used on input line 16
-2.
+5.
 (pdftex.def)             Requested size: 176.39923pt x 167.76247pt.
- [3 <../Bilder/sobel_operator.png> <../Bilder/nms_how_to.png>]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4 <../Bilder/nms_inspect_pixel.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--327
+Underfull \hbox (badness 10000) in paragraph at lines 329--330
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--337
+Underfull \hbox (badness 10000) in paragraph at lines 336--340
 
  []
 
@@ -535,70 +584,85 @@ Underfull \hbox (badness 10000) in paragraph at lines 333--337
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-Underfull \hbox (badness 7273) in paragraph at lines 342--343
+Underfull \hbox (badness 7273) in paragraph at lines 345--346
 []\T1/ptm/m/n/10 Die Kosten für den Gauÿ Fil-ter ergibt sich der
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--343
+Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--351
+Underfull \hbox (badness 10000) in paragraph at lines 353--354
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--359
+Underfull \hbox (badness 10000) in paragraph at lines 361--362
 []\T1/ptm/m/n/10 Den gröÿten Rechenaufwand beansprucht die Non
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 358--359
+Underfull \hbox (badness 4048) in paragraph at lines 361--362
 \T1/ptm/m/n/10 Max-i-mum Sup-pres-sion. Hier ergibt sich der benötigte
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--359
+Underfull \hbox (badness 10000) in paragraph at lines 361--362
 
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 375--376
+Underfull \hbox (badness 1478) in paragraph at lines 378--379
 []\T1/ptm/m/n/10 Die dou-ble Thresh-old Meth-ode beansprucht fol-gen-den
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--376
+Underfull \hbox (badness 10000) in paragraph at lines 378--379
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--387
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--422
+Underfull \hbox (badness 10000) in paragraph at lines 424--425
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--454
+Underfull \hbox (badness 10000) in paragraph at lines 454--455
 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 456--457
+
+ []
+
+
+Underfull \vbox (badness 4713) has occurred while \output is active []
 
  [6]
-Underfull \hbox (badness 10000) in paragraph at lines 479--480
+Underfull \hbox (badness 10000) in paragraph at lines 480--481
+
+ []
+
+
+Underfull \hbox (badness 5908) in paragraph at lines 482--483
+[]\T1/ptm/m/n/10 Analog kön-nen für den schlimm-sten Fall fol-gende
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 482--483
 
  []
 
@@ -606,20 +670,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 479--480
 File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
 <use ../Bilder/hochschule_blur_5_5.png>
 Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
-515.
+518.
 (pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
 
-Underfull \vbox (badness 3977) has occurred while \output is active []
+Underfull \vbox (badness 1400) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 525--526
+Underfull \hbox (badness 10000) in paragraph at lines 528--529
 
  []
 
 <../Bilder/sobel_after_blur.png, id=46, 277.035pt x 292.84406pt>
 File: ../Bilder/sobel_after_blur.png Graphic file (type png)
 <use ../Bilder/sobel_after_blur.png>
-Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 535
+Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 538
 .
 (pdftex.def)             Requested size: 126.0pt x 133.19063pt.
 
@@ -629,11 +693,11 @@ Underfull \vbox (badness 4454) has occurred while \output is active []
 <../Bilder/nms_after_sobel.png, id=54, 289.83281pt x 298.86656pt>
 File: ../Bilder/nms_after_sobel.png Graphic file (type png)
 <use ../Bilder/nms_after_sobel.png>
-Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 549.
+Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 552.
 
 (pdftex.def)             Requested size: 126.0pt x 129.92836pt.
 
-Underfull \hbox (badness 3209) in paragraph at lines 557--558
+Underfull \hbox (badness 3209) in paragraph at lines 560--561
 \T1/ptm/m/n/10 jedes bis jetzt als Kante markiertes Pixel als starkes
  []
 
@@ -641,40 +705,40 @@ Underfull \hbox (badness 3209) in paragraph at lines 557--558
 File: ../Bilder/double_threshold_after_nms.png Graphic file (type png)
 <use ../Bilder/double_threshold_after_nms.png>
 Package pdftex.def Info: ../Bilder/double_threshold_after_nms.png  used on inpu
-t line 561.
+t line 564.
 (pdftex.def)             Requested size: 126.0pt x 131.74104pt.
 <../Bilder/no_strong_pixel_around.png, id=56, 283.0575pt x 121.45375pt>
 File: ../Bilder/no_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/no_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/no_strong_pixel_around.png  used on input li
-ne 572.
+ne 575.
 (pdftex.def)             Requested size: 201.60077pt x 86.50517pt.
 <../Bilder/one_strong_pixel_around.png, id=57, 282.05376pt x 121.45375pt>
 File: ../Bilder/one_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/one_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/one_strong_pixel_around.png  used on input l
-ine 580.
+ine 583.
 (pdftex.def)             Requested size: 201.60077pt x 86.81096pt.
 <../Bilder/hysteresis_after_threshold.png, id=58, 285.31593pt x 296.60812pt>
 File: ../Bilder/hysteresis_after_threshold.png Graphic file (type png)
 <use ../Bilder/hysteresis_after_threshold.png>
 Package pdftex.def Info: ../Bilder/hysteresis_after_threshold.png  used on inpu
-t line 588.
+t line 591.
 (pdftex.def)             Requested size: 126.0pt x 130.98772pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 596--597
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 598--599
+Underfull \hbox (badness 10000) in paragraph at lines 601--602
 
  []
 
 [8 <../Bilder/nms_after_sobel.png> <../Bilder/double_threshold_after_nms.png> <
 ../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.png> <
 ../Bilder/hysteresis_after_threshold.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 600--601
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
 
  []
 
@@ -682,42 +746,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 600--601
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9]
-Underfull \hbox (badness 2334) in paragraph at lines 763--766
+Underfull \hbox (badness 2334) in paragraph at lines 766--769
 \T1/ptm/m/n/10 die einzel-nen Stati wie neuer Grauw-ert, Rich-tung und
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 763--766
+Underfull \hbox (badness 1960) in paragraph at lines 766--769
 \T1/ptm/m/n/10 und verän-dert wieder ab-spe-ich-ern. Ger-ade bei gröÿeren
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 763--766
+Underfull \hbox (badness 10000) in paragraph at lines 766--769
 \T1/ptm/m/n/10 Ebenso ist mit dem beschriebe-nen Vorge-hen nicht
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 763--766
+Underfull \hbox (badness 3849) in paragraph at lines 766--769
 \T1/ptm/m/n/10 sichergestellt, dass man alle Kan-ten findet. Um auch
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 763--766
+Underfull \hbox (badness 2142) in paragraph at lines 766--769
 \T1/ptm/m/n/10 Trotz an-fänglicher, guter Fortschritte hatte der ge-plante
  []
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 763--766
+Underfull \hbox (badness 5036) in paragraph at lines 766--769
 \T1/ptm/m/n/10 eine Ef-fizien-zsteigerung des Canny Al-go-rith-mus durch
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 774--775
+Underfull \hbox (badness 10000) in paragraph at lines 777--778
 []\T1/ptm/m/it/10 https://www.kuppelwieser.net/index.php/technik/15-
  []
 
 
-Overfull \hbox (17.0549pt too wide) in paragraph at lines 776--777
+Overfull \hbox (17.0549pt too wide) in paragraph at lines 779--780
 []\T1/ptm/m/it/10 https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/ 
 
  []
@@ -735,13 +799,13 @@ Before submitting the final camera ready copy, remember to:
 
 [10] (./Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7124 strings out of 480880
- 101284 string characters out of 5907705
- 1011416 words of memory out of 5000000
- 22644 multiletter control sequences out of 15000+600000
+ 7126 strings out of 480880
+ 101310 string characters out of 5907705
+ 1011388 words of memory out of 5000000
+ 22646 multiletter control sequences out of 15000+600000
  641697 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,50p,911b,1779s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,50p,863b,1779s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips
 /base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
@@ -759,7 +823,7 @@ xlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
 f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fon
 ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on Documentation.pdf (10 pages, 340763 bytes).
+Output written on Documentation.pdf (10 pages, 340678 bytes).
 PDF statistics:
  125 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream
