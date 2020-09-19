@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  19 SEP 2020 15:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  19 SEP 2020 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,45 +499,111 @@ Underfull \hbox (badness 10000) in paragraph at lines 84--86
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
+Underfull \hbox (badness 10000) in paragraph at lines 87--90
 \T1/ptm/m/n/10 Sen-sor fällt besteht aus vie-len El-em-tarteilchen, den
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 87--89
+Underfull \hbox (badness 2846) in paragraph at lines 87--90
 \T1/ptm/m/n/10 so-ge-nan-nten Pho-to-nen. Ob-wohl ein Licht-strom für das
  []
 
 
-Underfull \hbox (badness 4792) in paragraph at lines 87--89
+Underfull \hbox (badness 4792) in paragraph at lines 87--90
 \T1/ptm/m/n/10 wird man eine gle-ich-mäÿige Verteilung der Pho-to-nen
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
+Underfull \hbox (badness 10000) in paragraph at lines 87--90
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
+Underfull \hbox (badness 3407) in paragraph at lines 91--94
+\T1/ptm/m/n/10 es zur so-ge-nan-nten \T1/ptm/m/it/10 Reset-Noise \T1/ptm/m/n/10
+ kommt. Das entleeren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
+Underfull \hbox (badness 10000) in paragraph at lines 95--97
+\T1/ptm/m/n/10 Eletrkonen be-we-gen sich bei er-höhter Tem-per-atur
+ []
+
+
+Underfull \hbox (badness 6252) in paragraph at lines 95--97
+\T1/ptm/m/n/10 mehr. So kann es bere-its bei Raumtem-per-a-turen zu
+ []
+
+
+Underfull \hbox (badness 1776) in paragraph at lines 95--97
+\T1/ptm/m/n/10 Elek-tro-nen-be-we-gun-gen und damit ther-mis-chem Rauschen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--97
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
+\T1/ptm/m/n/10 Um die analo-gen Span-nungswerte in dig-i-tale Daten
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 98--100
+\T1/ptm/m/n/10 Die von einem AD-Wandler erzeugten Sig-nalfehler sind
+ []
+
+
+Underfull \hbox (badness 3758) in paragraph at lines 98--100
+\T1/ptm/m/n/10 allerd-ings nicht zufäl-lig. Da bei un-serem Fall bere-its
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
+\T1/ptm/m/n/10 Sig-nalfehler nicht-mehr zu-ver-läs-sig vorher-sag-bar. Diese
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 98--100
+\T1/ptm/m/n/10 re-sul-tierende Schwankung in den Span-nungswerten wird
+ []
+
+
+Underfull \hbox (badness 3460) in paragraph at lines 98--100
+\T1/ptm/m/n/10 so weit en-twick-elt, dass Quan-tisierungsrauschen keinen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--100
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--103
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 
  []
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
-5.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 11
+6.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -545,82 +611,81 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 <../Bilder/sobel_operator.png, id=15, 282.05376pt x 161.60374pt>
 File: ../Bilder/sobel_operator.png Graphic file (type png)
 <use ../Bilder/sobel_operator.png>
-Package pdftex.def Info: ../Bilder/sobel_operator.png  used on input line 124.
+Package pdftex.def Info: ../Bilder/sobel_operator.png  used on input line 135.
 (pdftex.def)             Requested size: 151.20154pt x 86.63098pt.
-<../Bilder/nms_how_to.png, id=16, 463.7325pt x 222.8325pt>
+ [3 <../Bilder/sobel_operator.png>]
+<../Bilder/nms_how_to.png, id=30, 463.7325pt x 222.8325pt>
 File: ../Bilder/nms_how_to.png Graphic file (type png)
 <use ../Bilder/nms_how_to.png>
-Package pdftex.def Info: ../Bilder/nms_how_to.png  used on input line 157.
+Package pdftex.def Info: ../Bilder/nms_how_to.png  used on input line 168.
 (pdftex.def)             Requested size: 252.0pt x 121.09279pt.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-61.
+72.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [3 <../Bilder/sobel_operator.png> <../Bilder/nms_how_to.png>]
-<../Bilder/nms_inspect_pixel.png, id=32, 204.765pt x 194.7275pt>
+)
+<../Bilder/nms_inspect_pixel.png, id=31, 204.765pt x 194.7275pt>
 File: ../Bilder/nms_inspect_pixel.png Graphic file (type png)
 <use ../Bilder/nms_inspect_pixel.png>
-Package pdftex.def Info: ../Bilder/nms_inspect_pixel.png  used on input line 16
-5.
+Package pdftex.def Info: ../Bilder/nms_inspect_pixel.png  used on input line 17
+6.
 (pdftex.def)             Requested size: 176.39923pt x 167.76247pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4 <../Bilder/nms_inspect_pixel.png>]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 329--330
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--340
-
- []
-
-
+ [4 <../Bilder/nms_how_to.png> <../Bilder/nms_inspect_pixel.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-Underfull \hbox (badness 7273) in paragraph at lines 345--346
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--351
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 7273) in paragraph at lines 356--357
 []\T1/ptm/m/n/10 Die Kosten für den Gauÿ Fil-ter ergibt sich der
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 345--346
+Underfull \hbox (badness 10000) in paragraph at lines 356--357
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 353--354
+Underfull \hbox (badness 10000) in paragraph at lines 364--365
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
+Underfull \hbox (badness 10000) in paragraph at lines 372--373
 []\T1/ptm/m/n/10 Den gröÿten Rechenaufwand beansprucht die Non
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 361--362
+Underfull \hbox (badness 4048) in paragraph at lines 372--373
 \T1/ptm/m/n/10 Max-i-mum Sup-pres-sion. Hier ergibt sich der benötigte
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
+Underfull \hbox (badness 10000) in paragraph at lines 372--373
 
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 378--379
+Underfull \hbox (badness 1478) in paragraph at lines 389--390
 []\T1/ptm/m/n/10 Die dou-ble Thresh-old Meth-ode beansprucht fol-gen-den
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
-
  []
 
 
@@ -629,159 +694,164 @@ Underfull \hbox (badness 10000) in paragraph at lines 389--390
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--425
+Underfull \hbox (badness 10000) in paragraph at lines 400--401
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 436--437
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--455
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
+Underfull \hbox (badness 10000) in paragraph at lines 467--468
 
  []
 
 
 Underfull \vbox (badness 4713) has occurred while \output is active []
 
- [6]
-Underfull \hbox (badness 10000) in paragraph at lines 480--481
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
 
  []
 
 
-Underfull \hbox (badness 5908) in paragraph at lines 482--483
+Underfull \hbox (badness 5908) in paragraph at lines 493--494
 []\T1/ptm/m/n/10 Analog kön-nen für den schlimm-sten Fall fol-gende
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 482--483
+Underfull \hbox (badness 10000) in paragraph at lines 493--494
 
  []
 
-<../Bilder/hochschule_blur_5_5.png, id=45, 577.40718pt x 291.33844pt>
+<../Bilder/hochschule_blur_5_5.png, id=44, 577.40718pt x 291.33844pt>
 File: ../Bilder/hochschule_blur_5_5.png Graphic file (type png)
 <use ../Bilder/hochschule_blur_5_5.png>
 Package pdftex.def Info: ../Bilder/hochschule_blur_5_5.png  used on input line 
-518.
+529.
 (pdftex.def)             Requested size: 201.60077pt x 101.72102pt.
 
 Underfull \vbox (badness 1400) has occurred while \output is active []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 528--529
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 539--540
 
  []
 
-<../Bilder/sobel_after_blur.png, id=46, 277.035pt x 292.84406pt>
+<../Bilder/sobel_after_blur.png, id=50, 277.035pt x 292.84406pt>
 File: ../Bilder/sobel_after_blur.png Graphic file (type png)
 <use ../Bilder/sobel_after_blur.png>
-Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 538
+Package pdftex.def Info: ../Bilder/sobel_after_blur.png  used on input line 549
 .
 (pdftex.def)             Requested size: 126.0pt x 133.19063pt.
 
 Underfull \vbox (badness 4454) has occurred while \output is active []
 
- [7 <../Bilder/hochschule_blur_5_5.png> <../Bilder/sobel_after_blur.png>]
-<../Bilder/nms_after_sobel.png, id=54, 289.83281pt x 298.86656pt>
+<../Bilder/nms_after_sobel.png, id=51, 289.83281pt x 298.86656pt>
 File: ../Bilder/nms_after_sobel.png Graphic file (type png)
 <use ../Bilder/nms_after_sobel.png>
-Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 552.
+Package pdftex.def Info: ../Bilder/nms_after_sobel.png  used on input line 563.
 
 (pdftex.def)             Requested size: 126.0pt x 129.92836pt.
 
-Underfull \hbox (badness 3209) in paragraph at lines 560--561
+Underfull \hbox (badness 3209) in paragraph at lines 571--572
 \T1/ptm/m/n/10 jedes bis jetzt als Kante markiertes Pixel als starkes
  []
 
-<../Bilder/double_threshold_after_nms.png, id=55, 280.79906pt x 293.59688pt>
+<../Bilder/double_threshold_after_nms.png, id=52, 280.79906pt x 293.59688pt>
 File: ../Bilder/double_threshold_after_nms.png Graphic file (type png)
 <use ../Bilder/double_threshold_after_nms.png>
 Package pdftex.def Info: ../Bilder/double_threshold_after_nms.png  used on inpu
-t line 564.
+t line 575.
 (pdftex.def)             Requested size: 126.0pt x 131.74104pt.
-<../Bilder/no_strong_pixel_around.png, id=56, 283.0575pt x 121.45375pt>
+[8 <../Bilder/hochschule_blur_5_5.png> <../Bilder/sobel_after_blur.png> <../Bil
+der/nms_after_sobel.png> <../Bilder/double_threshold_after_nms.png>]
+<../Bilder/no_strong_pixel_around.png, id=61, 283.0575pt x 121.45375pt>
 File: ../Bilder/no_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/no_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/no_strong_pixel_around.png  used on input li
-ne 575.
+ne 586.
 (pdftex.def)             Requested size: 201.60077pt x 86.50517pt.
-<../Bilder/one_strong_pixel_around.png, id=57, 282.05376pt x 121.45375pt>
+<../Bilder/one_strong_pixel_around.png, id=62, 282.05376pt x 121.45375pt>
 File: ../Bilder/one_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/one_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/one_strong_pixel_around.png  used on input l
-ine 583.
+ine 594.
 (pdftex.def)             Requested size: 201.60077pt x 86.81096pt.
-<../Bilder/hysteresis_after_threshold.png, id=58, 285.31593pt x 296.60812pt>
+<../Bilder/hysteresis_after_threshold.png, id=63, 285.31593pt x 296.60812pt>
 File: ../Bilder/hysteresis_after_threshold.png Graphic file (type png)
 <use ../Bilder/hysteresis_after_threshold.png>
 Package pdftex.def Info: ../Bilder/hysteresis_after_threshold.png  used on inpu
-t line 591.
+t line 602.
 (pdftex.def)             Requested size: 126.0pt x 130.98772pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 599--600
+Underfull \hbox (badness 10000) in paragraph at lines 610--611
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 601--602
+Underfull \hbox (badness 10000) in paragraph at lines 612--613
 
  []
 
-[8 <../Bilder/nms_after_sobel.png> <../Bilder/double_threshold_after_nms.png> <
-../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.png> <
-../Bilder/hysteresis_after_threshold.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 603--604
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--615
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-Underfull \hbox (badness 2334) in paragraph at lines 766--769
+ [9 <../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.p
+ng> <../Bilder/hysteresis_after_threshold.png>]
+Underfull \hbox (badness 2334) in paragraph at lines 777--780
 \T1/ptm/m/n/10 die einzel-nen Stati wie neuer Grauw-ert, Rich-tung und
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 766--769
+Underfull \hbox (badness 1960) in paragraph at lines 777--780
 \T1/ptm/m/n/10 und verän-dert wieder ab-spe-ich-ern. Ger-ade bei gröÿeren
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 766--769
+Underfull \hbox (badness 10000) in paragraph at lines 777--780
 \T1/ptm/m/n/10 Ebenso ist mit dem beschriebe-nen Vorge-hen nicht
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 766--769
+Underfull \hbox (badness 3849) in paragraph at lines 777--780
 \T1/ptm/m/n/10 sichergestellt, dass man alle Kan-ten findet. Um auch
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 766--769
+Underfull \hbox (badness 2142) in paragraph at lines 777--780
 \T1/ptm/m/n/10 Trotz an-fänglicher, guter Fortschritte hatte der ge-plante
  []
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 766--769
+Underfull \hbox (badness 5036) in paragraph at lines 777--780
 \T1/ptm/m/n/10 eine Ef-fizien-zsteigerung des Canny Al-go-rith-mus durch
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 777--778
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 788--789
 []\T1/ptm/m/it/10 https://www.kuppelwieser.net/index.php/technik/15-
  []
 
 
-Overfull \hbox (17.0549pt too wide) in paragraph at lines 779--780
+Overfull \hbox (17.0549pt too wide) in paragraph at lines 790--791
 []\T1/ptm/m/it/10 https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/ 
 
  []
@@ -797,36 +867,38 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[10] (./Documentation.aux) ) 
+[11
+
+] (./Documentation.aux) ) 
 Here is how much of TeX's memory you used:
  7126 strings out of 480880
  101310 string characters out of 5907705
- 1011388 words of memory out of 5000000
+ 1314270 words of memory out of 5000000
  22646 multiletter control sequences out of 15000+600000
  641697 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,50p,863b,1779s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips
-/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
-.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fon
-ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on Documentation.pdf (10 pages, 340678 bytes).
+ 36i,10n,50p,864b,1777s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/ba
+se/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/
+texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texmf-d
+ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on Documentation.pdf (11 pages, 342293 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+ 128 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

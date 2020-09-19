@@ -78,14 +78,25 @@
 			
 			Wir benutzen im weiteren Verlauf stets die Achter-Nachbarschaft, da wir auch die diagonalen Nachbarn eines Pixels in die Kantenberechnung mit einbeziehen.
 		
-		\subsection{Rauschen}
-			Bei Rauschen handelt es sich oftmals um Störungen, welche die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, verändern. Je mehr Pixel dadurch in ihren Werten verändert werden, desto höher ist das Rauschen im Bild.\nl 
+		\subsection{Bildrauschen}
+			Unter Rauschen versteht man in der Technik eine zufällige Schwankung, mit welcher eine stabile Größe überlagert wird. Bei Bildrauschen handelt es sich um Störungen, welche die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, verändern. Je mehr Pixel dadurch in ihren Werten verändert werden, desto höher ist das Rauschen im Bild.\nl 
 			
 			\nlsubsubsection{Wie entsteht Rauschen in digitalen Bildern}
 				Bei Digitalkameras kann es aufgrund unterschiedlicher Ursachen zu Rauschen kommen.\nl
 				
 				\nlparagraph{Quantenrauschen}					
-					Die riesige Lichtmenge, welche auf einen elektronischen Sensor fällt besteht aus vielen Elemtarteilchen, den sogenannten Photonen. Obwohl ein Lichtstrom für das menschliche Auge gleichmäßig aussieht, treffen die Photonen zufällig auf die einzelnen Pixel des Sensors. Wenn man eine große Sensorfläche über eine lange Zeit hinweg observiert wird man eine gleichmäßige Verteilung der Photonen feststellen. Observiert man hingegen einen kleinen Sensor für nur einen kurzen Zeitabschnitt wird man feststellen, dass die einzelnen Pixel des Sensors unterschiedlich viele Photonen empfangen haben. Nimmt man ein stark belichtetes, helles Bild auf, so treffen - da es viel Licht gibt - viele Photonen auf den Sensor. Dies fürht dazu, dass man die zufällige Verteilung, das Rauschen im fertigen Bild weniger stark wahrnimmt.\nl
+					Die riesige Lichtmenge, welche auf einen elektronischen Sensor fällt besteht aus vielen Elemtarteilchen, den sogenannten Photonen. Obwohl ein Lichtstrom für das menschliche Auge gleichmäßig aussieht, treffen die Photonen zufällig auf die einzelnen Pixel des Sensors. Wenn man eine große Sensorfläche über eine lange Zeit hinweg observiert wird man eine gleichmäßige Verteilung der Photonen feststellen. Observiert man hingegen einen kleinen Sensor für nur einen kurzen Zeitabschnitt wird man feststellen, dass die einzelnen Pixel des Sensors unterschiedlich viele Photonen empfangen haben. Nimmt man ein stark belichtetes, helles Bild auf, so treffen - da es viel Licht gibt - viele Photonen auf den Sensor. Dies führt dazu, dass man die zufällige Verteilung, das Rauschen, im fertigen Bild weniger stark wahrnimmt.\nl
+					Bei dunklen Bildern hingegen treffen weniger Photonen auf den Sensor wodurch die zufällige Verteilung auf die Pixel extreme Abweichungen ergeben kann. Das Quantenrauschen ist bei dunkleren Bildern also stärker als bei hellen.\nl
+					
+				\nlparagraph{Beuteileigenschaften}
+					Die auf dem Sensor angekommenen Photonen werden von einem Verstärker in Elektronen umgewandelt. Mit kleinen Kondensatoren wird die Ladung auf dem Chip gesammelt und in eine Spannung umgesetzt. Vor jeder neuen Bilderfassung müssen die Kondensatoren also "entleert" werden wobei es zur sogenannten \textit{Reset-Noise} kommt. Das entleeren geschieht mitnichten ideal oder gleichmäßig, wodurch es zu Restspannungen und damit einer zufälligen Schwankung um Ergebnis kommt. Diese Schwankung macht sich im Bild als Rauschen bemerkbar.\nl
+					Weiterhin muss in vielen Schaltungen ein Ruhestrom fließen, welche zusätzlich für ein Rauschen im Bild sorgt.\nl
+					
+				\nlparagraph{Thermisches Rauschen}
+					Eletrkonen bewegen sich bei erhöhter Temperatur mehr. So kann es bereits bei Raumtemperaturen zu Elektronenbewegungen und damit thermischem Rauschen kommen.\nl
+					
+				\nlparagraph{Quantisierungsrauschen}
+					Um die analogen Spannungswerte in digitale Daten umzuwandeln wird ein Analog-Digital-Wandler angewendet. Die von einem AD-Wandler erzeugten Signalfehler sind allerdings nicht zufällig. Da bei unserem Fall bereits das Eingssignal zufälligkeiten Aufweist, sind auch diese Signalfehler nichtmehr zuverlässig vorhersagbar. Diese resultierende Schwankung in den Spannungswerten wird \textit{Quantisierungsrauschen} genannt. Die heutige Technik ist so weit entwickelt, dass Quantisierungsrauschen keinen Nennenswerten Beitrag zum Bildrauschen mehr leistet.\nl
 				
 			
 			\nlsubsubsection{Auswirkungen von Rauschen}
