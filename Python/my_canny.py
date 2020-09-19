@@ -7,13 +7,13 @@ from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import *
 import matplotlib.pyplot as plt
 
-def gaussian_kernel(size, sigma=1.8):
-    size = int(size) // 2   # c1 * 1
-    x, y = np.mgrid[-size:size + 1, -size:size + 1]     # c2 * 1
-    normal = 1 / (2.0 * np.pi * sigma ** 2)     # c3 * 1
-    g = np.exp(-((x ** 2 + y ** 2) / (2.0 * sigma ** 2))) * normal      # c4 * 1
+def g_kern(mask, sigm=1.8):
+    mask = int(mask) // 2   # c1 * 1
+    x, y = np.mgrid[-mask:mask + 1, -mask:mask + 1]     # c2 * 1
+    norm = 1 / (2 * np.pi * sigm ** 2)     # c3 * 1
+    kern = np.exp(-((x ** 2 + y ** 2) / (2 * sigm ** 2))) * norm      # c4 * 1
 
-    return g
+    return kern
 
 def gaussian_blur(img):
     blur = cv2.GaussianBlur(img, (5, 5), 1.4)

@@ -79,7 +79,7 @@
 			Wir benutzen im weiteren Verlauf stets die Achter-Nachbarschaft, da wir auch die diagonalen Nachbarn eines Pixels in die Kantenberechnung mit einbeziehen.
 		
 		\subsection{Bildrauschen}
-			Unter Rauschen versteht man in der Technik eine zufällige Schwankung, mit welcher eine stabile Größe überlagert wird. Bei Bildrauschen handelt es sich um Störungen, welche die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, verändern. Je mehr Pixel dadurch in ihren Werten verändert werden, desto höher ist das Rauschen im Bild.\nl 
+			Bei Bildrauschen handelt es sich um zufällige Schwankungen, mit welchen die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, überlagert werden. Je mehr Pixel advon betroffen sind, desto höher ist das Rauschen im Bild.\nl 
 			
 			\nlsubsubsection{Wie entsteht Rauschen in digitalen Bildern}
 				Bei Digitalkameras kann es aufgrund unterschiedlicher Ursachen zu Rauschen kommen.\nl
@@ -97,34 +97,30 @@
 					
 				\nlparagraph{Quantisierungsrauschen}
 					Um die analogen Spannungswerte in digitale Daten umzuwandeln wird ein Analog-Digital-Wandler angewendet. Die von einem AD-Wandler erzeugten Signalfehler sind allerdings nicht zufällig. Da bei unserem Fall bereits das Eingssignal zufälligkeiten Aufweist, sind auch diese Signalfehler nichtmehr zuverlässig vorhersagbar. Diese resultierende Schwankung in den Spannungswerten wird \textit{Quantisierungsrauschen} genannt. Die heutige Technik ist so weit entwickelt, dass Quantisierungsrauschen keinen Nennenswerten Beitrag zum Bildrauschen mehr leistet.\nl
-				
-			
-			\nlsubsubsection{Auswirkungen von Rauschen}
 			
 			\nlsubsubsection{Methoden zur Rauschunterdrückung}
+				Es gibt eine Vielzahl von Methoden um das Bildrauschen sowohl bereits vor der Entstehung des Bildes zu mindern als auch im Nachgang durch Bearbeitung des Bildes zu entfernen. In dieser Arbeit beschränken wir uns auf die Methode der örtlichen Faltung mit einer 3 x 3 Filtermaske, genauer noch auf einen Gauß-Filter mti einer 3 x 3 Kern.\nl
 		
 			\nlsubsubsection{Gauß Filter}
-	
-		Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
-		Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
-		\medbreak
-		\formelbox{H\tief{ij} = $\frac{1}{2\pi\sigma\hoch{2}}$ * $\mathrm{e}$\hoch{-$\frac{(i - (k + 1))\hoch{2} + (j - (k + 1))\hoch{2}}{2\sigma\hoch{2}}$}}
-		\medbreak
-		berechnet werden. \nl
-		In Python wird der Gauß Kern folgendermaßen realisiert:
+				Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet wird. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
+				Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
+				\medbreak
+				\formelbox{H\tief{ij} = $\frac{1}{2\pi\sigma\hoch{2}}$ * $\mathrm{e}$\hoch{-$\frac{(i - (k + 1))\hoch{2} + (j - (k + 1))\hoch{2}}{2\sigma\hoch{2}}$}}
+				\medbreak
+				berechnet werden. \nl
+				In Python wird der Gauß Kern folgendermaßen berechnet:
 		
-		\begin{python}
-			def gaussian_kernel(size, sigma=1):
-				size = int(size) // 2   # c1 * 1
-				x, y = np.mgrid[-size:size + 1,
-				-size:size + 1]     # c2 * 1
-				normal = 1 / 
-				(2.0 * np.pi * sigma ** 2)     # c3 * 1
-				g = np.exp(-((x ** 2 + y ** 2) / 
-				(2.0 * sigma ** 2))) * normal      # c4 * 1
-				
-				return g
-		\end{python}		
+				\begin{python}
+					def g_kern(mask, sigm=1.8):
+						mask = int(mask) // 2
+						x, y = np.mgrid[-mask:mask + 1,
+						-mask:mask + 1]
+						norm = 1 / (2 * np.pi * sigm ** 2)
+						kern = np.exp(-((x ** 2 + y ** 2) / 
+						(2 * sigm ** 2))) * norm
+					
+						return kern
+				\end{python}		
 	
 		\subsection{Sobel Operator}
 	

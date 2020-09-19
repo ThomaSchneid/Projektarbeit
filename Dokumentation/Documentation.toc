@@ -8,9 +8,8 @@
 \contentsline {paragraph}{\numberline {\mbox {II-C}1b}Beuteileigenschaften}{3}%
 \contentsline {paragraph}{\numberline {\mbox {II-C}1c}Thermisches Rauschen}{3}%
 \contentsline {paragraph}{\numberline {\mbox {II-C}1d}Quantisierungsrauschen}{3}%
-\contentsline {subsubsection}{\numberline {\mbox {II-C}2}Auswirkungen von Rauschen}{3}%
-\contentsline {subsubsection}{\numberline {\mbox {II-C}3}Methoden zur Rauschunterdrückung}{3}%
-\contentsline {subsubsection}{\numberline {\mbox {II-C}4}Gauß Filter}{3}%
+\contentsline {subsubsection}{\numberline {\mbox {II-C}2}Methoden zur Rauschunterdrückung}{3}%
+\contentsline {subsubsection}{\numberline {\mbox {II-C}3}Gauß Filter}{3}%
 \contentsline {subsection}{\numberline {\mbox {II-D}}Sobel Operator}{3}%
 \contentsline {subsection}{\numberline {\mbox {II-E}}Non Maximum Suppression}{4}%
 \contentsline {subsection}{\numberline {\mbox {II-F}}Double threshold}{5}%
