@@ -99,7 +99,7 @@
 					Um die analogen Spannungswerte in digitale Daten umzuwandeln wird ein Analog-Digital-Wandler angewendet. Die von einem AD-Wandler erzeugten Signalfehler sind allerdings nicht zufällig. Da bei unserem Fall bereits das Eingssignal zufälligkeiten Aufweist, sind auch diese Signalfehler nichtmehr zuverlässig vorhersagbar. Diese resultierende Schwankung in den Spannungswerten wird \textit{Quantisierungsrauschen} genannt. Die heutige Technik ist so weit entwickelt, dass Quantisierungsrauschen keinen Nennenswerten Beitrag zum Bildrauschen mehr leistet.\nl
 			
 			\nlsubsubsection{Methoden zur Rauschunterdrückung}
-				Es gibt eine Vielzahl von Methoden um das Bildrauschen sowohl bereits vor der Entstehung des Bildes zu mindern als auch im Nachgang durch Bearbeitung des Bildes zu entfernen. In dieser Arbeit beschränken wir uns auf die Methode der örtlichen Faltung mit einer 3 x 3 Filtermaske, genauer noch auf einen Gauß-Filter mti einer 3 x 3 Kern.\nl
+				Es gibt eine Vielzahl von Methoden um das Bildrauschen sowohl bereits vor der Entstehung des Bildes zu mindern als auch im Nachgang durch Bearbeitung des Bildes zu entfernen. In dieser Arbeit beschränken wir uns auf die Methode der örtlichen Faltung mit einer 3$\times$3 Filtermaske, genauer noch auf einen Gauß-Filter mit einer 3$\times$3 Kern.\nl
 		
 			\nlsubsubsection{Gauß Filter}
 				Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet wird. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
@@ -107,24 +107,28 @@
 				\medbreak
 				\formelbox{H\tief{ij} = $\frac{1}{2\pi\sigma\hoch{2}}$ * $\mathrm{e}$\hoch{-$\frac{(i - (k + 1))\hoch{2} + (j - (k + 1))\hoch{2}}{2\sigma\hoch{2}}$}}
 				\medbreak
-				berechnet werden. \nl
-				In Python wird der Gauß Kern folgendermaßen berechnet:
-		
-				\begin{python}
-					def g_kern(mask, sigm=1.8):
-						mask = int(mask) // 2
-						x, y = np.mgrid[-mask:mask + 1,
-						-mask:mask + 1]
-						norm = 1 / (2 * np.pi * sigm ** 2)
-						kern = np.exp(-((x ** 2 + y ** 2) / 
-						(2 * sigm ** 2))) * norm
-					
-						return kern
-				\end{python}		
+				berechnet werden. \nl		
 	
+	\section{Canny-Algorithmus}
+	
+		\subsection{Gauß Kern}
+			Für die Faltung benutzen wir einen oben bereits beschriebenen Gauß Kern. Als Programmiersprache benutzen wir Python und realisieren die Berechnung des Gauß Kerns folgendermaßen:
+			
+			\begin{python}
+				def g_kern(mask, sigm=1.8):
+				mask = int(mask) // 2
+				x, y = np.mgrid[-mask:mask + 1,
+				-mask:mask + 1]
+				norm = 1 / (2 * np.pi * sigm ** 2)
+				kern = np.exp(-((x ** 2 + y ** 2) / 
+				(2 * sigm ** 2))) * norm
+				
+				return kern
+			\end{python}
+			
 		\subsection{Sobel Operator}
 	
-		Der Sobel Operator besteht aus zwei 3$\times$3 Faltungskernen, wobei ein Kern dem jeweils anderen um 90$\circ$ gedreht.
+		Der Sobel Operator besteht aus zwei 3$\times$3 Faltungskernen, wobei ein Kern dem jeweils anderen um 90° gedreht entspricht.
 		
 		\begin{figure}[H]
 			\centering
@@ -137,22 +141,22 @@
 		In Python realisieren wir den Sobel Filter folgendermaßen:
 		
 		\begin{python}
-			def sobel_filter(img):
+			def sobel(img):
 				Gx = np.array([[-1, 0, 1], [-2, 0, 2],
-				[-1, 0, 1]], np.float32)     #c5 * 1
+				[-1, 0, 1]], np.float32)
 				Gy = np.array([[1, 2, 1], [0, 0, 0],
-				[-1, -2, -1]], np.float32)     #c5 * 1
-				
-				Ix = ndimage.filters.convolve(img, Gx).
-				astype(float)    # c6 * 1
-				Iy = ndimage.filters.convolve(img, Gy).
-				astype(float)    # c6 * 1
-				
-				G = np.hypot(Ix, Iy)    # c7 * 1
-				G = G / G.max() * 255   # c8 * 1
-				theta = np.arctan(Iy, Ix)   # c9 * 1
-		
-				return G, theta
+				[-1, -2, -1]], np.float32)
+			
+				ablx = ndimage.filters.convolve(img, Gx)
+				.astype(float)
+				ably = ndimage.filters.convolve(img, Gy)
+				.astype(float)
+			
+				res = np.hypot(ablx, ably)
+				res = res / res.max() * 255
+				gradient = np.arctan(ably, ablx)
+			
+				return res, gradient
 		\end{python}
 	
 		\subsection{Non Maximum Suppression}

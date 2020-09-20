@@ -20,18 +20,18 @@ def gaussian_blur(img):
 
     return blur
 
-def sobel_filter(img):
+def sobel(img):
     Gx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], np.float32)     #c5 * 1
     Gy = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)     #c5 * 1
 
-    Ix = ndimage.filters.convolve(img, Gx).astype(float)    # c6 * 1
-    Iy = ndimage.filters.convolve(img, Gy).astype(float)    # c6 * 1
+    ablx = ndimage.filters.convolve(img, Gx).astype(float)    # c6 * 1
+    ably = ndimage.filters.convolve(img, Gy).astype(float)    # c6 * 1
 
-    G = np.hypot(Ix, Iy)    # c7 * 1
-    G = G / G.max() * 255   # c8 * 1
-    theta = np.arctan(Iy, Ix)   # c9 * 1
+    res = np.hypot(ablx, ably)    # c7 * 1
+    res = res / res.max() * 255   # c8 * 1
+    gradient = np.arctan(ably, ablx)   # c9 * 1
 
-    return G, theta
+    return res, gradient
 
 def non_max_suppression(img, D):
     M, N = img.shape    # c10 * 1
