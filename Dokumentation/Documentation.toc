@@ -16,22 +16,13 @@
 \contentsline {subsection}{\numberline {\mbox {III-C}}Non Maximum Suppression}{4}%
 \contentsline {subsection}{\numberline {\mbox {III-D}}Double threshold}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-E}}Kantenvervollständigung durch Hysterese}{5}%
-\contentsline {section}{\numberline {IV}Laufzeiteffizienz eines Algorithmus}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-A}}Gauß Filter}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-B}}Sobel Filter}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Supression}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-E}}Hysterese}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-F}}Komplette Laufzeit}{7}%
-\contentsline {subsubsection}{\numberline {\mbox {IV-F}1}Laufzeit im besten Fall}{7}%
-\contentsline {subsubsection}{\numberline {\mbox {IV-F}2}Lauftzeit im schlimmsten Fall}{7}%
-\contentsline {section}{\numberline {V}Kantenerkennung mit dem Canny Algorithmus}{7}%
-\contentsline {subsection}{\numberline {\mbox {V-A}}Noise Reduction}{7}%
-\contentsline {subsection}{\numberline {\mbox {V-B}}Gradient Calculation}{8}%
-\contentsline {subsection}{\numberline {\mbox {V-C}}Non Maximum Suppression}{8}%
-\contentsline {subsection}{\numberline {\mbox {V-D}}Double threshold}{8}%
-\contentsline {subsection}{\numberline {\mbox {V-E}}Hysteresis}{8}%
-\contentsline {section}{\numberline {VI}Effizienzgewinn durch Kantenverfolgung}{9}%
-\contentsline {subsection}{\numberline {\mbox {VI-A}}Idee}{9}%
-\contentsline {section}{\numberline {VII}Laufzeitoptimierung des Canny Algorithmus}{11}%
-\contentsline {section}{\numberline {VIII}Literaturverzeichnis}{11}%
+\contentsline {section}{\numberline {IV}Kantenerkennung mit dem Canny Algorithmus}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{7}%
+\contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{7}%
+\contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{7}%
+\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{7}%
+\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{7}%
+\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny Algorithmus}{9}%
+\contentsline {section}{\numberline {VII}Literaturverzeichnis}{9}%

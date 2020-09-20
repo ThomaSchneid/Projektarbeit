@@ -330,199 +330,22 @@
 					
 					return img
 			\end{python}
-	
-	\section{Laufzeiteffizienz eines Algorithmus}
-	
-		Nun wollen wir die Laufzeit des genannten Algorithmus betrachten. Hierzu zählen wir für eine gegebene Eingabe alle Anweisungen x mit einer Zeit t\tief{x}, welche von der Art von x abhängig ist. Folgende Annahmen setzen wir voraus: \nl
-	
-		\begin{itemize}
-			\item Das Ausführen einer Zeile Code benötigt einen konstanten Zeitaufwand
-			\item Verschiedene Zeilen (verschiedene Operationen) benötigen einen unterschiedlichen Zeitaufwand
-		\end{itemize}
-	
-		Der benötigte, konstante Zeitaufwand, welchen eine Zeile z also benötigt, wird mit c\tief{x} bezeichnet.
-		Im vorherigen Abschnitt ist in den Kommentaren des Python Codes bereits der jeweilige Zeitaufwand jeder Zeile vermerkt.
-		Im Folgenden werden die Laufzeiten der einzelnen Funktionen sowie im Abschluss des gesamten Canny Algorithmus berechnet.\nl
-		Zusätzlich betrachten wir - sofern möglich - den jeweils schlechtesten und besten Fall.\nl
-	
-		\subsection{Gauß Filter}
-
-		Die Kosten für den Gauß Filter ergibt sich der Laufzeitaufwand hiermit zu: \nl
-	
-		\formelbox{ T(n)\tief{Gauß} = c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} }
 		
-		\nin Da wir hier jede Zeile einmal durchlaufen müssen ist der schlechteste Fall gleich dem besten Fall.
-
-		\subsection{Sobel Filter}
-
-		Der Sobel Filter hat ähnlich zum Gauß Filter einen geringen Laufzeitaufwand im Vergleich zum Gesamtaufwand:\nl
-	
-		\formelbox{ T(n)\tief{Sobel} = (c\tief{5} + c\tief{6}) * 2 + c\tief{7} + c\tief{8} + c\tief{9} }
-			
-		\nin Der Sobel Filter ist nur vom jeweiligen Eingangsbild abhängig, jede Zeile muss einmal durchlaufen werden. Je größer das Bild, desto größer auch der Rechenaufwand. Auch hier entspricht der schlechteste Fall gleich dem besten Fall.
-	
-		\subsection{Non Maximum Supression}
-	
-		Den größten Rechenaufwand beansprucht die Non Maximum Suppression. Hier ergibt sich der benötigte Laufzeitaufwand zu: \nl
-	
-		\formelbox{\parbox{0.4\textwidth}{
-			\begin{center}
-				T(n)\tief{nms} = c\tief{10} + c\tief{11} + c\tief{12} + c\tief{13} + c\tief{14} * (M - 2) + \\
-				(c\tief{15} + c\tief{16} + 2 * c\tief{17} + c\tief{18} + 3 * c\tief{20} + c\tief{21} + \\
-				c\tief{23}) * ((M - 2) * (N - 2)) + \\
-				(2 * c\tief{19} - 9 * c\tief{20}) * A0 + \\
-				(2 * c\tief{19} - 6 * c\tief{20}) * A45 + \\
-				(2 * c\tief{19} - 3 * c\tief{20}) * A90 + \\
-				c\tief{19} * 2 * A135 + \\ 
-				(c\tief{22} - c\tief{23}) * Y
-			\end{center}
-		}}
-		
-		\subsection{Double threshold}
-		
-		Die double Threshold Methode beansprucht folgenden Laufzeitaufwand: \nl
-	
-		\formelbox{\parbox{0.4\textwidth}{
-			\begin{center}
-				T(n)\tief{double threshold} = c\tief{10} + c\tief{11} + 3 * c\tief{17} + \\
-				c\tief{26} + c\tief{27} + 2 * c\tief{28} + c\tief{29} + 3 * c\tief{30}
-			\end{center}
-		}}
-		
-		\subsection{Hysterese}
-	
-		Letztendlich noch der Laufzeitaufwand der Hysterese mit: \nl
-	
-		\formelbox{\parbox{0.4\textwidth}{
-			\begin{center}
-				T(n)\tief{hysterese} = c\tief{10} + c\tief{14} * (M - 2) + \\
-				(c\tief{15} + c\tief{16} + c\tief{23} + c\tief{31} + c\tief{32} + c\tief{33}) * ((M - 2) * (N - 2)) - \\
-				Z * (c\tief{15} + c\tief{23} + c\tief{32} + c\tief{33}) - \\
-				S * c\tief{33} - T * c\tief{23} \\
-			\end{center}
-		}}
-
-		\pagebreak
-
-		\subsection{Komplette Laufzeit}
-		
-		Die komplette Laufzeit T(n)\tief{Canny} des Algorithmus ergibt sich somit zu:
-	
-		\formelbox{\parbox{0.4\textwidth}{
-			\begin{center}
-				T(n)\tief{Canny} = \\
-				c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
-				c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
-				c\tief{14} * 2 * (M - 2) + c\tief{15} * (2 * ((M - 2) * (N - 2)) - Z) + \\
-				c\tief{16} * 2 * ((M - 2) * (N - 2)) + c\tief{17} * 6 * ((M - 2) * (N - 2)) + \\
-				c\tief{18} * ((M - 2) * (N - 2)) + \\
-				c\tief{19} * 2 * (A0 + A45 + A90 + A135) + \\
-				c\tief{20} * (-9 * A0 -6 * A45 -3 * A90 + 3 * ((M - 2) * (N - 2))) + \\
-				c\tief{21} * ((M - 2) * (N - 2)) + c\tief{22} * Y + \\
-				c\tief{23} * (2 * ((M - 2) * (N - 2)) - T - Y - Z) + \\
-				c\tief{26} + c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + \\
-				c\tief{31} * ((M - 2) * (N - 2)) + c\tief{32} * (((M - 2) * (N - 2)) - Z) + \\
-				c\tief{33} * (((M - 2) * (N - 2)) - Z - S) \\
-			\end{center}
-		}}
-	
-		Mit\nl
-	 
-		\formelbox{\parbox{0.3\textwidth}{
-			\begin{center}
-				A0 + A45 + A90 + A135 = ((M - 2) * (N - 2)); \\
-				Z - T = S; \\
-				Z - S = T; \\
-				((M - 2) * (N - 2)) $\widehat{=}$ L; \\
-			\end{center}
-	
-		}}
-
-		kann man die Gleichung folgendermaßen vereinfachen:\nl
-
-		\formelbox{\parbox{0.4\textwidth}{
-			\begin{center}
-				T(n)\tief{Canny} = \\
-				c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
-				c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
-				c\tief{14} * 2 * (M - 2) + c\tief{15} * (2 * L - Z) + \\
-				c\tief{16} * 2 * L + c\tief{17} * 6 * L + c\tief{18} * L + \\
-				c\tief{19} * 2 * L + c\tief{20} * (-9 * A0 -6 * A45 -3 * A90 + 3 * L) + \\
-				c\tief{21} * L + c\tief{22} * Y + c\tief{23} * (2 * L - Y - S) + \\
-				c\tief{26} + c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + \\
-				c\tief{31} * L + c\tief{32} * L - Z) + c\tief{33} * (L - T) \\
-			\end{center}
-		}}
-	
-		L hängt hierbei von der Größe des Eingangsbildes ab. Je größer das Eingangsbild, desto größer auch L und desto mehr Laufzeitaufwand ist nötig.
-		
-			\nlsubsubsection{Laufzeit im besten Fall}
-			
-			Im besten Fall (in welchem es trotzdem noch eine Kante im Bild gibt) kann man folgende Annahmen treffen:\nl
-			
-			\formelbox{\parbox{0.4\textwidth}{
-					\begin{center}
-						A45 = A90 = A135 = S = 0; \\
-						A0 = Y = L; \\
-						Z + T = L; \\
-					\end{center}
-			}}
-		
-			\formelbox{\parbox{0.4\textwidth}{
-					\begin{center}
-						T(n)\tief{Canny} = \\
-						c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
-						c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
-						c\tief{14} * 2 * (M - 2) + c\tief{15} * (2 * L - Z) + \\
-						c\tief{16} * 2 * L + c\tief{17} * 6 * L + c\tief{18} * L + \\
-						c\tief{19} * 2 * L + \\
-						c\tief{21} * L + c\tief{22} * Y + \\
-						c\tief{26} + c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + \\
-						c\tief{31} * L + c\tief{32} * (L - Z) + c\tief{33} * Z \\
-					\end{center}
-			}}	
-		
-			\nlsubsubsection{Lauftzeit im schlimmsten Fall}
-			
-			Analog können für den schlimmsten Fall folgende Annahmen getroffen werden:\nl
-			
-			\formelbox{\parbox{0.4\textwidth}{
-				\begin{center}
-					A0 = A45 = A90 = Y = Z = T = 0; \\
-					S = L; \\
-				\end{center}
-			}}
-		
-			\formelbox{\parbox{0.4\textwidth}{
-				\begin{center}
-					T(n)\tief{Canny} = \\
-					c\tief{1} + c\tief{2} + c\tief{3} + c\tief{4} +	c\tief{5} * 2 + c\tief{6} * 2 + c\tief{7} + \\
-					c\tief{8} + c\tief{9} + c\tief{10} * 3 + c\tief{11} * 2 + c\tief{12} + c\tief{13} + \\
-					c\tief{14} * 2 * (M - 2) + c\tief{15} * 2 * L + c\tief{16} * 2 * L + \\
-					c\tief{17} * 6 * L + c\tief{18} * L + c\tief{19} * 2 * L + \\
-					c\tief{20} * 3 * L + c\tief{21} * L + c\tief{23} * L + c\tief{26} + \\
-					c\tief{27} + c\tief{28} * 2 + c\tief{29} + c\tief{30} * 3 + c\tief{31} * L + \\
-					c\tief{32} * L + c\tief{33} * L \\
-				\end{center}
-			}}
-	
 	\section{Kantenerkennung mit dem Canny Algorithmus}
-		
-		Im folgenden sind die oben genannten Schritte des Canny Algorithmus einzeln in Python realisiert und auf ein Bild angewendet.		
+		Im folgenden werden die oben genannten Schritte des Canny Algorithmus einzeln auf ein Bild angewendet und näher erläutert.		
 	
 		\subsection{Noise Reduction}
-	
-		Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebendsten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden.
-		Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5x5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
-		Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern,  desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.
+			Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebendsten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden.
+			Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5x5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
+			Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern,  desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.\nl
 		
-		Hier auf das Logo der Hochschule Karlsruhe angewendet erkennt man im rechten Bild eine Unschärfe gegenüber dem linken Bild.
+			Hier auf das Logo der Hochschule Karlsruhe angewendet erkennt man im rechten Bild eine Unschärfe gegenüber dem linken Bild.
 		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth] {../Bilder/hochschule_blur_5_5}
-			\caption{\textit{Links das original und rechts unter Anwendung des Gauß Filters.}}
-		\end{figure}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth] {../Bilder/hochschule_blur_5_5}
+				\caption{\textit{Links das original und rechts unter Anwendung des Gauß Filters.}}
+			\end{figure}
 		
 		\subsection{Gradient Calculation}
 		
@@ -530,7 +353,7 @@
 		
 		Nach Glättung des Bildes werden nun also die Ableitungen in x (horizontaler) und y (vertikaler) Richtung berechnet. Am effizientesten kann man dies durch eine Faltung des Bildes mit einem Sobel Kern berechnen.
 		
-		Die Intensität und Richtung berechnen sich also zu \\
+		Die Intensität und Richtung berechnen sich also zu\nl
 		
 		\formelbox{|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$}
 		\medbreak
