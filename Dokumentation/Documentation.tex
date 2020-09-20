@@ -289,61 +289,61 @@
 					return blackscreen
 			\end{python}
 
-		\subsection{Kantenverfolgung durch Hysterese}
+		\subsection{Kantenvervollständigung durch Hysterese}
+			\textbf{\textcolor{red}{TITEL ÄNDERN}}
+			Durch eine Hysterese wird festgelegt, ab welcher Kantenstärke ein Pixel zu einer Kante gehört. Gemäß unserem obigen Codebeispiel setzen wir die obere Schwelle T\tief{2} auf 255 und die untere Schwelle T\tief{1} auf 25.
+			 Anhand dieser zwei Schwellwerte (T\tief{1} < T\tief{2}) wird jedes Pixel des Bildes überprüft. Falls ein Pixel ein \textit{schwaches Pixel} ist, also einen Intensitätswert von 25 aufweist, werden all seine Nachbarn  geprüft. Sollte einer der Nachbarpixel ein starkes Pixel sein (oder, im allgemeinen, einen noch höheren Intensitätswert als T\tief{2} aufweisen), so wird auch das aktuell schwache Pixel als starkes Pixel markiert. Andernfalls wird der Intensitätswert des Pixels auf 0 gesetzt, da es nicht zur Kante gehört. Hierdurch werden alle kanten vervollständigt und alleinstehende, nur eventuell zu einer Kante gehörende, Pixel eliminiert. Die beschriebene Hysteresefunktion realisieren wir durch folgenden Python Code:
 		
-		Durch eine Hysterese wird festgelegt, ab welcher Kantenstärke ein Pixel zu einer Kante gehört. Mithilfe zweier Schwellwerte T\tief{1} < T\tief{2} wird jedes Pixel eines Bildes überprüft. Sobald ein Pixel einen Intensitätswert über T\tief{2} hat, wird diesem Pixel gefolgt und jedes Pixel entlang der so gefundenen Kante, dessen Intensitätswert größer T\tief{1} ist, als Element dieser Kante markiert.
-		
-		\pagebreak
-		
-		Wir realisieren unsere Hysterese Funktion in Python folgendermaßen:
-		
-		\begin{python}
-			def hysteresis(img, weak, strong=255):
- 				M, N = img.shape    # c10 * 1
-				for i in range(1, M - 1):   # c14 * (M - 2)
-					for j in range(1, N - 1):   
-					# c15 * ((M - 2) * (N - 2))
-						if img[i, j] == weak:   
-						# c31 * ((M - 2) * (N - 2))
-							try:    
-							# c16 * (((M - 2) * (N - 2)) - Z)
-								if ((img[i + 1, j - 1] == strong) or 
-								(img[i + 1, j] == strong) or 
-								(img[i + 1, j + 1] == strong) or 
-								(img[i, j - 1] == strong) or 
-								(img[i, j + 1] == strong) or 
-								(img[i - 1, j - 1] == strong) or 
-								(img[i - 1, j] == strong) or 
-								(img[i - 1, j + 1] == strong)):  
-								# c32 * (((M - 2) * (N - 2)) - Z)
-									img[i, j] = strong  
-									# c33 * (((M - 2) * 
-									# (N - 2)) - Z - S)
-								else:
-									img[i, j] = 0   
-									# c23 * (((M - 2) * 
-									# (N - 2)) - Z - T)
-							except IndexError as e:     
-							# c24 * 0
-								pass    # c25 * 0
-				return img
-		\end{python}
+			\begin{python}
+				def hysterese(img, schwaches_pixel,
+				starkes_pixel=255):
+					y, x = img.shape
+					for i in range(1, y - 1):
+						for j in range(1, x - 1):
+							if img[i, j] == schwaches_pixel:
+								try:
+									if (
+									(img[i + 1, j - 1] == 
+									starkes_pixel)
+									or 
+									(img[i + 1, j] == starkes_pixel)
+									or
+									(img[i + 1, j + 1] ==
+									starkes_pixel)
+									or
+									(img[i, j - 1] == starkes_pixel)
+									or
+									(img[i, j + 1] == starkes_pixel)
+									or
+									(img[i - 1, j - 1] ==
+									starkes_pixel)
+									or
+									(img[i - 1, j] == starkes_pixel)
+									or
+									(img[i - 1, j + 1] ==
+									starkes_pixel)):
+										img[i, j] = starkes_pixel
+									else:
+										img[i, j] = 0
+								except IndexError as e:
+									pass
+					
+					return img
+			\end{python}
 	
 	\section{Laufzeiteffizienz eines Algorithmus}
 	
-	Nun wollen wir die Laufzeit des genannten Algorithmus betrachten. Hierzu zählen wir für eine gegebene Eingabe alle Anweisungen x mit einer Zeit t\tief{x}, welche von der Art von x abhängig ist. Folgende Annahmen setzen wir voraus: \nl
+		Nun wollen wir die Laufzeit des genannten Algorithmus betrachten. Hierzu zählen wir für eine gegebene Eingabe alle Anweisungen x mit einer Zeit t\tief{x}, welche von der Art von x abhängig ist. Folgende Annahmen setzen wir voraus: \nl
 	
-	\begin{itemize}
-		\item Das Ausführen einer Zeile Code benötigt einen konstanten Zeitaufwand
-		\item Verschiedene Zeilen (verschiedene Operationen) benötigen einen unterschiedlichen Zeitaufwand
-	\end{itemize}
+		\begin{itemize}
+			\item Das Ausführen einer Zeile Code benötigt einen konstanten Zeitaufwand
+			\item Verschiedene Zeilen (verschiedene Operationen) benötigen einen unterschiedlichen Zeitaufwand
+		\end{itemize}
 	
-	Der benötigte, konstante Zeitaufwand, welchen eine Zeile z also benötigt, wird mit c\tief{x} bezeichnet.
-	Im vorherigen Abschnitt ist in den Kommentaren des Python Codes bereits der jeweilige Zeitaufwand jeder Zeile vermerkt.
-	Im Folgenden werden die Laufzeiten der einzelnen Funktionen sowie im Abschluss des gesamten Canny Algorithmus berechnet.\nl
-	Zusätzlich betrachten wir - sofern möglich - den jeweils schlechtesten und besten Fall.\nl
-	
-	\pagebreak
+		Der benötigte, konstante Zeitaufwand, welchen eine Zeile z also benötigt, wird mit c\tief{x} bezeichnet.
+		Im vorherigen Abschnitt ist in den Kommentaren des Python Codes bereits der jeweilige Zeitaufwand jeder Zeile vermerkt.
+		Im Folgenden werden die Laufzeiten der einzelnen Funktionen sowie im Abschluss des gesamten Canny Algorithmus berechnet.\nl
+		Zusätzlich betrachten wir - sofern möglich - den jeweils schlechtesten und besten Fall.\nl
 	
 		\subsection{Gauß Filter}
 

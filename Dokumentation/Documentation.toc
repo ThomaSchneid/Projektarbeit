@@ -15,7 +15,7 @@
 \contentsline {subsection}{\numberline {\mbox {III-B}}Sobel Operator}{3}%
 \contentsline {subsection}{\numberline {\mbox {III-C}}Non Maximum Suppression}{4}%
 \contentsline {subsection}{\numberline {\mbox {III-D}}Double threshold}{5}%
-\contentsline {subsection}{\numberline {\mbox {III-E}}Kantenverfolgung durch Hysterese}{5}%
+\contentsline {subsection}{\numberline {\mbox {III-E}}Kantenvervollständigung durch Hysterese}{5}%
 \contentsline {section}{\numberline {IV}Laufzeiteffizienz eines Algorithmus}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-A}}Gauß Filter}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-B}}Sobel Filter}{6}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  20 SEP 2020 13:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  20 SEP 2020 15:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -656,21 +656,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
-Underfull \hbox (badness 10000) in paragraph at lines 334--335
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--345
+Underfull \hbox (badness 10000) in paragraph at lines 343--347
 
  []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \hbox (badness 7273) in paragraph at lines 350--351
@@ -717,7 +711,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 394--395
 
  []
 
-[6]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
 Underfull \hbox (badness 10000) in paragraph at lines 429--430
 
  []
@@ -890,10 +887,10 @@ Before submitting the final camera ready copy, remember to:
 
 ] (./Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7127 strings out of 480880
- 101511 string characters out of 5907705
+ 7119 strings out of 480880
+ 101445 string characters out of 5907705
  1245747 words of memory out of 5000000
- 22647 multiletter control sequences out of 15000+600000
+ 22639 multiletter control sequences out of 15000+600000
  641697 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,50p,864b,1777s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -914,7 +911,7 @@ texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texmf-d
 ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on Documentation.pdf (11 pages, 340211 bytes).
+Output written on Documentation.pdf (11 pages, 339175 bytes).
 PDF statistics:
  128 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream

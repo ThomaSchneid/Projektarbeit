@@ -93,17 +93,17 @@ def double_threshold(img, unterer_faktor=0.05, oberer_faktor=0.09):
 
     return blackscreen
 
-def hysteresis(img, weak, strong=255):
-    M, N = img.shape    # c10 * 1
-    for i in range(1, M - 1):   # c14 * (M - 2)
-        for j in range(1, N - 1):   # c15 * ((M - 2) * (N - 2))
-            if img[i, j] == weak:   # c31 * ((M - 2) * (N - 2))
+def hysterese(img, schwaches_pixel, starkes_pixel=255):
+    y, x = img.shape    # c10 * 1
+    for i in range(1, y - 1):   # c14 * (M - 2)
+        for j in range(1, x - 1):   # c15 * ((M - 2) * (N - 2))
+            if img[i, j] == schwaches_pixel:   # c31 * ((M - 2) * (N - 2))
                 try:    # c16 * (((M - 2) * (N - 2)) - Z)
-                    if ((img[i + 1, j - 1] == strong) or (img[i + 1, j] == strong) or (img[i + 1, j + 1] == strong)
-                            or (img[i, j - 1] == strong) or (img[i, j + 1] == strong)
-                            or (img[i - 1, j - 1] == strong) or (img[i - 1, j] == strong) or (
-                                    img[i - 1, j + 1] == strong)):  # c32 * (((M - 2) * (N - 2)) - Z)
-                        img[i, j] = strong  # c33 * (((M - 2) * (N - 2)) - Z - S)
+                    if ((img[i + 1, j - 1] == starkes_pixel) or (img[i + 1, j] == starkes_pixel) or (img[i + 1, j + 1] == starkes_pixel)
+                            or (img[i, j - 1] == starkes_pixel) or (img[i, j + 1] == starkes_pixel)
+                            or (img[i - 1, j - 1] == starkes_pixel) or (img[i - 1, j] == starkes_pixel) or (
+                                    img[i - 1, j + 1] == starkes_pixel)):  # c32 * (((M - 2) * (N - 2)) - Z)
+                        img[i, j] = starkes_pixel  # c33 * (((M - 2) * (N - 2)) - Z - S)
                     else:
                         img[i, j] = 0   # c23 * (((M - 2) * (N - 2)) - Z - T)
                 except IndexError as e:     # c24 * 0
