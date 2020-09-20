@@ -33,14 +33,14 @@ def sobel(img):
 
     return res, gradient
 
-def non_max_suppression(img, D):
-    M, N = img.shape    # c10 * 1
-    Z = np.zeros((img.shape))    # c11 * 1
-    angle = D * 180. / np.pi    # c12 * 1
+def non_max_suppression(img, grad):
+    y, x = img.shape    # c10 * 1
+    blackscreen = np.zeros(img.shape)    # c11 * 1
+    angle = grad * 180. / np.pi    # c12 * 1
     angle[angle < 0] += 180     # c13 * 1
 
-    for i in range(1, M - 1):   # c14 * M - 2
-        for j in range(1, N - 1):   # c15 * ((M - 2) * (N - 2))
+    for i in range(1, y - 1):   # c14 * M - 2
+        for j in range(1, x - 1):   # c15 * ((M - 2) * (N - 2))
             if img[i, j] != 0:
                 try:    # c16 * ((M - 2) * (N - 2))
                     q = 255     # c17 * ((M - 2) * (N - 2))
@@ -64,35 +64,34 @@ def non_max_suppression(img, D):
                         r = img[i + 1, j + 1]   # c19 * A135
 
                     if (img[i, j] >= q) and (img[i, j] >= r):   # c21 * ((M - 2) * (N - 2))
-                        Z[i, j] = img[i, j]     # c22 * Y
+                        blackscreen[i, j] = img[i, j]     # c22 * Y
                     else:
-                        Z[i, j] = 0     # c23 * (((M - 2) * (N - 2)) - Y)
+                        blackscreen[i, j] = 0     # c23 * (((M - 2) * (N - 2)) - Y)
 
                 except IndexError as e:     # c24 * 0
                     pass    # c25 * 0
 
-    return Z
+    return blackscreen
 
-def double_threshold(img, lowRatio=0.05, highRatio=0.09):
-    highThreshold = img.max() * highRatio   # c26 * 1
-    lowThreshold = highThreshold * lowRatio     # c27 * 1
+def double_threshold(img, unterer_faktor=0.05, oberer_faktor=0.09):
+    obere_schwelle = img.max() * oberer_faktor   # c26 * 1
+    untere_schwelle = obere_schwelle * unterer_faktor     # c27 * 1
 
-    M, N = img.shape     # c10 * 1
-    res = np.zeros((M, N))  # c11 * 1
+    blackscreen = np.zeros(img.shape)  # c11 * 1
 
-    strong = 255  # c17 * 1
-    weak = 25     # c17 * 1
-    zero = 0      # c17 * 1
+    starkes_pixel = 255  # c17 * 1
+    schwaches_pixel = 25     # c17 * 1
+    keine_kante = 0      # c17 * 1
 
-    strong_i, strong_j = np.where(img >= highThreshold)     # c28 * 1
-    zeros_i, zeros_j = np.where(img < lowThreshold)     # c28 * 1
-    weak_i, weak_j = np.where((img <= highThreshold) & (img >= lowThreshold))   # c29 * 1
+    starkes_pixel_i, starkes_pixel_j = np.where(img >= obere_schwelle)     # c28 * 1
+    keine_kante_i, keine_kante_j = np.where(img <= untere_schwelle)     # c28 * 1
+    schwaches_pixel_i, schwaches_pixel_j = np.where((img < obere_schwelle) & (img > untere_schwelle))   # c29 * 1
 
-    res[strong_i, strong_j] = strong    # c30 * 1
-    res[weak_i, weak_j] = weak      # c30 * 1
-    res[zeros_i, zeros_j] = zero    # c30 * 1
+    blackscreen[starkes_pixel_i, starkes_pixel_j] = starkes_pixel    # c30 * 1
+    blackscreen[schwaches_pixel_i, schwaches_pixel_j] = schwaches_pixel      # c30 * 1
+    blackscreen[keine_kante_i, keine_kante_j] = keine_kante    # c30 * 1
 
-    return res, weak
+    return blackscreen
 
 def hysteresis(img, weak, strong=255):
     M, N = img.shape    # c10 * 1

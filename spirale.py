@@ -9,6 +9,7 @@ def spiral(img, diff):
     whitescreen = create_whitescreen(img)
     x_length = img.shape[1]
     y_length = img.shape[0]
+    # y_length, x_length = img.shape
     px = 0
     possible_dirs = [0, 1, 2, 3]
     check_diff = diff
