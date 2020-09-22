@@ -27,4 +27,5 @@
 \contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{8}%
 \contentsline {subsection}{\numberline {\mbox {V-B}}Das Bild durchlaufen}{9}%
 \contentsline {subsection}{\numberline {\mbox {V-C}}Algorithmus}{10}%
+\contentsline {subsection}{\numberline {\mbox {V-D}}Vergleich}{12}%
 \contentsline {section}{\numberline {VI}Literaturverzeichnis}{12}%

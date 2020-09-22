@@ -746,11 +746,17 @@
 			Anschließend überprüfen wir wie oben das nächste Pixel und speichern sowohl die Position als auch den Wert der Kantenrichtung in einem jeweils dafür erstellten Array. Sobald die While-Schleife verlassen wird, entweder weil \textit{dir} den Wert 255 angenommen hat oder weil wir uns zu nah an einem Rand des Bildes befinden, wird die Länge des Arrays der Positionen geprüft. Übersteigt sie den Wert 3, so werden an allen gespeicherten Positionen im Whitescreen die jeweilige Kantenrichtung gesetzt. So werden keine Kanten markiert, deren Länge kleiner 3 Pixel ist. Die Kantenpixel werden jedoch noch immer berechnet, hiermit steigern wir also nur die Qualität des Ergebnisbildes, nicht jedoch die Performance.\nl
 			Nachdem alle Suchlinien auf diese Weise durchlaufen wurden geben wir die Laufzeit des Algorithmus und das Kantenbild aus.\nl
 			
-		
-		
-		
-	
+		\subsection{Vergleich}
+			Auch hier ziehen wir den originalen Canny Algorithmus zum Vergleich.\nl
 			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\linewidth] {../Bilder/camera_obscura_vergleich}
+				\caption{\textit{Kantedektion mit unserem Algorithmus (links) und mit Canny (rechts)}}
+			\end{figure}
+	
+		Wir erkennen, dass unsere Kanten noch nicht so fein und granular wie die des Canny sind. Grund hierfür ist, dass wir die Kante in voller Breite finden und an keiner Stelle ausdünnen. Statt die Kante auszudünnen wäre der richtige Ansatz, bereits im Vorfeld zu prüfen, ob dieses Kantenpixel noch als Teil der Kante markiert werden soll oder nicht. Mit diesem Vorgehen kann man Rechenzeit einsparen und gleichzeitig die Kanten feiner halten. Trotz allem wurden mit unserem Algorithmus, alleine auf einem Grauwertvergleich basierend, alle Kanten gefunden und verfolgt. Auch die runden und kurvigen Objekte wurden richtig erkannt und markiert.\nl
+		Werfen wir nun einen Blick auf die Laufzeit. Während Canny das Bild in 0.002 Sekunden bearbeitet, benötigt unser Algorithmus 13.36 Sekunden. Hier muss, wie oben beschrieben, die performance noch stark erhöht werden.\nl
 	
 	\section{Literaturverzeichnis}
 		\begin{itemize}

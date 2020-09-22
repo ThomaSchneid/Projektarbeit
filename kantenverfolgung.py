@@ -1,6 +1,7 @@
 from imports import *
 
-def edge_tracker(img, diff):
+def edge_tracker(diff):
+    img = load_image()
     start = time.time()
     whitescreen = create_whitescreen(img)
     x_length = img.shape[1]

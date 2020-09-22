@@ -1,7 +1,7 @@
 from imports import *
 
 def load_image():
-    image = cv2.imread("Bilder/", 0)
+    image = cv2.imread("Bilder/camera_obscura.jpg", 0)
     return image
 
 def create_whitescreen(image):
