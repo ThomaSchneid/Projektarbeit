@@ -475,14 +475,31 @@
 			\end{figure}
 		
 			Wir durchlaufen das Bild von Links nach Rechts und untersuchen es dabei in horizontalen Linien, welche untereinander sowie vom oberen und den seitlichen Rändern einen Abstand von 3 Pixeln und vom unteren Rand einen Abstand von mindestens 3 Pixeln, maximal jedoch 5 Pixeln, haben.\nl
-			Grund für diesen Abstand ist unsere Suchmaske. Wir untersuchen immer ein 3$\times$3 Quadrat der jeweils gegenüberliegenden Nachbarn. Für jedes so untersuchte Pixel berechnen wir also für 4 Richtungen, ob es sich um eine Kante handelt. hier unsere 4 Suchmasken:\nl
+			Grund für diesen Abstand sind unsere Suchmasken. Wir untersuchen immer ein 3$\times$3 Quadrat der jeweils gegenüberliegenden Nachbarn. Für jedes so untersuchte Pixel berechnen wir also für 4 Richtungen, ob es sich um eine Kante handelt. Hier unsere 4 Suchmasken, der blaue Pfeil gibt jeweils die Kantenrichtung an:\nl
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.5\linewidth] {../Bilder/mask_falling_diagonal}
+				\includegraphics[width=0.7\linewidth] {../Bilder/mask_2_mediane}
+				\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 1. Mediane}}
+			\end{figure}
+	
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.7\linewidth] {../Bilder/mask_1_mediane}
 				\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 2. Mediane}}
 			\end{figure}
 		
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.6\linewidth] {../Bilder/mask_horizontal}
+				\caption{\textit{Maske zur Untersuchung auf eine Kante in horizontaler Richtung}}
+			\end{figure}
+	
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.7\linewidth] {../Bilder/mask_vertical}
+				\caption{\textit{Maske zur Untersuchung auf eine Kante in vertikaler Richtung}}
+			\end{figure}	
 
 			Dadurch, dass ein Bild im Schnitt nur zwischen 5\% und 10\% aus Kanten beseht, müssen diese zur Realisierung der Idee erst einmal detektiert werden.
 			Hierzu gab es folgende Ansätze:\nl
