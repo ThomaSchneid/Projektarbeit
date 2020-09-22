@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  22 SEP 2020 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  22 SEP 2020 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1005,47 +1005,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 512--513
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 514--515
+Underfull \hbox (badness 2828) in paragraph at lines 514--516
+\T1/ptm/m/n/10 Mit der Kan-ten-ver-fol-gung ist keine genaue Vorher-sage
+ []
+
+
+Underfull \hbox (badness 4279) in paragraph at lines 514--516
+\T1/ptm/m/n/10 möglich, da wir nicht im Vor-feld wis-sen, wie viele
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--516
 
  []
 
 
-Underfull \hbox (badness 2334) in paragraph at lines 532--535
+Underfull \hbox (badness 3919) in paragraph at lines 518--519
+[]\T1/ptm/m/n/10 Wir re-al-isieren auch diesen Al-go-rith-mus in Python.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
+
+ []
+
+
+Underfull \hbox (badness 2334) in paragraph at lines 584--587
 \T1/ptm/m/n/10 die einzel-nen Stati wie neuer Grauw-ert, Rich-tung und
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 532--535
+Underfull \hbox (badness 1960) in paragraph at lines 584--587
 \T1/ptm/m/n/10 und verän-dert wieder ab-spe-ich-ern. Ger-ade bei gröÿeren
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 532--535
+Underfull \hbox (badness 10000) in paragraph at lines 584--587
 \T1/ptm/m/n/10 Ebenso ist mit dem beschriebe-nen Vorge-hen nicht
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 532--535
+Underfull \hbox (badness 3849) in paragraph at lines 584--587
 \T1/ptm/m/n/10 sichergestellt, dass man alle Kan-ten findet. Um auch
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 532--535
+Underfull \hbox (badness 2142) in paragraph at lines 584--587
 \T1/ptm/m/n/10 Trotz an-fänglicher, guter Fortschritte hatte der ge-plante
  []
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 532--535
+Underfull \hbox (badness 5036) in paragraph at lines 584--587
 \T1/ptm/m/n/10 eine Ef-fizien-zsteigerung des Canny Al-go-rith-mus durch
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 539--540
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 591--592
 []\T1/ptm/m/it/10 https://www.kuppelwieser.net/index.php/technik/15-
  []
 
 
-Overfull \hbox (17.0549pt too wide) in paragraph at lines 541--542
+Overfull \hbox (17.0549pt too wide) in paragraph at lines 593--594
 []\T1/ptm/m/it/10 https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/ 
 
  []
@@ -1061,36 +1081,38 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[10] (./Documentation.aux) ) 
+[11
+
+] (./Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7119 strings out of 480880
- 102287 string characters out of 5907705
+ 7162 strings out of 480880
+ 102831 string characters out of 5907705
  930761 words of memory out of 5000000
- 22630 multiletter control sequences out of 15000+600000
+ 22673 multiletter control sequences out of 15000+600000
  641697 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,50p,1010b,1777s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips
-/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
-.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
-local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fon
-ts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/u
-rw/times/utmri8a.pfb>
-Output written on Documentation.pdf (10 pages, 1174155 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/ba
+se/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/
+texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texmf-d
+ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on Documentation.pdf (11 pages, 1178356 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+ 143 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

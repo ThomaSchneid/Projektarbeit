@@ -26,4 +26,5 @@
 \contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{8}%
 \contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{8}%
 \contentsline {subsection}{\numberline {\mbox {V-B}}Das Bild durchlaufen}{9}%
-\contentsline {section}{\numberline {VI}Literaturverzeichnis}{10}%
+\contentsline {subsection}{\numberline {\mbox {V-C}}Algorithmus}{10}%
+\contentsline {section}{\numberline {VI}Literaturverzeichnis}{11}%
