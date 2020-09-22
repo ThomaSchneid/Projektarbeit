@@ -22,7 +22,8 @@
 \contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{7}%
+\contentsline {subsection}{\numberline {\mbox {IV-F}}Vergeich}{8}%
 \contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{8}%
 \contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{8}%
-\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny Algorithmus}{10}%
-\contentsline {section}{\numberline {VII}Literaturverzeichnis}{10}%
+\contentsline {subsection}{\numberline {\mbox {V-B}}Das Bild durchlaufen}{9}%
+\contentsline {section}{\numberline {VI}Literaturverzeichnis}{9}%

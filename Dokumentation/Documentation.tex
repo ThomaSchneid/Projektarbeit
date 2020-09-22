@@ -389,219 +389,127 @@
 			Verglichen mit dem Bild aus dem vorherigen Schritt kann man erkennen, dass die Kanten deutlich dünner und detailierter wurden. Man kann das Logo nun bereits gut nur anhand der Kanten erkennen. Die Intensitätswerte der nun gefundenen Kanten variieren jedoch noch stark. Viele Bildverarbeitungsprogramme oder auch Algorithmen basieren darauf, dass die gefundenen Kanten einen einzige Intensitätswert aufweisen und verarbeiten das Bild dann anhand des angegebenen Intensitätswertes. Um auch unseren Kanten einen eingeutlichen Intensitätswert zu geben nutzen wir die folgenden zwei Schritte.\nl
 		
 		\subsection{Double threshold}
-			Durch die double threshold Funktion markieren wir nun jedes bis jetzt als Kante markiertes Pixel als starkes oder schwaches Pixel und erhalten ein Bild mit nurnoch 3 verschiedenen Intensitätswerten, 255 (starkes Pixel), 25 (schwaches Pixel) und 0 (kein Kantenpixel).
-	
+			Der Double Threshold Filter arbeitet mit 2 Schwellenwerten, einem oberen und einem unteren. Die Intensitätswerte eines jeden Pixels werden geprüft und mit den Schwellenwerten verglichen. Je nachdem wo sich der Intensitätswert eines Pixels bezüglich der Schwellenwerte einordnen lässt, wird das Pixel in eine der folgenden Kateforien eingestuft und sein Intensitätswert dahingehend angepasst:\nl
+			
+			\begin{enumerate}
+				\item starkes Pixel, Intensitätswert wird auf 255 gesetzt.
+				\item schwaches Pixel, Intensitätswert wird (meist)  auf den unteren Schwellenwert gesetzt.
+				\item nicht der Kante zugehörig, Intensitätswert wird auf 0 gesetzt.
+			\end{enumerate}
+			
+			Nach Anwendung des Double Threshold Filters sieht unser Hochschullogo fogendermaßen aus:\nl
+			
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.5\linewidth] {../Bilder/double_threshold_after_nms}
 				\caption{\textit{Bild mit starken (weiss) und schwachen (grau) Pixeln}}
 			\end{figure}
 	
+			Die starken Kanten sind heller und klarer erkennbar. Ebenso sind leichte, nach der Non Maximum Suppression noch vohandene unfeinheiten oder einzelne Kantenpixel beseitigt worden.\nl
+	
 		\subsection{Hysteresis}
+			Im letzten Schritt wenden wir noch eine Hysterese auf das gesamte Bild an, um die einzelnen Pixel noch einmal final zu überprüfen und eventuelle Lücken in Kanten zu schließen oder alleinstehende und damit fälschlicherweise erkannte Kantenpixel zu eliminieren.\nl 
+			Jedes Pixel wird auf seine 8 direkten Nachbarn geprüft.\nl
+			Befindet sich in der direkten Nachbarschaft eines Pixels kein starkes Pixel, so wird der Intensitätswert des Pixels auf 0 gesetzt und es ist damit kein Kantenpixel mehr.\nl
+	
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth] {../Bilder/no_strong_pixel_around}
+				\caption{\textit{Ein Pixel ohne starkes Pixel in der Nachbarschaft}}
+			\end{figure}
+	
+			Befindet sich unter den direkten Nachbarn des Pixels ein starkes Pixel, so wird der Intensitätswert des aktuellen Pixels auf 255 gesetzt, es wird ebenfalls zu einem starken Pixel.\nl
+	
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\linewidth] {../Bilder/one_strong_pixel_around}
+				\caption{\textit{Ein Pixel mit einem starken Pixel in der Nachbarschaft}}
+			\end{figure}
+	
+			Nach all diesen Schritten ist dies unser finales Kantenbild:\nl
 		
-		Zuletzt werden noch einmal alle Pixel geprüft und falls einer der direkten Nachbarn ein starkes Pixel ist, wird das aktuelle Pixel - falls es kein starkes Pixel ist - in ein starkes Pixel umgewandelt, indem der Intensitätswert auf 255 gesetzt wird.\nl
-		Wenn ein Pixel kein starkes Pixel in der Nachbarschaft hat, wird sein Intensitätswert zu  0 gesetzt.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/hysteresis_after_threshold}
+				\caption{\textit{Finales Bild}}
+			\end{figure}
 	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth] {../Bilder/no_strong_pixel_around}
-			\caption{\textit{Ein Pixel ohne starkes Pixel in der Nachbarschaft}}
-		\end{figure}
-	
-		Hat ein Pixel ein starkes Pixel in der Nachbarschaft, wird sein Intensitätswert auf 255 gesetzt, es selbst zu einem starken Pixel.
-	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\linewidth] {../Bilder/one_strong_pixel_around}
-			\caption{\textit{Ein Pixel mit einem starken Pixel in der Nachbarschaft}}
-		\end{figure}
-	
-		Das Finale Bild mit den detektierten Kanten sieht nun folgendermaßen aus:
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.5\linewidth] {../Bilder/hysteresis_after_threshold}
-			\caption{\textit{Finales Bild}}
-		\end{figure}
+			Es ist frei von alleinstehenden Kantenpixeln und die gefundenen Kanten sind fein und deutlich zu erkennen.\nl
+			
+		\subsection{Vergeich}
+			Nun wollen wir den eigens Entwickelten Canny Algorithmus mit dem wirklichen Canny Algorithmus vergleichen. Hier das Kantenbild des richtigen Canny Algorithmus und unseres als Vergleich:\nl
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\linewidth] {../Bilder/our_canny_vs_real_one}
+				\caption{\textit{Kantedektion mit unserem Algorithmus (links) und mit dem richtigen Canny (rechts)}}
+			\end{figure}
+			
+			Man erkennt den Unterschied sofort, der richtige Canny Algorithmus hat die Kanten noch mehr ausgedünnt und verfeinert. Im Vergleich dazu sind unsere Kanten noch immer sehr dick und unfein.\nl
+			Werfen wir nun einen Blick auf die Rechenzeit:\nl
+			Während unser Algorithmus mit 1.221 Sekunden für das Hochschullogo nicht langsam ist, setzt Canny mit 0.026 Sekunden, der knapp 48-fachen Geschwindigkeit, für die Kantenerkennung des Hochschullogos Maßstäbe in ganz anderen Dimensionen. Mit einer einfachen Nachbildung des Canny Algorithmus ist es also nicht getan.\nl
 	
 	\section{Effizienzgewinn durch Kantenverfolgung}
-	
 		\subsection{Idee}
+			Es ist nicht notwendig, das komplette Bild und damit jedes einzelne Pixel mehrmals zu überprüfen und berechnen.\nl
+			Sobald beim Durchlaufen des Bildes ein Kantenpixel gefunden und die Kantenrichtung bestimmt wurde, kann man mit einem Kantenverfolgungsalgorithmus dieser Kante bis zum Ende folgen und auf dem Weg jedes Pixel der Kante entsprechend berechnen und markieren.\nl
+			Beginnt man bei dieser Variante allerdings gleich wie beim Canny Algorithmus, das Bild Pixel für Pixel zu untersuchen, müsste man auch hier, sobald ein Kantenpixel gefunden und die Kante verfolgt wurde, das auf das Kantenpixel folgende Pixel prüfen, um sicherzustellen, dass man jede Kante im Bild gefunden hat.\nl
+			Um also dem Grundgedanken, weniger Pixel zu prüfen und dadurch Rechenzeit einzusparen, nachzukommen, bedarf es einer Methode das Bild abzulaufen, welche von vornherein nicht jedes Pixel untersuchen würde, mithilfe der Kantenverfolgung jedoch trotzdem jedes Kantenpixel findet.\nl
+			Als Referenzbild verwenden wir das folgende:\nl
+		
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/camera_obscura}
+				\caption{\textit{Testbild für unseren Kantenverfolgungsalgorithmus}}
+			\end{figure}
+		
+			Dieses Bild enthält Kanten welche nahe beieinander liegen, größere, Grauwertemäßig nicht merklich unterschiedliche,  Flächen, weiter auseinanderliegende Kanten und Kanten unterschiedlicher breite, bis hin zu Linien. Es enthält zudem sowohl runde, als auch eckige oder kurvige Objekte. In diesem Bild sind die meisten Kantenformen enthalten, was es zu einem hervorragenden Testbild für unseren Algorithmus macht.\nl
+			
+		\subsection{Das Bild durchlaufen}
+			Um sicherzustellen, dass von Beginn an nicht jedes Pixel des Bildes durchlaufen wird, wenden wir eine spezielle Suchmethode an.\nl
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/image_skeleton}
+				\caption{\textit{Pixelskelett eines Bildes mit untersuchten Pixeln}}
+			\end{figure}
+		
+			Wir durchlaufen das Bild von Links nach Rechts und untersuchen es dabei in horizontalen Linien, welche untereinander sowie vom oberen und den seitlichen Rändern einen Abstand von 3 Pixeln und vom unteren Rand einen Abstand von mindestens 3 Pixeln, maximal jedoch 5 Pixeln, haben.\nl
+			Grund für diesen Abstand ist unsere Suchmaske. Wir untersuchen immer ein 3$\times$3 Quadrat der jeweils gegenüberliegenden Nachbarn. Für jedes so untersuchte Pixel berechnen wir also für 4 Richtungen, ob es sich um eine Kante handelt. hier unsere 4 Suchmasken:\nl
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/mask_falling_diagonal}
+				\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 2. Mediane}}
+			\end{figure}
+		
+
+			Dadurch, dass ein Bild im Schnitt nur zwischen 5\% und 10\% aus Kanten beseht, müssen diese zur Realisierung der Idee erst einmal detektiert werden.
+			Hierzu gab es folgende Ansätze:\nl
+			Man durchläuft beide Diagonalen des Bildes und folgt allen Kanten, welche man dort gefunden hat.
+			Die Wahrscheinlichkeit, dass man durch diese Methode eine Kante findet, ist sehr hoch. Natürlich gibt es auch Bilder, welche keine Kanten auf den Diagonalen haben. Um hier nicht unnötige Laufzeit zu verschwenden, durchläuft man alle horizontalen, beginnend bei der ersten und dann immer im Abstand von 5 Pixeln. So durchläuft man nicht das komplette Bild und sollte definitiv eine Kante finden.
+		
+			Zur Berechnung der nächsten Richtung diente mir anfangs folgender Code:
+			
+			\begin{python}
+
+			\end{python}
+		
+			Die Richtung (der Gradient) wurde dabei nach folgendem Algorithmus berechnet:
+		
+			\begin{python}
+			
+			\end{python}
 	
-		Sobald eine Kante gefunden wurde ist es nicht mehr notwendig, jedes einzelne Pixel des kompletten Bildes zu überprüfen. Es soll der Kante gefolgt werden und auf dem Weg die entsprechenden Nachbarpixel der Kante zu 0 setzen und als "bearbeitet" markieren. So muss man nicht mehr jedes Pixel des Bildes untersuchen sondern erheblich weniger.\nl
-		
-		Sobald ein Kantenpixel gefunden wurde, werden - ähnlich zum Canny Algorithmus - die Nachbarn überprüft und der Gradient gebildet. So findet man das nächste Pixel der Kante. Das aktuelle Pixel erhält den Grauwert 255, den 7 übrigen Nachbarn wird der Intensitätswert 0 zugewiesen und der Algorithmus navigiert zum nächsten Pixel.\nl
-		
-		Dadurch, dass man - sobald eine Kante detektiert wurde - 7 Nachbarpixel auf 0 setzt und diese nicht erneut überprüfen muss ergibt sich ein nicht unerheblicher performance Gewinn mindestens des Faktors 7.\nl
-		
-		Dadurch, dass ein Bild im Schnitt nur zwischen 5\% und 10\% aus Kanten beseht, müssen diese zur Realisierung der Idee erst einmal detektiert werden.
-		Hierzu gab es folgende Ansätze:\nl
-		Man durchläuft beide Diagonalen des Bildes und folgt allen Kanten, welche man dort gefunden hat.
-		Die Wahrscheinlichkeit, dass man durch diese Methode eine Kante findet, ist sehr hoch. Natürlich gibt es auch Bilder, welche keine Kanten auf den Diagonalen haben. Um hier nicht unnötige Laufzeit zu verschwenden, durchläuft man alle horizontalen, beginnend bei der ersten und dann immer im Abstand von 5 Pixeln. So durchläuft man nicht das komplette Bild und sollte definitiv eine Kante finden.
-		
-		Zur Berechnung der nächsten Richtung diente mir anfangs folgender Code:
-		
-		\begin{python}
-			def direction(pos, img):
-				direction = np.zeros((3, 3))
-				direction[0][2] = abs(diagonal_top_right
-									(pos, img) - diagonal_bottom_left
-									(pos, img))
-				direction[0][1] = abs(top(pos, img) - 
-									bottom(pos, img))
-				direction[0][0] = abs(diagonal_top_left
-								(pos, img) - diagonal_bottom_right
-								(pos, img))
-				direction[1][0] = abs(left(pos, img) - 
-									right(pos, img))
-				direction[2][0] = value_raising_diagonal
-									(pos, img)
-				direction[2][1] = value_top_bottom
-									(pos, img)
-				direction[2][2] = value_falling_diagonal
-									(pos, img)
-				direction[1][2] = value_left_right
-									(pos, img)
-				
-				return direction
-		\end{python}
-		
-		\pagebreak
-		
-		Die Richtung (der Gradient) wurde dabei nach folgendem Algorithmus berechnet:
-		
-		\begin{python}
-			def next_direction_to_move(current_position, 
-										y, direct):
-				if (direct[0] == 0) and (not all
-				(k in forbidden_directions for k in 
-				(1, 2, 3))):  # check for move up
-					if (current_position[0] != 0) and 
-					(1 not in forbidden_directions):  
-					# check for top border
-						moving_direction = 1
-					elif (current_position[0] != 0) and 
-					(2 not in forbidden_directions):  
-					# check for top border
-						moving_direction = 2
-					elif (current_position[0] != 0) and 
-					(3 not in forbidden_directions):  
-					# check for top border
-						moving_direction = 3
-					elif (current_position[1] != 0) and 
-					(4 not in forbidden_directions):  
-					# move left cause we are at top border
-						forbidden_directions.extend((1, 2, 3))
-					moving_direction = 4
-						elif 7 not in forbidden_directions:  
-						# move down if left border
-					moving_direction = 7
-						forbidden_directions.
-						extend((1, 2, 3, 4))
-					else:
-						print("no case for moving_direction 
-						left")
-						moving_direction = 9
-				elif (direct[0] == 1) and (not all(k in 
-				forbidden_directions for k in (4, 5))):  
-				# check for left  or right
-					if (direct[1] == 0) and 
-					(current_position[1] != 0) and 
-					(4 not in forbidden_directions):  
-					# move right if left border
-						moving_direction = 4
-					elif 5 not in forbidden_directions:
-						moving_direction = 5
-						forbidden_directions.append(4)
-					else:
-						print("no case for moving_direction 
-						left")
-						moving_direction = 9
-				else:  # move down cause no 
-				case matches until now
-					if (current_position[0] < y) and 
-					(6 not in forbidden_directions):  
-					# check for bottom border
-						moving_direction = 6
-					elif (current_position[0] < y) and 
-					(7 not in forbidden_directions):  
-					# check for bottom border
-						moving_direction = 7
-					elif (current_position[0] < y) and 
-					(8 not in forbidden_directions):  
-					# check for bottom border
-						moving_direction = 8
-					elif (current_position[1] != 0) and 
-					(4 not in forbidden_directions):  
-					# move left if bottom border
-						moving_direction = 4
-						forbidden_directions.
-						extend((6, 7, 8))
-					elif 5 not in forbidden_directions:  
-					# move right when also at left border
-						moving_direction = 5
-						forbidden_directions.
-						extend((4, 6, 7, 8))
-					else:
-						print("no case for moving_direction 
-						left")
-						moving_direction = 9
-				
-				return moving_direction
-		\end{python}
+			Ebenso war der Code zur Bestimmung des nächsten Pixels auf eine sehr triviale Weise vorhanden:
 	
-		Ebenso war der Code zur Bestimmung des nächsten Pixels auf eine sehr triviale Weise vorhanden:
-	
-		\begin{python}
-			def position_of_next_pixel(moving_direction, 
-									current_position):
-				if moving_direction == 1:
-					next_pixel_position = 
-					(current_position[0] - 1,
-					 current_position[1] - 1)
-				elif moving_direction == 2:
-					next_pixel_position = 
-					(current_position[0] - 1, 
-					current_position[1])
-				elif moving_direction == 3:
-					next_pixel_position = 
-					(current_position[0] - 1, 
-					current_position[1] + 1)
-				elif moving_direction == 4:
-					next_pixel_position = 
-					(current_position[0], 
-					current_position[1] - 1)
-				elif moving_direction == 5:
-					next_pixel_position = 
-					(current_position[0], 
-					current_position[1] + 1)
-				elif moving_direction == 6:
-					next_pixel_position = 
-					(current_position[0] + 1, 
-					current_position[1] - 1)
-				elif moving_direction == 7:
-					next_pixel_position = 
-					(current_position[0] + 1, 
-					current_position[1])
-				elif moving_direction == 8:
-					next_pixel_position = 
-					(current_position[0] + 1, 
-					current_position[1] + 1)
-				elif moving_direction == 9:
-					print("no_next_pixel_position")
-					next_pixel_position = 
-					"moving in circles"
-				
-				return next_pixel_position
-		\end{python}
-	
-		Hierbei traf ich auf das Problem, dass die Einsparung der Laufzeit durch direktes bearbeiten der Kantennachbarn sehr schnell wieder verloren geht und zwar dadurch, dass man mehrere Matrizen der Größe des Bildes benötigt um die einzelnen Stati wie neuer Grauwert, Richtung und ein \textit{bereits bearbeitet} Flag zu speichern. Diese muss man immer wieder abrufen, also die Matrizen laden, bearbeiten und verändert wieder abspeichern. Gerade bei größeren Bildern oder wenn eine Kante nicht mit dem Durchlaufen der Diagonalen gefunden wird, übersteigt die Laufzeit des geplanten Algorithmus die des Canny Algorithmus schnell.\nl
-		Ebenso ist mit dem beschriebenen Vorgehen nicht sichergestellt, dass man alle Kanten findet. Um auch Objekte zum Beispiel am Rand zu finden müsste man das komplette Bild erneut mit einem Hysterese Algorithmus bearbeiten. \nl
-		Trotz anfänglicher, guter Fortschritte hatte der geplante Algorithmus deshalb leider keine Aussicht auf Erfolg und eine Effizienzsteigerung des Canny Algorithmus durch Kantenverfolgung ist mit dieser Methode nicht möglich.
+			\begin{python}
 		
-	\section{Laufzeitoptimierung des Canny Algorithmus}
+			\end{python}
 	
-	Ein schwarz-weiß Bild hat einige schwarze Pixel, also Pixel mit dem Intensitätswert 0. Der obige Canny prüft jedes Pixel viele Male. Einige dieser Cases kann man jedoch auslassen, da sie nicht geprüft werden müssen. So sind zum Beispiel Pixel mit einem Intensitätswert von 0 kein Teil einer Kante und man kann die Prüfung dieses Pixels überspringen.
+			Hierbei traf ich auf das Problem, dass die Einsparung der Laufzeit durch direktes bearbeiten der Kantennachbarn sehr schnell wieder verloren geht und zwar dadurch, dass man mehrere Matrizen der Größe des Bildes benötigt um die einzelnen Stati wie neuer Grauwert, Richtung und ein \textit{bereits bearbeitet} Flag zu speichern. Diese muss man immer wieder abrufen, also die Matrizen laden, bearbeiten und verändert wieder abspeichern. Gerade bei größeren Bildern oder wenn eine Kante nicht mit dem Durchlaufen der Diagonalen gefunden wird, übersteigt die Laufzeit des geplanten Algorithmus die des Canny Algorithmus schnell.\nl
+			Ebenso ist mit dem beschriebenen Vorgehen nicht sichergestellt, dass man alle Kanten findet. Um auch Objekte zum Beispiel am Rand zu finden müsste man das komplette Bild erneut mit einem Hysterese Algorithmus bearbeiten. \nl
+			Trotz anfänglicher, guter Fortschritte hatte der geplante Algorithmus deshalb leider keine Aussicht auf Erfolg und eine Effizienzsteigerung des Canny Algorithmus durch Kantenverfolgung ist mit dieser Methode nicht möglich.
 	
 	\section{Literaturverzeichnis}
 		\begin{itemize}

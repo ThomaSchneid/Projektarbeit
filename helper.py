@@ -1,7 +1,7 @@
 from imports import *
 
 def load_image():
-    image = cv2.imread("Bilder/stoerung.jpg", 0)
+    image = cv2.imread("Bilder/hochschullogo.png", 0)
     return image
 
 def create_whitescreen(image):

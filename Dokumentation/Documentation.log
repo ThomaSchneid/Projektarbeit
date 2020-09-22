@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  22 SEP 2020 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  22 SEP 2020 21:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -769,94 +769,241 @@ Underfull \hbox (badness 10000) in paragraph at lines 389--390
  []
 
 
-Underfull \hbox (badness 3209) in paragraph at lines 392--393
-\T1/ptm/m/n/10 jedes bis jetzt als Kante markiertes Pixel als starkes
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[]\T1/ptm/m/n/10 Der Dou-ble Thresh-old Fil-ter ar-beitet mit 2
+ []
+
+
+Underfull \hbox (badness 1383) in paragraph at lines 392--393
+\T1/ptm/m/n/10 Schwellen-werten, einem oberen und einem un-teren. Die
+ []
+
+
+Underfull \hbox (badness 2359) in paragraph at lines 392--393
+\T1/ptm/m/n/10 einord-nen lässt, wird das Pixel in eine der fol-gen-den
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--401
+
  []
 
 <../Bilder/double_threshold_after_nms.png, id=53, 280.79906pt x 293.59688pt>
 File: ../Bilder/double_threshold_after_nms.png Graphic file (type png)
 <use ../Bilder/double_threshold_after_nms.png>
 Package pdftex.def Info: ../Bilder/double_threshold_after_nms.png  used on inpu
-t line 396.
+t line 404.
 (pdftex.def)             Requested size: 126.0pt x 131.74104pt.
+
+Underfull \hbox (badness 1484) in paragraph at lines 408--409
+[]\T1/ptm/m/n/10 Die starken Kan-ten sind heller und klarer erkennbar.
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 408--409
+\T1/ptm/m/n/10 noch vo-han-dene un-fein-heiten oder einzelne Kan-ten-pixel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
+
+ []
+
+
+Underfull \hbox (badness 1354) in paragraph at lines 411--414
+\T1/ptm/m/n/10 oder alle-in-ste-hende und damit fälschlicher-weise erkan-nte
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 411--414
+
+ []
+
 <../Bilder/no_strong_pixel_around.png, id=54, 283.0575pt x 121.45375pt>
 File: ../Bilder/no_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/no_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/no_strong_pixel_around.png  used on input li
-ne 407.
+ne 417.
 (pdftex.def)             Requested size: 201.60077pt x 86.50517pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 421--422
+
+ []
+
 <../Bilder/one_strong_pixel_around.png, id=55, 282.05376pt x 121.45375pt>
 File: ../Bilder/one_strong_pixel_around.png Graphic file (type png)
 <use ../Bilder/one_strong_pixel_around.png>
 Package pdftex.def Info: ../Bilder/one_strong_pixel_around.png  used on input l
-ine 415.
+ine 425.
 (pdftex.def)             Requested size: 201.60077pt x 86.81096pt.
-<../Bilder/hysteresis_after_threshold.png, id=56, 285.31593pt x 296.60812pt>
+[7 <../Bilder/nms_after_sobel.png> <../Bilder/double_threshold_after_nms.png> <
+../Bilder/no_strong_pixel_around.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+
+ []
+
+<../Bilder/hysteresis_after_threshold.png, id=63, 285.31593pt x 296.60812pt>
 File: ../Bilder/hysteresis_after_threshold.png Graphic file (type png)
 <use ../Bilder/hysteresis_after_threshold.png>
 Package pdftex.def Info: ../Bilder/hysteresis_after_threshold.png  used on inpu
-t line 423.
+t line 433.
 (pdftex.def)             Requested size: 126.0pt x 130.98772pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 1552) in paragraph at lines 437--438
+[]\T1/ptm/m/n/10 Es ist frei von alle-in-ste-hen-den Kan-ten-pix-eln und die
+ []
 
- [7 <../Bilder/nms_after_sobel.png> <../Bilder/double_threshold_after_nms.png> 
-<../Bilder/no_strong_pixel_around.png> <../Bilder/one_strong_pixel_around.png>]
 
-Underfull \hbox (badness 10000) in paragraph at lines 431--432
+Underfull \hbox (badness 10000) in paragraph at lines 437--438
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
+[]\T1/ptm/m/n/10 Nun wollen wir den eigens En-twick-el-ten Canny
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
+\T1/ptm/m/n/10 Al-go-rith-mus mit dem wirk-lichen Canny Al-go-rith-mus
+ []
+
+
+Underfull \hbox (badness 4403) in paragraph at lines 440--441
+\T1/ptm/m/n/10 ver-gle-ichen. Hier das Kan-ten-bild des richti-gen Canny
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
+
+ []
+
+<../Bilder/our_canny_vs_real_one.png, id=64, 622.325pt x 360.34625pt>
+File: ../Bilder/our_canny_vs_real_one.png Graphic file (type png)
+<use ../Bilder/our_canny_vs_real_one.png>
+Package pdftex.def Info: ../Bilder/our_canny_vs_real_one.png  used on input lin
+e 444.
+(pdftex.def)             Requested size: 226.79846pt x 131.32458pt.
+
+Underfull \hbox (badness 1960) in paragraph at lines 448--451
+\T1/ptm/m/n/10 Kan-ten-erken-nung des Hochschul-l-o-gos Maÿstäbe in ganz
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--451
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--436
-
+Underfull \hbox (badness 5105) in paragraph at lines 454--459
+\T1/ptm/m/n/10 Sobald beim Durch-laufen des Bildes ein Kan-ten-pixel
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 454--459
+\T1/ptm/m/n/10 und dadurch Rechen-zeit einzus-paren, nachzukom-men,
+ []
 
- [8 <../Bilder/hysteresis_after_threshold.png>]
-Underfull \hbox (badness 2334) in paragraph at lines 598--601
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--459
+
+ []
+
+<../Bilder/camera_obscura.jpg, id=65, 87.4467pt x 139.722pt>
+File: ../Bilder/camera_obscura.jpg Graphic file (type jpg)
+<use ../Bilder/camera_obscura.jpg>
+Package pdftex.def Info: ../Bilder/camera_obscura.jpg  used on input line 462.
+(pdftex.def)             Requested size: 126.0pt x 201.32317pt.
+
+Underfull \hbox (badness 2221) in paragraph at lines 466--467
+\T1/ptm/m/n/10 Flächen, weiter au-seinan-der-liegende Kan-ten und Kan-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 466--467
+
+ []
+
+[8 <../Bilder/one_strong_pixel_around.png> <../Bilder/hysteresis_after_threshol
+d.png> <../Bilder/our_canny_vs_real_one.png> <../Bilder/camera_obscura.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 469--470
+
+ []
+
+<../Bilder/image_skeleton.png, id=72, 323.2075pt x 322.20375pt>
+File: ../Bilder/image_skeleton.png Graphic file (type png)
+<use ../Bilder/image_skeleton.png>
+Package pdftex.def Info: ../Bilder/image_skeleton.png  used on input line 473.
+(pdftex.def)             Requested size: 126.0pt x 125.60979pt.
+
+Underfull \hbox (badness 7504) in paragraph at lines 477--479
+\T1/ptm/m/n/10 un-ter-suchen es dabei in hor-i-zon-talen Lin-ien, welche
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 477--479
+\T1/ptm/m/n/10 Grund für diesen Ab-stand ist un-sere Such-maske.
+ []
+
+
+Underfull \hbox (badness 3657) in paragraph at lines 477--479
+\T1/ptm/m/n/10 Wir un-ter-suchen im-mer ein 3$\OMS/cmsy/m/n/10 ^^B$\T1/ptm/m/n/
+10 3 Quadrat der jew-eils
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 477--479
+
+ []
+
+<../Bilder/mask_falling_diagonal.png, id=73, 282.05376pt x 282.05376pt>
+File: ../Bilder/mask_falling_diagonal.png Graphic file (type png)
+<use ../Bilder/mask_falling_diagonal.png>
+Package pdftex.def Info: ../Bilder/mask_falling_diagonal.png  used on input lin
+e 482.
+(pdftex.def)             Requested size: 126.0pt x 126.002pt.
+
+Underfull \hbox (badness 2334) in paragraph at lines 510--513
 \T1/ptm/m/n/10 die einzel-nen Stati wie neuer Grauw-ert, Rich-tung und
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 598--601
+Underfull \hbox (badness 1960) in paragraph at lines 510--513
 \T1/ptm/m/n/10 und verän-dert wieder ab-spe-ich-ern. Ger-ade bei gröÿeren
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 598--601
+Underfull \hbox (badness 10000) in paragraph at lines 510--513
 \T1/ptm/m/n/10 Ebenso ist mit dem beschriebe-nen Vorge-hen nicht
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 598--601
+Underfull \hbox (badness 3849) in paragraph at lines 510--513
 \T1/ptm/m/n/10 sichergestellt, dass man alle Kan-ten findet. Um auch
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 598--601
+Underfull \hbox (badness 2142) in paragraph at lines 510--513
 \T1/ptm/m/n/10 Trotz an-fänglicher, guter Fortschritte hatte der ge-plante
  []
 
 
-Underfull \hbox (badness 5036) in paragraph at lines 598--601
+Underfull \hbox (badness 5036) in paragraph at lines 510--513
 \T1/ptm/m/n/10 eine Ef-fizien-zsteigerung des Canny Al-go-rith-mus durch
  []
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 609--610
+
+Underfull \hbox (badness 10000) in paragraph at lines 517--518
 []\T1/ptm/m/it/10 https://www.kuppelwieser.net/index.php/technik/15-
  []
 
 
-Overfull \hbox (17.0549pt too wide) in paragraph at lines 611--612
+Overfull \hbox (17.0549pt too wide) in paragraph at lines 519--520
 []\T1/ptm/m/it/10 https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/ 
 
  []
@@ -872,38 +1019,37 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[10
-
-] (./Documentation.aux) ) 
+[9 <../Bilder/image_skeleton.png> <../Bilder/mask_falling_diagonal.png>]
+(./Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7128 strings out of 480880
- 101613 string characters out of 5907705
- 1245761 words of memory out of 5000000
- 22647 multiletter control sequences out of 15000+600000
+ 7095 strings out of 480880
+ 101656 string characters out of 5907705
+ 930761 words of memory out of 5000000
+ 22609 multiletter control sequences out of 15000+600000
  641697 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,50p,1010b,1777s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/ba
-se/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
-b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
-r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on Documentation.pdf (10 pages, 882261 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base
+/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex
+10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pf
+b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local
+/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/te
+xmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2020/texmf-dis
+t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/ti
+mes/utmri8a.pfb>
+Output written on Documentation.pdf (9 pages, 1147928 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+ 131 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

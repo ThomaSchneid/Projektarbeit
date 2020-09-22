@@ -1,6 +1,4 @@
-import cv2
-import numpy as np
-import time
+from helper import *
 
 def japan():
     japan = cv2.imread("Bilder/japan.png", 0)
@@ -10,15 +8,12 @@ def rauschen():
     rauschen = cv2.imread("Bilder/rauschen.png", 0)
     return rauschen
 
-def test_canny(img):
+def test_canny():
+    image = load_image()
     start = time.time()
-
-    cv2.imshow("An example image", img)
-    cv2.imshow("Canny picture", cv2.Canny(img, 50, 200))
+    canny = cv2.Canny(image, 100, 200)
     end = time.time()
     print(end - start)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
 
 def schwelle(img):
     start = time.time()
