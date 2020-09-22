@@ -18,11 +18,11 @@
 \contentsline {subsection}{\numberline {\mbox {III-E}}Kantenvervollständigung durch Hysterese}{5}%
 \contentsline {section}{\numberline {IV}Kantenerkennung mit dem Canny Algorithmus}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-A}}Noise Reduction}{6}%
-\contentsline {subsection}{\numberline {\mbox {IV-B}}Gradient Calculation}{6}%
+\contentsline {subsection}{\numberline {\mbox {IV-B}}Edge and Gradient Calculation}{6}%
 \contentsline {subsection}{\numberline {\mbox {IV-C}}Non Maximum Suppression}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-D}}Double threshold}{7}%
 \contentsline {subsection}{\numberline {\mbox {IV-E}}Hysteresis}{7}%
-\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{7}%
-\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{7}%
-\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny Algorithmus}{9}%
-\contentsline {section}{\numberline {VII}Literaturverzeichnis}{9}%
+\contentsline {section}{\numberline {V}Effizienzgewinn durch Kantenverfolgung}{8}%
+\contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{8}%
+\contentsline {section}{\numberline {VI}Laufzeitoptimierung des Canny Algorithmus}{10}%
+\contentsline {section}{\numberline {VII}Literaturverzeichnis}{10}%

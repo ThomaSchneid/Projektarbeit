@@ -355,53 +355,47 @@
 				\caption{\textit{Schwarzweissbild des Hochschullogos.}}
 			\end{figure}
 			
-		\subsection{Gradient Calculation}
+		\subsection{Edge and Gradient Calculation}
+			Nun wird berechnet, ob ein Pixel zu einer Kante gehört und gegbenenfalls die Richtung der Kante. Ob ein Pixel einer Kante zugehörig ist wird anhand der Intensiätsänderung bezüglich der Umliegenden Pixel bestimmt. Hierfür werden die Intensitätsänderungen in horizontaler sowie vertikaler Richtungeines jeden Pixels bezüglich seiner Nachbarn berechnet.\nl	
+			Mathematisch realisiert wird dies durch eine Faltung des Bildes mit einem Sobel Kern. 
 		
-		Nun wird berechnet, ob ein Pixel zu einer Kante gehört und gegbenenfalls die Richtung der Kante. Ob ein Pixel einer Kante zugehörig ist wird anhand der Intensiätsänderung bezüglich der Umliegenden Pixel bestimmt. Hierfür werden die Intensitätsänderungen in horizontaler sowie vertikaler Richtungeines jeden Pixels bezüglich seiner Nachbarn berechnet.\nl	
-		Mathematisch realisiert wird dies durch eine Faltung des Bildes mit einem Sobel Kern. 
+			Für die Intensität ergibt sich folgende Formel:\nl
 		
-		Für die Intensität ergibt sich folgende Formel:\nl
+			\nlformelbox{|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$}
 		
-		\nlformelbox{|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$}
+			Während der Gradient sich wie folgt berechnen lässt:\nl
 		
-		Während der Gradient sich wie folgt berechnen lässt:\nl
+			\nlformelbox{$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$}
 		
-		\nlformelbox{$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$}
+			Nach diesem Schritt hat man bereits ein Ergebnis, anhand welchem man die Kanten eines Bildes erkennen kann. Die gefundenen Kanten sind jedoch noch sehr grob und undetailiert.\nl
 		
-		Nach diesem Schritt hat man bereits ein Ergebnis, anhand welchem man die Kanten eines Bildes erkennen kann. Die gefundenen Kanten sind jedoch noch sehr grob und undetailiert.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/sobel_after_blur}
+				\caption{\textit{Bild nach Anwendung des Sobel Filters}}
+			\end{figure}
 		
-		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist.\nl
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.5\linewidth] {../Bilder/sobel_after_blur}
-			\caption{\textit{Bild nach Anwendung des Sobel Filters}}
-		\end{figure}
-		
-		Man erkennt allerdings, dass die Kanten noch sehr unfein, grob und breit sind. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.\nl
-		
+			Das Ergebnis muss also noch weiter verarbetet werden um Kanten auszudünnen, fehlerhaft als Kante erkannte Pixel zu entfernen und die Darstellung zu verfeinern. Hier setzen wir mit der Non-Maximum-Suppression an.\nl
 		
 		\subsection{Non Maximum Suppression}
+			Die momentan noch mehr als 1 Pixel breiten Kanten werden nun mit dem Non-Maximum Suppression-Algorithmus ausgedünnt. Hierbei wird das gesamte Bild durchlaufen und jedes Pixel auf seinen Gradienten und Intensitätswert geprüft. Abhängig davon werden die Intensitätswerte der jeweiligen beiden Nchbarpixel mit dem Intensitätswert des aktuellen Pixels verglichen. Hat eines der beiden Nachbarpixel einen höheren Intensitätswert als das aktuelle Pixel, wird der Intensitätswert des aktuellen Pixels auf 0 gestezt. Sollte das aktuelle Pixel einen höheren Intensitätswert als die beiden Nachbarn aufweisen, so bleibt sein Intensitätswert unverändert. Nachdem der Algorithmus das Bild durchlaufen hat, ergibt sich ein neues Bild in welchem nur die Pixel entlang der gefundenen Kanten mit maximalen Intensitätswerten behalten wurden und alle anderen nun den Intensitätswert 0 aufweisen, also nichtmehr zur Kante gehören. Unser Hochschullogo sieht nun folgerndermaßen aus:
 		
-		Die momentan noch mehr als 1 Pixel breiten Kanten werden nun mit der sogenannten Non-Maximum Suppression Technik ausgedünnt. Hierbei wird jedes Pixel durchlaufen. Abhängig vom Gradienten, welcher uns die Richtung der Kante angibt, werden die Intensitätswerte der beiden Nachbarpixel des jeweiligen Pixels mit dem Intensitätswert des aktuellen Pixels verglichen. Ist einer der beiden Nachbarwerte größer, so wird der Grauwert des aktuellen Pixels auf Null gesetzt, andernfalls bleibt er unverändert. Nach einem erfolgreichen Durchlauf wurden alle Pixel entlang der Kante mit maximalen Intensitätswerten behalten. 
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/nms_after_sobel}
+				\caption{\textit{Bild nach Anwendung der Non Maximum Suppression}}
+			\end{figure}
 		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.5\linewidth] {../Bilder/nms_after_sobel}
-			\caption{\textit{Bild nach Anwendung der Non Maximum Suppression}}
-		\end{figure}
-		
-		Man kann eine deutliche Ausdünnung der Kanten erkennen, ebenso ist ersichtlich, dass die Intensitätswerte der gefundenen Pixel Kanten noch stark variieren. Mit den folgenden 2 Schritten versuchen wir das so gut als möglich zu kompensieren und die Intensitätswerte zu vereinheitlichen.
+			Verglichen mit dem Bild aus dem vorherigen Schritt kann man erkennen, dass die Kanten deutlich dünner und detailierter wurden. Man kann das Logo nun bereits gut nur anhand der Kanten erkennen. Die Intensitätswerte der nun gefundenen Kanten variieren jedoch noch stark. Viele Bildverarbeitungsprogramme oder auch Algorithmen basieren darauf, dass die gefundenen Kanten einen einzige Intensitätswert aufweisen und verarbeiten das Bild dann anhand des angegebenen Intensitätswertes. Um auch unseren Kanten einen eingeutlichen Intensitätswert zu geben nutzen wir die folgenden zwei Schritte.\nl
 		
 		\subsection{Double threshold}
-		
-		Durch die double threshold Funktion markieren wir nun jedes bis jetzt als Kante markiertes Pixel als starkes oder schwaches Pixel und erhalten ein Bild mit nurnoch 3 verschiedenen Intensitätswerten, 255 (starkes Pixel), 25 (schwaches Pixel) und 0 (kein Kantenpixel).
+			Durch die double threshold Funktion markieren wir nun jedes bis jetzt als Kante markiertes Pixel als starkes oder schwaches Pixel und erhalten ein Bild mit nurnoch 3 verschiedenen Intensitätswerten, 255 (starkes Pixel), 25 (schwaches Pixel) und 0 (kein Kantenpixel).
 	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.5\linewidth] {../Bilder/double_threshold_after_nms}
-			\caption{\textit{Bild mit starken (weiss) und schwachen (grau) Pixeln}}
-		\end{figure}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth] {../Bilder/double_threshold_after_nms}
+				\caption{\textit{Bild mit starken (weiss) und schwachen (grau) Pixeln}}
+			\end{figure}
 	
 		\subsection{Hysteresis}
 		
