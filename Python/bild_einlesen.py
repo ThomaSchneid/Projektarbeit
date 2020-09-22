@@ -11,7 +11,7 @@ def rauschen():
 def test_canny():
     image = load_image()
     start = time.time()
-    canny = cv2.Canny(image, 100, 200)
+    cv2.Canny(image, 100, 200)
     end = time.time()
     print(end - start)
 

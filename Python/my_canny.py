@@ -110,6 +110,6 @@ def run():
     sob = sobel(image)
     nms = non_max_suppression(sob[0], sob[1])
     dt = double_threshold(nms)
-    final = hysterese(dt, 25)
+    hysterese(dt, 25)
     end = time.time()
     print(end - start)
