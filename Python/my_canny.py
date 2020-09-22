@@ -17,7 +17,7 @@ def g_kern(mask, sigm=1.8):
     return kern
 
 def gaussian_blur(img):
-    blur = cv2.GaussianBlur(img, (5, 5), 1.4)
+    blur = cv2.GaussianBlur(img, (5, 5), 0)
 
     return blur
 
@@ -128,7 +128,7 @@ def hysterese(img, schwaches_pixel, starkes_pixel=255):
 # Time = format(end - start, '.5g')
 #
 # rgbim[final > 0] = [255,0,0]
-
+#
 # plt.subplot(331), plt.imshow(img, cmap='gray')
 # plt.title('Original Image'), plt.xticks([]), plt.yticks([])
 # plt.subplot(332), plt.imshow(blur, cmap='gray')

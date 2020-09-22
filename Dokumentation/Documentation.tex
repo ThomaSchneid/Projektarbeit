@@ -23,7 +23,7 @@
 \newcommand{\formelbox}[1]{\centerline{\fbox{#1}}}
 \newcommand{\nin}{\noindent}
 \newcommand{\nlparagraph}[1]{\paragraph{#1}\mbox{}\\}
-\newcommand{\nlsubsubsection}[1]{\subsubsection{#1}\mbox{}\\}
+\newcommand{\nlsubsubsection}[1]{\subsubsection{#1}\mbox{}\\}\newcommand{\nlformelbox}[1]{\centerline{\fbox{#1}}\mbox{}\\}
 
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
@@ -332,34 +332,45 @@
 			\end{python}
 		
 	\section{Kantenerkennung mit dem Canny Algorithmus}
-		Im folgenden werden die oben genannten Schritte des Canny Algorithmus einzeln auf ein Bild angewendet und näher erläutert.		
+		Im folgenden werden die oben genannten Schritte des Canny Algorithmus einzeln auf ein Bild angewendet und näher erläutert.	
 	
 		\subsection{Noise Reduction}
 			Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebendsten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden.
 			Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5x5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
-			Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern,  desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb man hier nur einen 5x5 Kern nimmt, um bei einem ausreichend guten Ergebnis noch performant zu sein.\nl
-		
-			Hier auf das Logo der Hochschule Karlsruhe angewendet erkennt man im rechten Bild eine Unschärfe gegenüber dem linken Bild.
+			Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern,  desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb wir hier nur einen 5x5 Kern nehmen, welcher ein ausreichend gutes Ergebnis bei gleichzeitig guter Performance mit sich bringt.\nl
 		
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.8\linewidth] {../Bilder/hochschule_blur_5_5}
-				\caption{\textit{Links das original und rechts unter Anwendung des Gauß Filters.}}
+				\includegraphics[width=0.8\linewidth] {../Bilder/blur_result}
+				\caption{\textit{Links das Original und rechts unter Anwendung der Noise reduction.}}
 			\end{figure}
 		
+			Das verrauschte Bild wurde Kontrastreicher und Kanten dadurch deutlicher erkennbar.\nl
+			Im Nachfolgenden werden wir unseren selbst gebauten Canny anhand des Hochshcullogos testen. Hier entfällt der erste Schritt, da das Hochschullogo ein digital erzeugtes Bild ist und somit kein Rauschen beinhaltet.\nl
+			Hier das Originalbild des Hochschullogos in Graustufen:
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\linewidth]{../Bilder/hochschullogo}
+				\caption{\textit{Schwarzweissbild des Hochschullogos.}}
+			\end{figure}
+			
 		\subsection{Gradient Calculation}
 		
-		In diesem Schritt wird sowohl die Intensität als auch die Richtung der Kanten durch die Berechnung des Gradienten ermittelt. Eine Kante wird durch eine merkliche Änderung der Intensität benachbarter Pixel deutlich. Um eine Kante zu erkennen ist es also am einfachsten, einen Filter anzuwenden, welcher die Änderung der Intensität in horizontaler wie vertikaler Richtung markiert.
+		Nun wird berechnet, ob ein Pixel zu einer Kante gehört und gegbenenfalls die Richtung der Kante. Ob ein Pixel einer Kante zugehörig ist wird anhand der Intensiätsänderung bezüglich der Umliegenden Pixel bestimmt. Hierfür werden die Intensitätsänderungen in horizontaler sowie vertikaler Richtungeines jeden Pixels bezüglich seiner Nachbarn berechnet.\nl	
+		Mathematisch realisiert wird dies durch eine Faltung des Bildes mit einem Sobel Kern. 
 		
-		Nach Glättung des Bildes werden nun also die Ableitungen in x (horizontaler) und y (vertikaler) Richtung berechnet. Am effizientesten kann man dies durch eine Faltung des Bildes mit einem Sobel Kern berechnen.
+		Für die Intensität ergibt sich folgende Formel:\nl
 		
-		Die Intensität und Richtung berechnen sich also zu\nl
+		\nlformelbox{|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$}
 		
-		\formelbox{|G| = $\sqrt{I\tief{x}\hoch{2} + I\tief{y}\hoch{2}}$}
-		\medbreak
-		\formelbox{$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$}
-		\medbreak
-		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist. 
+		Während der Gradient sich wie folgt berechnen lässt:\nl
+		
+		\nlformelbox{$\Theta$(x,y) = arctan($\frac{I\tief{y}}{I\tief{x}})$}
+		
+		Nach diesem Schritt hat man bereits ein Ergebnis, anhand welchem man die Kanten eines Bildes erkennen kann. Die gefundenen Kanten sind jedoch noch sehr grob und undetailiert.
+		
+		Bereits nach diesem Schritt hat man schon ein ziemlich gutes Ergebnis in welchem das Ursprungsbild durch Kanten hinreichend dargestellt ist.\nl
 		
 		\begin{figure}[H]
 			\centering
@@ -367,9 +378,8 @@
 			\caption{\textit{Bild nach Anwendung des Sobel Filters}}
 		\end{figure}
 		
-		Man erkennt allerdings, dass die Kanten noch sehr unfein, grob und breit sind. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.
+		Man erkennt allerdings, dass die Kanten noch sehr unfein, grob und breit sind. Hier kommt der dritte Schritt ins Spiel, die Non-Maximum Suppression.\nl
 		
-		\pagebreak
 		
 		\subsection{Non Maximum Suppression}
 		
