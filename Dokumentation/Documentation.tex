@@ -470,7 +470,7 @@
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.5\linewidth] {../Bilder/image_skeleton}
+				\includegraphics[width=0.45\linewidth] {../Bilder/image_skeleton}
 				\caption{\textit{Pixelskelett eines Bildes mit untersuchten Pixeln}}
 			\end{figure}
 		
@@ -501,13 +501,18 @@
 				\caption{\textit{Maske zur Untersuchung auf eine Kante in vertikaler Richtung}}
 			\end{figure}	
 
-			Dadurch, dass ein Bild im Schnitt nur zwischen 5\% und 10\% aus Kanten beseht, müssen diese zur Realisierung der Idee erst einmal detektiert werden.
-			Hierzu gab es folgende Ansätze:\nl
-			Man durchläuft beide Diagonalen des Bildes und folgt allen Kanten, welche man dort gefunden hat.
-			Die Wahrscheinlichkeit, dass man durch diese Methode eine Kante findet, ist sehr hoch. Natürlich gibt es auch Bilder, welche keine Kanten auf den Diagonalen haben. Um hier nicht unnötige Laufzeit zu verschwenden, durchläuft man alle horizontalen, beginnend bei der ersten und dann immer im Abstand von 5 Pixeln. So durchläuft man nicht das komplette Bild und sollte definitiv eine Kante finden.
-		
-			Zur Berechnung der nächsten Richtung diente mir anfangs folgender Code:
+			Mit dieser Methode das Bild zu durchlaufen gibt es allerdings einige Kanten, welche wir nicht finden können. Sollte eine Kante zwischen 2 roten Suchlinien in horizontaler Richtung verlaufen und unverzweigt sein oder befindet sich eine Kante in weniger als 3 Pixeln Abstand, unverzweigt und parallel zum jeweiligen Rand, so können wir diese nicht finden.\nl
+			Wir wollen unseren Algorithmus auf mit Digitalkameras aufgenommene Bilder anwenden, dass eine solche Kante im Bild vorkommt, sollte also verschwindend gering sein. Objekte in der Realität sind größer als 3 Pixel. Die Kanten eines Objekts sind verzweigt und schneiden somit unweigerlich eine der roten Linien. Wir können daher sicher sein, dass wir immer mindestens alle Objekte anschneiden und somit die Kante durch Kantenverfolgung auch zwischen horizontal zwischen 2 Linien verlaufend finden werden.\nl
+			Die Höhe des Bildes in Pixeln sei y, die Breite x. Somit berechnet sich die Anzahl der durchlaufenen Pixel, ohne eine Kante zu verfolgen, auf:\nl
 			
+			\nlformelbox{Pixel\tief{ges} = $\frac{(y - 3)}{4}$ * (x - 6)}
+			
+			Im Verhältnis zu allen Pixeln des Bildes, prüfen wir somit mindestens\nl
+			
+			\nlformelbox{{$\frac{x * y - 3 * x - 6 * y + 18}{4 * x * y}$}}
+			
+			Was, da der Nenner hier schneller steigt als der Zähler, bei steigender Bildgröße ein immer kleinerer Anteil wird.\nl
+
 			\begin{python}
 
 			\end{python}
