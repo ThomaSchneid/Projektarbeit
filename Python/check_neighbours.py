@@ -60,24 +60,22 @@ def top_right(pos, img, diff):
     return sum_top_right/((3 * diff + 1) - 1)
 
 def bottom_left(pos, img, diff):
-    sum_bottom_left = 0
+    sum_bot_left = 0
     for j in range(0, diff + 1):
         for i in range(0, diff + 1):
-            sum_bottom_left += img[pos[0] + i][pos[1] - j]
+            sum_bot_left += img[pos[0] + i][pos[1] - j]
 
-    sum_bottom_left -= img[pos]
-
-    return sum_bottom_left/((3 * diff + 1) - 1)
+    sum_bot_left -= img[pos]
+    return sum_bot_left/((3 * diff + 1) - 1)
 
 def bottom_right(pos, img, diff):
-    sum_bottom_right = 0
+    sum_bot_right = 0
     for j in range(0, diff + 1):
         for i in range(0, diff + 1):
-            sum_bottom_right += img[pos[0] + i][pos[1] + j]
+            sum_bot_right += img[pos[0] + i][pos[1] + j]
 
-    sum_bottom_right -= img[pos]
-
-    return sum_bottom_right/((3 * diff + 1) - 1)
+    sum_bot_right -= img[pos]
+    return sum_bot_right/((3 * diff + 1) - 1)
 
 ##########################
 ## CHECK CURRENT PIXEL ##
@@ -95,7 +93,7 @@ def check_pixel(pos, image, diff):
     #todo Schwelle ersetzen
     if abs(maxim) > 20:
         direction = check_array.index(maxim)
-        # Wenn es keine Kante ist wird dem Pixel der Wert 255 zugeordnet
+        # Wenn es keine Kante ist wird dem Pixel der Wert 255 zugewiesen
     else:
         direction = 255
     return direction

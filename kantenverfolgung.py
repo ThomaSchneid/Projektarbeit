@@ -35,7 +35,6 @@ def edge_tracker(img, diff):
                     for pos in npparr:
                         whitescreen[pos] = 255
 
-
     end = time.time()
     print(end - start)
     return whitescreen

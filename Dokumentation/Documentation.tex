@@ -574,16 +574,183 @@
 						return whitescreen
 			\end{python}
 		
-			Die Funktion erwartet 2 Argumente, zum einen das Bild (img), zum anderen den Abstand in Pixeln (diff), welchen die Linien auseinander liegen sollen.\nl
+			Die Funktion erwartet 2 Argumente, zum einen das Bild (\textit{img}), zum anderen den Abstand in Pixeln (\textit{diff}), welchen die Linien auseinander liegen sollen.\nl
 			In dieser Funktion aufgerufene Funktionen werde ich im weiteren Verlauf erläutern, schauen wir uns nun zuerst einmal die Funktionsweise des Algorithmus an.\nl
 			Nachdem die Funktion aufgerufen wurde und 2 passende Argumente bekommen hat, wird ein Timer gestartet, damit wir die Laufzeit des Algorithmus messen können.\nl
-			mit whitescreen wird ein weißes Bild mit den Maßen des Originalbildes erstellt.
+			Durch \textit{whitescreen} wird ein weißes Bild mit den Maßen des Originalbildes erstellt.
+			
+			\begin{python}
+				def create_whitescreen(image):
+					whitescreen = np.full((image.shape), 254)
+					return whitescreen
+			\end{python}
+			
+			Im späteren Verlauf werden den Pixeln, welche nicht zu einer Kante gehören der Wert Grauwert 255 zugewiesen. Um die Pixel von den noch nicht geprüften Pixeln des whitescreens zu unterscheiden, bekommen die Pixel hier den Wert 254.\nl
+			Für den Fall, dass \textit{diff} > 3 Pixel gewählt wird, setzen wir eine Ersatzvariable \textit{check\_diff}, welche maximal den Wert 3 annehmen kann. Da unsere Suchmasken nur einen Abstand von 3 Pixeln vom Rand benötigen, möchten wir uns mit unseren Suchlinien auch nicht weiter vom Rand entfernen.\nl
+			Nun beginnen wir das Bild in einer While-Schleife abzulaufen. Die Schleife endet erst, wenn wir uns so weit am unteren Ende des Bildes befinden, dass wir keine Weiter Linie mehr zeichnen können, welche einen Abstand von mindestens 3 Pixeln zum unteren Rand hat. Bei jedem Schleifendurchlauf erhöhen wir unsere Laufvariable \textit{px} um \textit{diff}, um den nötigen Abstand zu nächsten Linie zu erhalten.\nl
+			In einer For-Schleife durchlaufen wir das Bild in x-Richtung. Hierbei setzen wir bereits zu Beginn der Schleife eine variable für die Position des aktuellen Pixels. So können wir in der Schleife leicht die Position wechseln, indem wir der Variable einen neuen Wert zuweisen. Hat ein Pixel im Whitescreen den Grauwert 254 heisst das, dass es noch nicht vom Algorithmus bearbeitet wurde und wir es somit prüfen müssen. Wir nutzen die \textit{check\_pixel} Funktion um zu bestimmen ob es sich um ein Kantenpixel handelt und, falls dies der Fall ist, die Richtung der Kante herauszufinden und diese der variablen \textit{dir} zuzuweisen.\nl
+			
+			\begin{python}
+				def check_pixel(pos, image, diff):
+					check_array = []
+					
+					check_array.append(
+								top_left(pos, image, diff) - 
+								bottom_right(pos, image, diff))
+					check_array.append(
+								top(pos, image, diff) - 
+								bottom(pos, image, diff))
+					check_array.append(
+								top_right(pos, image, diff) - 
+								bottom_left(pos, image, diff))
+					check_array.append(
+								right(pos, image, diff) - 
+								left(pos, image, diff))
+					
+					maxim = max(check_array, key = abs)
+					if abs(maxim) > 20:
+						direction = check_array.index(maxim)
+					else:
+						direction = 255
+					return direction
+			\end{python}
+		
+			\textit{direction} kann den Wert 0, 1, 2, 3 oder 255 annehmen. Die einzelnen Werte stehen räpresentativ für die Richtung der Kante.\nl
+			
+			\begin{itemize}
+				\item \textbf{0:} Die Kante verläuft entlang der 1. Mediane.
+				\item \textbf{1:} Die kante verläuft in horizontaler Richtung.
+				\item \textbf{2:} Die Kante verläuft entlang der 2. Mediane.
+				\item \textbf{3:} Die Kante verläuft in vertikaler Richtung.
+				\item \textbf{255:} Das geprüfte Pixel ist kein Kantenpixel.
+			\end{itemize}
+		
+			Die Funktionen \textit{top}, \textit{bottom}, \textit{left}, \textit{right},\textit{top\_left},\textit{top\_right}, \textit{bottom\_left} und \textit{bottom\_right} berechnen den Mittelwert aus den Intensitätswerten der entsprechenden Nachbarn anhand der oben beschriebenen Suchmasken.\nl
+			
+			\begin{python}
+				def top(pos, img, diff):
+					list = [-1,0,1]
+					sum_top = 0
+					for i in range(1, diff + 1):
+						for j in list:
+							sum_top += img[pos[0] - i][pos[1] + j]
+				
+					return sum_top/(3 * diff)
+			\end{python}
+			
+			\begin{python}
+				def bottom(pos, img, diff):
+					list = [-1, 0, 1]
+					sum_bottom = 0
+					for i in range(1, diff + 1):
+						for j in list:
+							sum_bottom += 
+							img[pos[0] + i][pos[1] + j]
+				
+					return sum_bottom/(3 * diff)
+			\end{python}
+			
+			\begin{python}	
+				def left(pos, img, diff):
+					list = [-1, 0, 1]
+					sum_left = 0
+					for j in range(1, diff + 1):
+						for i in list:
+							sum_left += 
+							img[pos[0] + i][pos[1] - j]
+				
+					return sum_left/(3 * diff)
+			\end{python}
+			
+			\begin{python}	
+				def right(pos, img, diff):
+					list = [-1, 0, 1]
+					sum_right = 0
+					for j in range(1, diff + 1):
+						for i in list:
+							sum_right += 
+							img[pos[0] + i][pos[1] + j]
+				
+					return sum_right/(3 * diff)
+			\end{python}
+
+			\begin{python}	
+				def top_left(pos, img, diff):
+					sum_top_left = 0
+					for j in range(0, diff + 1):
+						for i in range(0, diff + 1):
+							sum_top_left += 
+							img[pos[0] - i][pos[1] - j]
+				
+					sum_top_left -= img[pos]
+					return sum_top_left/((3 * diff + 1) - 1)
+			\end{python}
+				
+			\begin{python}	
+				def top_right(pos, img, diff):
+					sum_top_right = 0
+					for j in range(0, diff + 1):
+						for i in range(0, diff + 1):
+							sum_top_right += 
+							img[pos[0] - i][pos[1] + j]
+				
+					sum_top_right -= img[pos]				
+					return sum_top_right/((3 * diff + 1) - 1)
+			\end{python}
+			
+			\begin{python}	
+				def bottom_left(pos, img, diff):
+					sum_bot_left = 0
+					for j in range(0, diff + 1):
+						for i in range(0, diff + 1):
+							sum_bot_left += 
+							img[pos[0] + i][pos[1] - j]
+					
+					sum_bot_left -= img[pos]			
+					return sum_bot_left/((3 * diff + 1) - 1)
+			\end{python}
+			
+			\begin{python}	
+				def bottom_right(pos, img, diff):
+					sum_bot_right = 0
+					for j in range(0, diff + 1):
+						for i in range(0, diff + 1):
+							sum_bot_right += 
+							img[pos[0] + i][pos[1] + j]
+				
+					sum_bot_right -= img[pos]
+					return sum_bot_right/((3 * diff + 1) - 1)
+			\end{python}
+		
+		
+			Die Nachbarn mit der größten Differenz der gemittelten Grauwerte bestimmt die Richtung der Kante. Sollte keine Differenz über einem Schwellenwert liegen, welchen ich hier frei zu 20 gesetzt habe, so handelt es sich nicht um ein Kantenpixel. Der Wert der Kantenrichtung wird nun im Whitescreen im aktuellen Pixel gespeichert.\nl
+			Nun kommen wir zum Teil der Kantenverfolgung. In einer weiteren While-Schleife überprüfen wir erst, dass \textit{dir} nicht den Wert 255 hat, also ein Kantenpixel ist und die aktuelle Position in Bild weit genug von den Rändern entfernt ist, damit unsere Suchmasken das nächste Pixel noch prüfen können.\nl
+			Mit \textit{set\_next\_pixel\_position} setzen wir die Position des nächsten Pixels abhängig von der Kantenrichtung.\nl
+			
+			\begin{python}
+				def set_next_pixel_position(next_pixel_pos,
+											dir):
+					_px = next_pixel_pos[0]
+					_j = next_pixel_pos[1]
+					if dir == 0:
+						next_pixel_pos = (_px + 1, _j - 1)
+					elif dir == 1:
+						next_pixel_pos = (_px, _j + 1)
+					elif dir == 2:
+						next_pixel_pos = (_px + 1, _j + 1)
+					elif dir == 3:
+						next_pixel_pos = (_px + 1, _j)
+					return next_pixel_pos
+			\end{python}
+		
+			Anschließend überprüfen wir wie oben das nächste Pixel und speichern sowohl die Position als auch den Wert der Kantenrichtung in einem jeweils dafür erstellten Array. Sobald die While-Schleife verlassen wird, entweder weil \textit{dir} den Wert 255 angenommen hat oder weil wir uns zu nah an einem Rand des Bildes befinden, wird die Länge des Arrays der Positionen geprüft. Übersteigt sie den Wert 3, so werden an allen gespeicherten Positionen im Whitescreen die jeweilige Kantenrichtung gesetzt. So werden keine Kanten markiert, deren Länge kleiner 3 Pixel ist. Die Kantenpixel werden jedoch noch immer berechnet, hiermit steigern wir also nur die Qualität des Ergebnisbildes, nicht jedoch die Performance.\nl
+			Nachdem alle Suchlinien auf diese Weise durchlaufen wurden geben wir die Laufzeit des Algorithmus und das Kantenbild aus.\nl
+			
+		
 		
 		
 	
-			Hierbei traf ich auf das Problem, dass die Einsparung der Laufzeit durch direktes bearbeiten der Kantennachbarn sehr schnell wieder verloren geht und zwar dadurch, dass man mehrere Matrizen der Größe des Bildes benötigt um die einzelnen Stati wie neuer Grauwert, Richtung und ein \textit{bereits bearbeitet} Flag zu speichern. Diese muss man immer wieder abrufen, also die Matrizen laden, bearbeiten und verändert wieder abspeichern. Gerade bei größeren Bildern oder wenn eine Kante nicht mit dem Durchlaufen der Diagonalen gefunden wird, übersteigt die Laufzeit des geplanten Algorithmus die des Canny Algorithmus schnell.\nl
-			Ebenso ist mit dem beschriebenen Vorgehen nicht sichergestellt, dass man alle Kanten findet. Um auch Objekte zum Beispiel am Rand zu finden müsste man das komplette Bild erneut mit einem Hysterese Algorithmus bearbeiten. \nl
-			Trotz anfänglicher, guter Fortschritte hatte der geplante Algorithmus deshalb leider keine Aussicht auf Erfolg und eine Effizienzsteigerung des Canny Algorithmus durch Kantenverfolgung ist mit dieser Methode nicht möglich.
+			
 	
 	\section{Literaturverzeichnis}
 		\begin{itemize}
