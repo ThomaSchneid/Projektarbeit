@@ -2,7 +2,7 @@ from Python.helper import *
 from Python.check_neighbours_efficient import *
 
 def edge_tracker(diff):
-    img = load_image()
+    # img = load_image()
     start = time.time()
     whitescreen = create_whitescreen(img)
     x_length = img.shape[1]
@@ -53,3 +53,20 @@ def set_next_pixel_position(next_pixel_pos, dir):
     elif dir == 3:
         next_pixel_pos = (_px + 1, _j)
     return next_pixel_pos
+
+Tk().withdraw()
+showinfo('Picture',
+         'Select you Image, you can Add Images you want to the Directory /Projektarbeit/Beispielbilder')
+imag = askopenfilename(initialdir="Beispielbilder")
+img = cv2.imread(imag, 0)
+start = time.time()
+final = edge_tracker(3)
+end = time.time()
+Time = format(end - start, '.5g')
+
+plt.subplot(121), plt.imshow(img, cmap='gray')
+plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+plt.subplot(122), plt.imshow(final, cmap='gray')
+plt.title('Edge tracking algorithm'), plt.xticks([]), plt.yticks([])
+plt.figtext(0.4, 0.05, 'Benötigte Zeit: ' + Time + ' Sekunden', fontsize=8, va="top", ha="left")
+plt.show()
