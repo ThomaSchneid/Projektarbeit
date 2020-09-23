@@ -1,15 +1,10 @@
-from Python.check_neighbours import *
 from helper import *
-from scipy import ndimage
-import matplotlib.pyplot as plt
-import time
 
-def spiral(img, diff):
+def spiral(diff):
+    img = load_image()
     start = time.time()
     whitescreen = create_whitescreen(img)
-    x_length = img.shape[1]
-    y_length = img.shape[0]
-    # y_length, x_length = img.shape
+    y_length, x_length = img.shape
     px = 0
     possible_dirs = [0, 1, 2, 3]
     check_diff = diff
@@ -45,7 +40,3 @@ def spiral(img, diff):
     end = time.time()
     print(end - start)
     return whitescreen
-
-
-
-
