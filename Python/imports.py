@@ -1,4 +1,5 @@
 import cv2
+from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import *
 from scipy import ndimage
