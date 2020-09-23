@@ -35,37 +35,37 @@
 	
 	\section{Motivation/Einleitung}
 	
-	Wenn es um Bild- und Objekterkennung geht ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so Leistungsstark und Effizient wie das menschliche Auge. Nicht nur ist der Canny Algorithmus der wohl bekannteste, sondern auch der am meist benutzte.\nl
-	Der Canny-Algorithmus benutzt mehrere Stufen um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Während ich meine Seminararbeit im Bereich der Kantenverfolgung geschrieben habe, kam ich nicht umhin auch erste Erfahrungen mit dem Canny-Algorithmus zu sammeln.
-	Präzise und mit durchschnittlich \textcolor{red}{TODO ZEITWERT CANNY NACHSCHLAGE} x Sekunden für ein durchschnittliches, mit einer digitalkamera aufgenommenes Bild auch extrem schnell findet dieser Algorithmus alle Kanten des Bildes, markiert diese und gibt das so veränderte Bild zurück.\nl
-	Neben all der Faszination stellte sich mir schnell die Frage, ob man den Algorithmus nicht durch Kantenverfolgung statt der reinen Kantenerkennung noch schneller machen könne. Mit dieser Frage beschäftige ich mich nachfolgend, werde einen Kantenverfolgungsalgorithmus entwickeln und evaluieren ob und zu was für einem eventuellen Preis man den Canny-Algorithmus so verschnellern kann.\nl
-	Um den nachfolgenden Gedankengängen besser folgen zu können, schauen wir uns zuerst einmal vereinfacht an,  mit welchen Schritten der Canny-Algorithmus zum Ziel kommt. Die genannten Methoden werden im wieteren Verlauf dieses Dokuments mathematisch näher beleuchtet.\nl
+	Wenn es um Bild- und Objekterkennung geht, ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so leistungsstark und effizient wie das menschliche Auge. Nicht nur ist der Canny Algorithmus der wohl bekannteste, sondern auch der am meist benutzte.\nl
+	Der Canny-Algorithmus benutzt mehrere Stufen, um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Während ich meine Seminararbeit im Bereich der Kantenverfolgung geschrieben habe, kam ich nicht umhin auch erste Erfahrungen mit dem Canny-Algorithmus zu sammeln.
+	Präzise und mit durchschnittlich unter einer halben Sekunde Rechenzeit für ein durchschnittliches, mit einer Digitalkamera aufgenommenes Bild auch extrem schnell findet dieser Algorithmus alle Kanten des Bildes, markiert diese und gibt das so veränderte Bild zurück.\nl
+	Neben all der Faszination stellte sich mir schnell die Frage, ob man den Algorithmus nicht durch Kantenverfolgung statt der reinen Kantenerkennung noch schneller machen könne. Mit dieser Frage beschäftige ich mich nachfolgend, werde einen Kantenverfolgungsalgorithmus entwickeln und evaluieren, ob und zu was für einem eventuellen Preis man den Canny-Algorithmus so schneller machen kann.\nl
+	Um den nachfolgenden Gedankengängen besser folgen zu können, schauen wir uns zuerst einmal vereinfacht an,  mit welchen Schritten der Canny-Algorithmus zum Ziel kommt. Die genannten Methoden werden im weiteren Verlauf dieses Dokuments mathematisch näher beleuchtet.\nl
 	Der Canny Algorithmus lässt sich in 5 Schritte unterteilen:
 	
 	\begin{enumerate}
-		\item Entfernen von Rauschen \textcolor{red}{Schöner FORMULIEREN}
+		\item Rauschuntedrückung
 		\item Suchen der Kanten im Bild
 		\item Ausdünnen der gefunden Kanten
 		\item Klassifizierung der Kantenpixel
 		\item Vervollständigung der Kante
 	\end{enumerate}
 	
-	Zuallererst wird vorhandenes Rauschen, welches unter anderem die Grauwerte der einzelnen Bildpixel verfälschen kann, im Bild entfernt. Dies ist ein Schritt, um welchen man auch bei Anwendung einer Kantenverfolgungsmethode nicht umhin kommt.\nl
-	Anschließend wird für jedes Pixel ein Grauwert und der gradient berechnet. Dies geschieht für jedes einzelne Pixel des Bildes.\nl
-	Die so gefundenen Kantenpixel wurden schon alle Kanten im Bild erkannt, allerdings sind diese noch sehr grob und unfein. Indem erneut alle Pixel des Bildes durchlaufen und die jeweiligen direkten Nachbarn in gradientenrichtung geprüft und die entsprechenden Grauwerte gegebenenfalls angepasst werden. So werden grobe, unfeine und breite Kanten ausgedünnt und feiner dargestellt.\nl
-	Durch eine nochmalige Prüfung eines jeden Pixels werden die noch vorhandenen Kantenpixel klassifiziert und als starkes, schwaches oder kein Kantenpixel eingestuft, was das Kantenbild nochmal etwas verfeinert.\nl
+	Zuallererst wird vorhandenes Rauschen, welches unter anderem die Grauwerte der einzelnen Bildpixel verfälschen kann, im Bild entfernt. Dies ist ein Schritt, um welchen man auch bei Anwendung einer Kantenverfolgungsmethode nicht umhinkommt.\nl
+	Anschließend wird für jedes Pixel ein Grauwert und der Gradient berechnet. Dies geschieht für jedes einzelne Pixel des Bildes.\nl
+	Die so gefundenen Kantenpixel wurden schon alle Kanten im Bild erkannt, allerdings sind diese noch sehr grob und unfein. Indem erneut alle Pixel des Bildes durchlaufen und die jeweiligen direkten Nachbarn in Gradientenrichtung geprüft und die entsprechenden Grauwerte gegebenenfalls angepasst werden. So werden grobe, unfeine und breite Kanten ausgedünnt und feiner dargestellt.\nl
+	Durch eine nochmalige Prüfung eines jeden Pixels werden die noch vorhandenen Kantenpixel klassifiziert und als starkes, schwaches oder kein Kantenpixel eingestuft, was das Kantenbild noch mal etwas verfeinert.\nl
 	Abschließend werden eventuelle Lücken in Kanten durch ein Hystereseverfahren geschlossen, wofür ebenfalls alle Pixel des Bildes durchlaufen werden müssen.\nl
-	Insgesamt durchlaufen wir das komplette Bild also mehrmals um einzelne Kantenpixel zu finden, diese zu klassifizieren und im Nachhinein die eventuell falsch klassifizierten oder gefundenen wieder zu korrigieren.\nl
-	Genau hier greift meine Idee der involvierung einer Kantenverfolgung an. Wenn wir bereits im ersten Durchlauf ein Kantenpixel finden, können wir komplette Kante durch verfolgen der Kantenrichtung und Erkennung der anderen Pixel auf dem Weg erhalten. Dies würde die Anzahl der Zugriffe auf ein Pixel reduzieren und damit die Geschwindigkeit des Algorithmus erhöhen.\nl
+	Insgesamt durchlaufen wir das komplette Bild also mehrmals, um einzelne Kantenpixel zu finden, diese zu klassifizieren und im Nachhinein die eventuell falsch klassifizierten oder gefundenen wieder zu korrigieren.\nl
+	Genau hier greift meine Idee der Involvierung einer Kantenverfolgung an. Wenn wir bereits im ersten Durchlauf ein Kantenpixel finden, können wir komplette Kante durch verfolgen der Kantenrichtung und Erkennung der anderen Pixel auf dem Weg erhalten. Dies würde die Anzahl der Zugriffe auf ein Pixel reduzieren und damit die Geschwindigkeit des Algorithmus erhöhen.\nl
 	Gerade auf dem Gebiet des Auto-Focus und der Hochgeschwindigkeitsfotografie ist eine Geschwindigkeitssteigerung um bereits wenige Millisekunden ein enormer Gewinn.\nl
 	
-	Im Folgenden erläutere ich die einzelnen Methoden des Canny Algorithmus mathematisch genauer, werde meine Ansätze sowie meinen Algorithmus präsentieren und ihn direkt mit dem Canny Algorithmus vergleichen um zu sehen ob und welche Performancesteigerungen es gibt.
+	Im Folgenden erläutere ich die einzelnen Methoden des Canny Algorithmus mathematisch genauer, werde meine Ansätze sowie meinen Algorithmus präsentieren und ihn direkt mit dem Canny Algorithmus vergleichen, um zu sehen, ob und welche Performancesteigerungen es gibt.
 	
 	\section{Begriffsdefinitioen und Erklärungen}
 
 		\subsection{Was ist eine Kante}
 			Eine Kante zeichnet sich dadurch aus, dass sich der Intensitätswert innerhalb weniger Pixel stark ändert.
-			Hierbei muss allerdings nicht jeder Intensitätswertunterschied auch eine Kante sein, meist bewertet ein Algorithmus ob der Intensitätswertunterschied groß genug ist, als dass es sich um eine Kante handelt.
+			Hierbei muss allerdings nicht jeder Intensitätswertunterschied auch eine Kante sein, meist bewertet ein Algorithmus, ob der Intensitätswertunterschied groß genug ist, als dass es sich um eine Kante handelt.
 			
 		\subsection{Pixelnachbarn}
 			Unter Nachbarschaft versteht man in der Bildverarbeitung einen fest definierten Bereich um ein Pixel. Die zwei Grundkonzepte der Nachbarschaft sind die Vierer-Nachbarschaft (auch D-Nachbarschaft genannt) und die Achter-Nachbarschaft (\textit{Fig. 1}). 
@@ -79,40 +79,40 @@
 			Wir benutzen im weiteren Verlauf stets die Achter-Nachbarschaft, da wir auch die diagonalen Nachbarn eines Pixels in die Kantenberechnung mit einbeziehen.
 		
 		\subsection{Bildrauschen}
-			Bei Bildrauschen handelt es sich um zufällige Schwankungen, mit welchen die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, überlagert werden. Je mehr Pixel advon betroffen sind, desto höher ist das Rauschen im Bild.\nl 
+			Bei Bildrauschen handelt es sich um zufällige Schwankungen, mit welchen die Informationen eines Pixels, beispielsweise Farbe oder Helligkeit, überlagert werden. Je mehr Pixel davon betroffen sind, desto höher ist das Rauschen im Bild.\nl 
 			
 			\nlsubsubsection{Wie entsteht Rauschen in digitalen Bildern}
 				Bei Digitalkameras kann es aufgrund unterschiedlicher Ursachen zu Rauschen kommen.\nl
 				
 				\nlparagraph{Quantenrauschen}					
-					Die riesige Lichtmenge, welche auf einen elektronischen Sensor fällt besteht aus vielen Elemtarteilchen, den sogenannten Photonen. Obwohl ein Lichtstrom für das menschliche Auge gleichmäßig aussieht, treffen die Photonen zufällig auf die einzelnen Pixel des Sensors. Wenn man eine große Sensorfläche über eine lange Zeit hinweg observiert wird man eine gleichmäßige Verteilung der Photonen feststellen. Observiert man hingegen einen kleinen Sensor für nur einen kurzen Zeitabschnitt wird man feststellen, dass die einzelnen Pixel des Sensors unterschiedlich viele Photonen empfangen haben. Nimmt man ein stark belichtetes, helles Bild auf, so treffen - da es viel Licht gibt - viele Photonen auf den Sensor. Dies führt dazu, dass man die zufällige Verteilung, das Rauschen, im fertigen Bild weniger stark wahrnimmt.\nl
-					Bei dunklen Bildern hingegen treffen weniger Photonen auf den Sensor wodurch die zufällige Verteilung auf die Pixel extreme Abweichungen ergeben kann. Das Quantenrauschen ist bei dunkleren Bildern also stärker als bei hellen.\nl
+					Die riesige Lichtmenge, welche auf einen elektronischen Sensor fällt besteht, aus vielen Elementarteilchen, den sogenannten Photonen. Obwohl ein Lichtstrom für das menschliche Auge gleichmäßig aussieht, treffen die Photonen zufällig auf die einzelnen Pixel des Sensors. Wenn man eine große Sensorfläche über eine lange Zeit hinweg observiert,  wird man eine gleichmäßige Verteilung der Photonen feststellen. Observiert man hingegen einen kleinen Sensor für nur einen kurzen Zeitabschnitt, wird man feststellen, dass die einzelnen Pixel des Sensors unterschiedlich viele Photonen empfangen haben. Nimmt man ein stark belichtetes, helles Bild auf, so treffen - da es viel Licht gibt - viele Photonen auf den Sensor. Dies führt dazu, dass man die zufällige Verteilung, das Rauschen im fertigen Bild weniger stark wahrnimmt.\nl
+					Bei dunklen Bildern hingegen treffen weniger Photonen auf den Sensor, wodurch die zufällige Verteilung auf die Pixel extreme Abweichungen ergeben kann. Das Quantenrauschen ist bei dunkleren Bildern also stärker als bei hellen.\nl
 					
 				\nlparagraph{Beuteileigenschaften}
-					Die auf dem Sensor angekommenen Photonen werden von einem Verstärker in Elektronen umgewandelt. Mit kleinen Kondensatoren wird die Ladung auf dem Chip gesammelt und in eine Spannung umgesetzt. Vor jeder neuen Bilderfassung müssen die Kondensatoren also "entleert" werden wobei es zur sogenannten \textit{Reset-Noise} kommt. Das entleeren geschieht mitnichten ideal oder gleichmäßig, wodurch es zu Restspannungen und damit einer zufälligen Schwankung um Ergebnis kommt. Diese Schwankung macht sich im Bild als Rauschen bemerkbar.\nl
+					Die auf dem Sensor angekommenen Photonen werden von einem Verstärker in Elektronen umgewandelt. Mit kleinen Kondensatoren wird die Ladung auf dem Chip gesammelt und in eine Spannung umgesetzt. Vor jeder neuen Bilderfassung müssen die Kondensatoren also "entleert" werden, wobei es zur sogenannten \textit{Reset-Noise} kommt. Das Entleeren geschieht mitnichten ideal oder gleichmäßig, wodurch es zu Restspannungen und damit einer zufälligen Schwankung um Ergebnis kommt. Diese Schwankung macht sich im Bild als Rauschen bemerkbar.\nl
 					Weiterhin muss in vielen Schaltungen ein Ruhestrom fließen, welche zusätzlich für ein Rauschen im Bild sorgt.\nl
 					
 				\nlparagraph{Thermisches Rauschen}
-					Eletrkonen bewegen sich bei erhöhter Temperatur mehr. So kann es bereits bei Raumtemperaturen zu Elektronenbewegungen und damit thermischem Rauschen kommen.\nl
+					Elektronen bewegen sich bei erhöhter Temperatur mehr. So kann es bereits bei Raumtemperaturen zu Elektronenbewegungen und damit thermischem Rauschen kommen.\nl
 					
 				\nlparagraph{Quantisierungsrauschen}
-					Um die analogen Spannungswerte in digitale Daten umzuwandeln wird ein Analog-Digital-Wandler angewendet. Die von einem AD-Wandler erzeugten Signalfehler sind allerdings nicht zufällig. Da bei unserem Fall bereits das Eingssignal zufälligkeiten Aufweist, sind auch diese Signalfehler nichtmehr zuverlässig vorhersagbar. Diese resultierende Schwankung in den Spannungswerten wird \textit{Quantisierungsrauschen} genannt. Die heutige Technik ist so weit entwickelt, dass Quantisierungsrauschen keinen Nennenswerten Beitrag zum Bildrauschen mehr leistet.\nl
+					Um die analogen Spannungswerte in digitale Daten umzuwandeln, wird ein Analog-digital-Wandler angewendet. Die von einem AD-Wandler erzeugten Signalfehler sind allerdings nicht zufällig. Da bei unserem Fall bereits das Eingangssignal Zufälligkeiten aufweist, sind auch diese Signalfehler nicht mehr zuverlässig vorhersagbar. Diese resultierende Schwankung in den Spannungswerten wird \textit{Quantisierungsrauschen} genannt. Die heutige Technik ist so weit entwickelt, dass Quantisierungsrauschen keinen nennenswerten Beitrag zum Bildrauschen mehr leistet.\nl
 			
 			\nlsubsubsection{Methoden zur Rauschunterdrückung}
-				Es gibt eine Vielzahl von Methoden um das Bildrauschen sowohl bereits vor der Entstehung des Bildes zu mindern als auch im Nachgang durch Bearbeitung des Bildes zu entfernen. In dieser Arbeit beschränken wir uns auf die Methode der örtlichen Faltung mit einer 3$\times$3 Filtermaske, genauer noch auf einen Gauß-Filter mit einer 3$\times$3 Kern.\nl
+				Es gibt eine Vielzahl von Methoden, um das Bildrauschen sowohl bereits vor der Entstehung des Bildes zu mindern als auch im Nachgang durch Bearbeitung des Bildes zu entfernen. In dieser Arbeit beschränken wir uns auf die Methode der örtlichen Faltung mit einer 3$\times$3 Filtermaske, genauer noch auf einen Gauß-Filter mit einer 3$\times$3 Kern.\nl
 		
 			\nlsubsubsection{Gauß Filter}
 				Der Gauß Filter ist ein linearer Filter, welcher in der Bildverarbeitung zur Glättung des Bildes und Verminderung von Rauschen, vor allem weißem,  verwendet wird. Feinere Strukturen des Bildes gehen hierbei verloren, wobei gröbere erhalten bleiben.
-				Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit
-				\medbreak
+				Ein Gaußscher Filterkern der Größe (2k + 1)$\times$(2k + 1) kann mit\nl
+
 				\formelbox{H\tief{ij} = $\frac{1}{2\pi\sigma\hoch{2}}$ * $\mathrm{e}$\hoch{-$\frac{(i - (k + 1))\hoch{2} + (j - (k + 1))\hoch{2}}{2\sigma\hoch{2}}$}}
 				\medbreak
-				berechnet werden. \nl		
+				berechnet werden.
 	
 	\section{Canny-Algorithmus}
 	
 		\subsection{Gauß Kern}
-			Für die Faltung benutzen wir einen oben bereits beschriebenen Gauß Kern. Als Programmiersprache benutzen wir Python und realisieren die Berechnung des Gauß Kerns folgendermaßen:
+			Für die Faltung benutzen wir einen oben bereits beschriebenen Gaußkern. Als Programmiersprache benutzen wir Python und realisieren die Berechnung des Gauß Kerns folgendermaßen:
 			
 			\begin{python}
 				def g_kern(mask, sigm=1.8):
@@ -126,6 +126,8 @@
 				return kern
 			\end{python}
 			
+\pagebreak
+			
 		\subsection{Sobel Operator}
 			Der Sobel Operator besteht aus zwei 3$\times$3 Faltungskernen, wobei ein Kern dem jeweils anderen um 90° gedreht entspricht.
 		
@@ -135,7 +137,7 @@
 				\caption{\textit{Links der Faltungskern für die X- und rechts für die Y-Richtung.}}
 			\end{figure}
 	
-			Für jedes Pixel werden die Komponenten der Matrix aufsummiert um den Grauwert zu erhalten.
+			Für jedes Pixel werden die Komponenten der Matrix aufsummiert, um den Grauwert zu erhalten.
 		
 			In Python realisieren wir den Sobel Filter folgendermaßen:
 		
@@ -159,7 +161,7 @@
 			\end{python}
 	
 		\subsection{Non Maximum Suppression}
-			Die Non Maximum Suppression Technik wird angewendet um bereits gefundene Intensitätsmaxima (Kanten) erneut zu prüfen und diese auszudünnen. Hierfür durchläuft der Algorithmus jedes gefundene Kantenpixel und vergleicht, basierend auf dem Gradienten des jeweiligen Pixels, die entsprechenden Nachbarpixel. Sollte eines der Nachbarpixel einen höheren Grauwert als das aktuelle Pixel aufweisen, wird der Grauwert des aktuellen Pixels auf 0 gesetzt.
+			Die Non Maximum Suppression Technik wird angewendet, um bereits gefundene Intensitätsmaxima (Kanten) erneut zu prüfen und diese auszudünnen. Hierfür durchläuft der Algorithmus jedes gefundene Kantenpixel und vergleicht, basierend auf dem Gradienten des jeweiligen Pixels, die entsprechenden Nachbarpixel. Sollte eines der Nachbarpixel einen höheren Grauwert als das aktuelle Pixel aufweisen, wird der Grauwert des aktuellen Pixels auf 0 gesetzt.
 	
 			\begin{figure}[H]
 				\centering
@@ -175,17 +177,19 @@
 				\caption{\textit{Nähere Betrachtung eines einzigen Pixels}}
 			\end{figure}
 	
-			Die Richtung der Kante wird durch den grünen Pfeil dargestellt und verläuft vertikal von oben nach unten. Der Algorithmus prüft nun, ob die Pixel ober- und unterhalb (im Bild blau markiert) des ausgewählten Pixels (im Bild rot) einen höheren Intensitätswert aufweisen. In unserem Beispiel ist der Intensitätswert des unteren Pixels (i + 1, j) höher als der der anderen Beiden (das untere Pixel ist weiß und hat damit einen Intensitätswert von 255). Der Intensitätswert des aktuellen Pixels wird nun auf 0 gesetzt. Hätte keines der beiden anderen Pixel einen höheren Intensitätswert, würde der aktuelle Wert beibehalten werden.\nl
+			Die Richtung der Kante wird durch den grünen Pfeil dargestellt und verläuft vertikal von oben nach unten. Der Algorithmus prüft nun, ob die Pixel ober- und unterhalb (im Bild blau markiert) des ausgewählten Pixels (im Bild rot) einen höheren Intensitätswert aufweisen. In unserem Beispiel ist der Intensitätswert des unteren Pixels (i + 1, j) höher als der der anderen beiden (das untere Pixel ist weiß und hat damit einen Intensitätswert von 255). Der Intensitätswert des aktuellen Pixels wird nun auf 0 gesetzt. Hätte keines der beiden anderen Pixel einen höheren Intensitätswert, würde der aktuelle Wert beibehalten werden.\nl
 			Jedes Pixel hat also 2 Hauptkriterien, die Gradientenrichtung und den Intensitätswert. Die Non Maximum Suppression nutzt diese beiden Merkmale und führt folgende Schritte durch:
 	
 			\begin{itemize}
-				\item Ein mit Nullen initialiiertes Abbild  der Gradientenmatrix erstellen.
+				\item Ein mit nullen initialisiertes Abbild  der Gradientenmatrix erstellen.
 				\item Kantenrichtung anhand der Gradientenmatrix erkennen.
-				\item Prüfen ob Pixel entlang der Kantenrichtung einen höheren Intensitätswert als das aktuelle Pixel haben.
+				\item Prüfen, ob Pixel entlang der Kantenrichtung einen höheren Intensitätswert als das aktuelle Pixel haben.
 				\item Das mit dem Non Maximum Suppression Algorithmus bearbeitete Bild zurückgeben.
 			\end{itemize}
 
 			Den Non-Maximum-Suppression Algorithmus haben wir in Python folgendermaßen implementiert:
+	
+\pagebreak
 	
 			\begin{python}
 				def non_max_suppression(img, grad):
@@ -243,7 +247,7 @@
 				\end{itemize}
 				\item \textbf{Schwache Pixel}
 				\begin{itemize}
-					\item Pixel, deren Intensitätswert nicht hoch genug ist um als starkes Pixel eingestuft zu werden, allerdings hoch genug ist um nicht als unsignifikant für die Kantenerkennung zu sein.
+					\item Pixel, deren Intensitätswert nicht hoch genug ist,  um als starkes Pixel eingestuft zu werden, allerdings hoch genug ist, um nicht als insignifikant für die Kantenerkennung zu sein.
 				\end{itemize}
 				\item \textbf{Andere Pixel}
 				\begin{itemize}
@@ -290,9 +294,10 @@
 			\end{python}
 
 		\subsection{Kantenvervollständigung durch Hysterese}
-			\textbf{\textcolor{red}{TITEL ÄNDERN}}
 			Durch eine Hysterese wird festgelegt, ab welcher Kantenstärke ein Pixel zu einer Kante gehört. Gemäß unserem obigen Codebeispiel setzen wir die obere Schwelle T\tief{2} auf 255 und die untere Schwelle T\tief{1} auf 25.
-			 Anhand dieser zwei Schwellwerte (T\tief{1} < T\tief{2}) wird jedes Pixel des Bildes überprüft. Falls ein Pixel ein \textit{schwaches Pixel} ist, also einen Intensitätswert von 25 aufweist, werden all seine Nachbarn  geprüft. Sollte einer der Nachbarpixel ein starkes Pixel sein (oder, im allgemeinen, einen noch höheren Intensitätswert als T\tief{2} aufweisen), so wird auch das aktuell schwache Pixel als starkes Pixel markiert. Andernfalls wird der Intensitätswert des Pixels auf 0 gesetzt, da es nicht zur Kante gehört. Hierdurch werden alle kanten vervollständigt und alleinstehende, nur eventuell zu einer Kante gehörende, Pixel eliminiert. Die beschriebene Hysteresefunktion realisieren wir durch folgenden Python Code:
+			 Anhand dieser zwei Schwellwerte (T\tief{1} < T\tief{2}) wird jedes Pixel des Bildes überprüft. Falls ein Pixel ein \textit{schwaches Pixel} ist, also einen Intensitätswert von 25 aufweist, werden all seine Nachbarn geprüft. Sollte einer der Nachbarpixel ein starkes Pixel sein (oder, im allgemeinen einen noch höheren Intensitätswert als T\tief{2} aufweisen), so wird auch das aktuell schwache Pixel als starkes Pixel markiert. Andernfalls wird der Intensitätswert des Pixels auf 0 gesetzt, da es nicht zur Kante gehört. Hierdurch werden alle kanten vervollständigt und alleinstehende, nur eventuell zu einer Kante gehörende Pixel eliminiert. Die beschriebene Hysteresefunktion realisieren wir durch folgenden Python Code:
+		
+\pagebreak
 		
 			\begin{python}
 				def hysterese(img, schwaches_pixel,
@@ -332,12 +337,12 @@
 			\end{python}
 		
 	\section{Kantenerkennung mit dem Canny Algorithmus}
-		Im folgenden werden die oben genannten Schritte des Canny Algorithmus einzeln auf ein Bild angewendet und näher erläutert.	
+		Im Folgenden werden die oben genannten Schritte des Canny Algorithmus einzeln auf ein Bild angewendet und näher erläutert.	
 	
 		\subsection{Noise Reduction}
-			Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebendsten mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden.
-			Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5x5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
-			Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern,  desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb wir hier nur einen 5x5 Kern nehmen, welcher ein ausreichend gutes Ergebnis bei gleichzeitig guter Performance mit sich bringt.\nl
+			Kantenerkennung ist sehr anfällig für Rauschen, da die meisten und ausschlaggebenden mathematischen Operationen auf Ableitungen basieren. Deshalb muss eventuell vorhandenes Rauschen im ersten Schritt entfernt werden.
+			Hierfür wir beim Canny Algorithmus das Bild mithilfe eines Gauß Filters geglättet. Mit einem Gaußschen Kernel (hier 5$\times$5) wird der Intensitätswert an der Stelle (i,j) durch das gewichtete Mittel der ihn umgebenden Werte ersetzt.
+			Der resultierende "blurring" Effekt hängt unmittelbar mit der Wahl der Kerngröße zusammen - je größer der Kern, desto besser ist auch der blurring Effekt. Mit steigender Kerngröße steigt jedoch auch die benötigte Rechenzeit, weshalb wir hier nur einen 5$\times$5 Kern nehmen, welcher ein ausreichend gutes Ergebnis bei gleichzeitig guter Performance mit sich bringt.\nl
 		
 			\begin{figure}[H]
 				\centering
@@ -346,7 +351,7 @@
 			\end{figure}
 		
 			Das verrauschte Bild wurde Kontrastreicher und Kanten dadurch deutlicher erkennbar.\nl
-			Im Nachfolgenden werden wir unseren selbst gebauten Canny anhand des Hochshcullogos testen. Hier entfällt der erste Schritt, da das Hochschullogo ein digital erzeugtes Bild ist und somit kein Rauschen beinhaltet.\nl
+			Im Nachfolgenden werden wir unseren selbst gebauten Canny anhand des Hochschullogos testen. Hier entfällt der erste Schritt, da das Hochschullogo ein digital erzeugtes Bild ist und somit kein Rauschen beinhaltet.\nl
 			Hier das Originalbild des Hochschullogos in Graustufen:
 			
 			\begin{figure}[H]
@@ -356,7 +361,7 @@
 			\end{figure}
 			
 		\subsection{Edge and Gradient Calculation}
-			Nun wird berechnet, ob ein Pixel zu einer Kante gehört und gegbenenfalls die Richtung der Kante. Ob ein Pixel einer Kante zugehörig ist wird anhand der Intensiätsänderung bezüglich der Umliegenden Pixel bestimmt. Hierfür werden die Intensitätsänderungen in horizontaler sowie vertikaler Richtungeines jeden Pixels bezüglich seiner Nachbarn berechnet.\nl	
+			Nun wird berechnet, ob ein Pixel zu einer Kante gehört und gegebenenfalls die Richtung der Kante. Ob ein Pixel einer Kante zugehörig ist, wird anhand der Intensitätsänderung bezüglich der umliegenden Pixel bestimmt. Hierfür werden die Intensitätsänderungen in horizontaler sowie vertikaler Richtung eines jeden Pixels bezüglich seiner Nachbarn berechnet.\nl	
 			Mathematisch realisiert wird dies durch eine Faltung des Bildes mit einem Sobel Kern. 
 		
 			Für die Intensität ergibt sich folgende Formel:\nl
@@ -375,10 +380,10 @@
 				\caption{\textit{Bild nach Anwendung des Sobel Filters}}
 			\end{figure}
 		
-			Das Ergebnis muss also noch weiter verarbetet werden um Kanten auszudünnen, fehlerhaft als Kante erkannte Pixel zu entfernen und die Darstellung zu verfeinern. Hier setzen wir mit der Non-Maximum-Suppression an.\nl
+			Das Ergebnis muss also noch weiter verarbeitet werden, um Kanten auszudünnen, fehlerhaft als Kante erkannte Pixel zu entfernen und die Darstellung zu verfeinern. Hier setzen wir mit der Non-Maximum-Suppression an.\nl
 		
 		\subsection{Non Maximum Suppression}
-			Die momentan noch mehr als 1 Pixel breiten Kanten werden nun mit dem Non-Maximum Suppression-Algorithmus ausgedünnt. Hierbei wird das gesamte Bild durchlaufen und jedes Pixel auf seinen Gradienten und Intensitätswert geprüft. Abhängig davon werden die Intensitätswerte der jeweiligen beiden Nchbarpixel mit dem Intensitätswert des aktuellen Pixels verglichen. Hat eines der beiden Nachbarpixel einen höheren Intensitätswert als das aktuelle Pixel, wird der Intensitätswert des aktuellen Pixels auf 0 gestezt. Sollte das aktuelle Pixel einen höheren Intensitätswert als die beiden Nachbarn aufweisen, so bleibt sein Intensitätswert unverändert. Nachdem der Algorithmus das Bild durchlaufen hat, ergibt sich ein neues Bild in welchem nur die Pixel entlang der gefundenen Kanten mit maximalen Intensitätswerten behalten wurden und alle anderen nun den Intensitätswert 0 aufweisen, also nichtmehr zur Kante gehören. Unser Hochschullogo sieht nun folgerndermaßen aus:
+			Die momentan noch mehr als 1 Pixel breiten Kanten werden nun mit dem Non-Maximum Suppression-Algorithmus ausgedünnt. Hierbei wird das gesamte Bild durchlaufen und jedes Pixel auf seinen Gradienten und Intensitätswert geprüft. Abhängig davon werden die Intensitätswerte der jeweiligen beiden Nachbarpixel mit dem Intensitätswert des aktuellen Pixels verglichen. Hat eines der beiden Nachbarpixel einen höheren Intensitätswert als das aktuelle Pixel, wird der Intensitätswert des aktuellen Pixels auf 0 gesetzt. Sollte das aktuelle Pixel einen höheren Intensitätswert als die beiden Nachbarn aufweisen, so bleibt sein Intensitätswert unverändert. Nachdem der Algorithmus das Bild durchlaufen hat, ergibt sich ein neues Bild, in welchem nur die Pixel entlang der gefundenen Kanten mit maximalen Intensitätswerten behalten wurden und alle anderen nun den Intensitätswert 0 aufweisen, also nicht mehr zur Kante gehören. Unser Hochschullogo sieht nun folgendermaßen aus:
 		
 			\begin{figure}[H]
 				\centering
@@ -386,10 +391,10 @@
 				\caption{\textit{Bild nach Anwendung der Non Maximum Suppression}}
 			\end{figure}
 		
-			Verglichen mit dem Bild aus dem vorherigen Schritt kann man erkennen, dass die Kanten deutlich dünner und detailierter wurden. Man kann das Logo nun bereits gut nur anhand der Kanten erkennen. Die Intensitätswerte der nun gefundenen Kanten variieren jedoch noch stark. Viele Bildverarbeitungsprogramme oder auch Algorithmen basieren darauf, dass die gefundenen Kanten einen einzige Intensitätswert aufweisen und verarbeiten das Bild dann anhand des angegebenen Intensitätswertes. Um auch unseren Kanten einen eingeutlichen Intensitätswert zu geben nutzen wir die folgenden zwei Schritte.\nl
+			Verglichen mit dem Bild aus dem vorherigen Schritt kann man erkennen, dass die Kanten deutlich dünner und detaillierter wurden. Man kann das Logo nun bereits gut nur anhand der Kanten erkennen. Die Intensitätswerte der nun gefundenen Kanten variieren jedoch noch stark. Viele Bildverarbeitungsprogramme oder auch Algorithmen basieren darauf, dass die gefundenen Kanten einen einzige Intensitätswert aufweisen und verarbeiten das Bild dann anhand des angegebenen Intensitätswertes. Um auch unseren Kanten einen einheitlichen Intensitätswert zu geben, nutzen wir die folgenden zwei Schritte.\nl
 		
 		\subsection{Double threshold}
-			Der Double Threshold Filter arbeitet mit 2 Schwellenwerten, einem oberen und einem unteren. Die Intensitätswerte eines jeden Pixels werden geprüft und mit den Schwellenwerten verglichen. Je nachdem wo sich der Intensitätswert eines Pixels bezüglich der Schwellenwerte einordnen lässt, wird das Pixel in eine der folgenden Kateforien eingestuft und sein Intensitätswert dahingehend angepasst:\nl
+			Der Double Threshold Filter arbeitet mit 2 Schwellenwerten, einem oberen und einem unteren. Die Intensitätswerte eines jeden Pixels werden geprüft und mit den Schwellenwerten verglichen. Je nachdem, wo sich der Intensitätswert eines Pixels bezüglich der Schwellenwerte einordnen lässt, wird das Pixel in eine der folgenden Kategorien eingestuft und sein Intensitätswert dahingehend angepasst:\nl
 			
 			\begin{enumerate}
 				\item starkes Pixel, Intensitätswert wird auf 255 gesetzt.
@@ -397,7 +402,7 @@
 				\item nicht der Kante zugehörig, Intensitätswert wird auf 0 gesetzt.
 			\end{enumerate}
 			
-			Nach Anwendung des Double Threshold Filters sieht unser Hochschullogo fogendermaßen aus:\nl
+			Nach Anwendung des Double Threshold Filters sieht unser Hochschullogo folgendermaßen aus:\nl
 			
 			\begin{figure}[H]
 				\centering
@@ -405,7 +410,7 @@
 				\caption{\textit{Bild mit starken (weiss) und schwachen (grau) Pixeln}}
 			\end{figure}
 	
-			Die starken Kanten sind heller und klarer erkennbar. Ebenso sind leichte, nach der Non Maximum Suppression noch vohandene unfeinheiten oder einzelne Kantenpixel beseitigt worden.\nl
+			Die starken Kanten sind heller und klarer erkennbar. Ebenso sind leichte, nach der Non Maximum Suppression noch vorhandene Unfeinheiten oder einzelne Kantenpixel beseitigt worden.\nl
 	
 		\subsection{Hysteresis}
 			Im letzten Schritt wenden wir noch eine Hysterese auf das gesamte Bild an, um die einzelnen Pixel noch einmal final zu überprüfen und eventuelle Lücken in Kanten zu schließen oder alleinstehende und damit fälschlicherweise erkannte Kantenpixel zu eliminieren.\nl 
@@ -437,7 +442,7 @@
 			Es ist frei von alleinstehenden Kantenpixeln und die gefundenen Kanten sind fein und deutlich zu erkennen.\nl
 			
 		\subsection{Vergeich}
-			Nun wollen wir den eigens Entwickelten Canny Algorithmus mit dem wirklichen Canny Algorithmus vergleichen. Hier das Kantenbild des richtigen Canny Algorithmus und unseres als Vergleich:\nl
+			Nun wollen wir den eigens entwickelten Canny Algorithmus mit dem wirklichen Canny Algorithmus vergleichen. Hier das Kantenbild des richtigen Canny Algorithmus und unseres als Vergleich:\nl
 			
 			\begin{figure}[H]
 				\centering
@@ -463,7 +468,7 @@
 				\caption{\textit{Testbild für unseren Kantenverfolgungsalgorithmus}}
 			\end{figure}
 		
-			Dieses Bild enthält Kanten welche nahe beieinander liegen, größere, Grauwertemäßig nicht merklich unterschiedliche,  Flächen, weiter auseinanderliegende Kanten und Kanten unterschiedlicher breite, bis hin zu Linien. Es enthält zudem sowohl runde, als auch eckige oder kurvige Objekte. In diesem Bild sind die meisten Kantenformen enthalten, was es zu einem hervorragenden Testbild für unseren Algorithmus macht.\nl
+			Dieses Bild enthält Kanten, welche nahe beieinander liegen, größere, grauwertemäßig nicht merklich unterschiedliche,  Flächen, weiter auseinanderliegende Kanten und Kanten unterschiedlicher breite, bis hin zu Linien. Es enthält zudem sowohl runde, als auch eckige oder kurvige Objekte. In diesem Bild sind die meisten Kantenformen enthalten, was es zu einem hervorragenden Testbild für unseren Algorithmus macht.\nl
 			
 		\subsection{Das Bild durchlaufen}
 			Um sicherzustellen, dass von Beginn an nicht jedes Pixel des Bildes durchlaufen wird, wenden wir eine spezielle Suchmethode an.\nl
@@ -474,7 +479,7 @@
 				\caption{\textit{Pixelskelett eines Bildes mit untersuchten Pixeln}}
 			\end{figure}
 		
-			Wir durchlaufen das Bild von Links nach Rechts und untersuchen es dabei in horizontalen Linien, welche untereinander sowie vom oberen und den seitlichen Rändern einen Abstand von 3 Pixeln und vom unteren Rand einen Abstand von mindestens 3 Pixeln, maximal jedoch 5 Pixeln, haben.\nl
+			Wir durchlaufen das Bild von Links nach Rechts und untersuchen es dabei in horizontalen Linien, welche untereinander sowie vom oberen und den seitlichen Rändern einen Abstand von 3 Pixeln und vom unteren Rand einen Abstand von mindestens 3 Pixeln, maximal jedoch 5 Pixeln haben.\nl
 			Grund für diesen Abstand sind unsere Suchmasken. Wir untersuchen immer ein 3$\times$3 Quadrat der jeweils gegenüberliegenden Nachbarn. Für jedes so untersuchte Pixel berechnen wir also für 4 Richtungen, ob es sich um eine Kante handelt. Hier unsere 4 Suchmasken, der blaue Pfeil gibt jeweils die Kantenrichtung an:\nl
 			
 			\begin{figure}[H]
@@ -574,7 +579,7 @@
 						return whitescreen
 			\end{python}
 		
-			Die Funktion erwartet 2 Argumente, zum einen das Bild (\textit{img}), zum anderen den Abstand in Pixeln (\textit{diff}), welchen die Linien auseinander liegen sollen.\nl
+			Die Funktion erwartet 2 Argumente, zum einen das Bild (\textit{img}), zum anderen den Abstand in Pixeln (\textit{diff}), welchen die Linien auseinanderliegen sollen.\nl
 			In dieser Funktion aufgerufene Funktionen werde ich im weiteren Verlauf erläutern, schauen wir uns nun zuerst einmal die Funktionsweise des Algorithmus an.\nl
 			Nachdem die Funktion aufgerufen wurde und 2 passende Argumente bekommen hat, wird ein Timer gestartet, damit wir die Laufzeit des Algorithmus messen können.\nl
 			Durch \textit{whitescreen} wird ein weißes Bild mit den Maßen des Originalbildes erstellt.
@@ -585,10 +590,12 @@
 					return whitescreen
 			\end{python}
 			
-			Im späteren Verlauf werden den Pixeln, welche nicht zu einer Kante gehören der Wert Grauwert 255 zugewiesen. Um die Pixel von den noch nicht geprüften Pixeln des whitescreens zu unterscheiden, bekommen die Pixel hier den Wert 254.\nl
+			Im späteren Verlauf werden den Pixeln, welche nicht zu einer Kante gehören der Wert Grauwert 255 zugewiesen. Um die Pixel von den noch nicht geprüften Pixeln des Whitescreens zu unterscheiden, bekommen die Pixel hier den Wert 254.\nl
 			Für den Fall, dass \textit{diff} > 3 Pixel gewählt wird, setzen wir eine Ersatzvariable \textit{check\_diff}, welche maximal den Wert 3 annehmen kann. Da unsere Suchmasken nur einen Abstand von 3 Pixeln vom Rand benötigen, möchten wir uns mit unseren Suchlinien auch nicht weiter vom Rand entfernen.\nl
-			Nun beginnen wir das Bild in einer While-Schleife abzulaufen. Die Schleife endet erst, wenn wir uns so weit am unteren Ende des Bildes befinden, dass wir keine Weiter Linie mehr zeichnen können, welche einen Abstand von mindestens 3 Pixeln zum unteren Rand hat. Bei jedem Schleifendurchlauf erhöhen wir unsere Laufvariable \textit{px} um \textit{diff}, um den nötigen Abstand zu nächsten Linie zu erhalten.\nl
-			In einer For-Schleife durchlaufen wir das Bild in x-Richtung. Hierbei setzen wir bereits zu Beginn der Schleife eine variable für die Position des aktuellen Pixels. So können wir in der Schleife leicht die Position wechseln, indem wir der Variable einen neuen Wert zuweisen. Hat ein Pixel im Whitescreen den Grauwert 254 heisst das, dass es noch nicht vom Algorithmus bearbeitet wurde und wir es somit prüfen müssen. Wir nutzen die \textit{check\_pixel} Funktion um zu bestimmen ob es sich um ein Kantenpixel handelt und, falls dies der Fall ist, die Richtung der Kante herauszufinden und diese der variablen \textit{dir} zuzuweisen.\nl
+			Nun beginnen wir das Bild in einer While-Schleife abzulaufen. Die Schleife endet erst, wenn wir uns so weit am unteren Ende des Bildes befinden, dass wir keine weitere Linie mehr zeichnen können, welche einen Abstand von mindestens 3 Pixeln zum unteren Rand hat. Bei jedem Schleifendurchlauf erhöhen wir unsere Laufvariable \textit{px} um \textit{diff}, um den nötigen Abstand zu nächsten Linie zu erhalten.\nl
+			In einer For-Schleife durchlaufen wir das Bild in x-Richtung. Hierbei setzen wir bereits zu Beginn der Schleife eine variable für die Position des aktuellen Pixels. So können wir in der Schleife leicht die Position wechseln, indem wir der Variable einen neuen Wert zuweisen. Hat ein Pixel im Whitescreen den Grauwert 254, heisst das, dass es noch nicht vom Algorithmus bearbeitet wurde und wir es somit prüfen müssen. Wir nutzen die \textit{check\_pixel} Funktion um zu bestimmen ob es sich um ein Kantenpixel handelt und, falls dies der Fall ist, die Richtung der Kante herauszufinden und diese der Variablen \textit{dir} zuzuweisen.\nl
+			
+\pagebreak
 			
 			\begin{python}
 				def check_pixel(pos, image, diff):
@@ -649,6 +656,8 @@
 				
 					return sum_bottom/(3 * diff)
 			\end{python}
+			
+\pagebreak
 			
 			\begin{python}	
 				def left(pos, img, diff):
@@ -746,6 +755,8 @@
 			Anschließend überprüfen wir wie oben das nächste Pixel und speichern sowohl die Position als auch den Wert der Kantenrichtung in einem jeweils dafür erstellten Array. Sobald die While-Schleife verlassen wird, entweder weil \textit{dir} den Wert 255 angenommen hat oder weil wir uns zu nah an einem Rand des Bildes befinden, wird die Länge des Arrays der Positionen geprüft. Übersteigt sie den Wert 3, so werden an allen gespeicherten Positionen im Whitescreen die jeweilige Kantenrichtung gesetzt. So werden keine Kanten markiert, deren Länge kleiner 3 Pixel ist. Die Kantenpixel werden jedoch noch immer berechnet, hiermit steigern wir also nur die Qualität des Ergebnisbildes, nicht jedoch die Performance.\nl
 			Nachdem alle Suchlinien auf diese Weise durchlaufen wurden geben wir die Laufzeit des Algorithmus und das Kantenbild aus.\nl
 			
+\pagebreak
+			
 		\subsection{Vergleich}
 			Auch hier ziehen wir den originalen Canny Algorithmus zum Vergleich.\nl
 			
@@ -756,7 +767,7 @@
 			\end{figure}
 	
 		Wir erkennen, dass unsere Kanten noch nicht so fein und granular wie die des Canny sind. Grund hierfür ist, dass wir die Kante in voller Breite finden und an keiner Stelle ausdünnen. Statt die Kante auszudünnen wäre der richtige Ansatz, bereits im Vorfeld zu prüfen, ob dieses Kantenpixel noch als Teil der Kante markiert werden soll oder nicht. Mit diesem Vorgehen kann man Rechenzeit einsparen und gleichzeitig die Kanten feiner halten. Trotz allem wurden mit unserem Algorithmus, alleine auf einem Grauwertvergleich basierend, alle Kanten gefunden und verfolgt. Auch die runden und kurvigen Objekte wurden richtig erkannt und markiert.\nl
-		Werfen wir nun einen Blick auf die Laufzeit. Während Canny das Bild in 0.002 Sekunden bearbeitet, benötigt unser Algorithmus 13.36 Sekunden. Hier muss, wie oben beschrieben, die performance noch stark erhöht werden.\nl
+		Werfen wir nun einen Blick auf die Laufzeit. Während Canny das Bild in 0.002 Sekunden bearbeitet, benötigt unser Algorithmus 13.36 Sekunden. Hier muss, wie oben beschrieben, die Performance noch stark erhöht werden.\nl
 	
 	\section{Literaturverzeichnis}
 		\begin{itemize}

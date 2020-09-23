@@ -12,7 +12,7 @@
 \contentsline {subsubsection}{\numberline {\mbox {II-C}3}Gauß Filter}{3}%
 \contentsline {section}{\numberline {III}Canny-Algorithmus}{3}%
 \contentsline {subsection}{\numberline {\mbox {III-A}}Gauß Kern}{3}%
-\contentsline {subsection}{\numberline {\mbox {III-B}}Sobel Operator}{3}%
+\contentsline {subsection}{\numberline {\mbox {III-B}}Sobel Operator}{4}%
 \contentsline {subsection}{\numberline {\mbox {III-C}}Non Maximum Suppression}{4}%
 \contentsline {subsection}{\numberline {\mbox {III-D}}Double threshold}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-E}}Kantenvervollständigung durch Hysterese}{5}%
@@ -27,5 +27,5 @@
 \contentsline {subsection}{\numberline {\mbox {V-A}}Idee}{8}%
 \contentsline {subsection}{\numberline {\mbox {V-B}}Das Bild durchlaufen}{9}%
 \contentsline {subsection}{\numberline {\mbox {V-C}}Algorithmus}{10}%
-\contentsline {subsection}{\numberline {\mbox {V-D}}Vergleich}{12}%
-\contentsline {section}{\numberline {VI}Literaturverzeichnis}{12}%
+\contentsline {subsection}{\numberline {\mbox {V-D}}Vergleich}{13}%
+\contentsline {section}{\numberline {VI}Literaturverzeichnis}{13}%
