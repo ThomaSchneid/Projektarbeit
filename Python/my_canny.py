@@ -104,6 +104,13 @@ def hysterese(img, schwaches_pixel, starkes_pixel=255):
 
     return img
 
+def test_canny():
+    image = load_image()
+    start = time.time()
+    cv2.Canny(image, 100, 200)
+    end = time.time()
+    print(end - start)
+
 def run():
     image = load_image()
     start = time.time()
