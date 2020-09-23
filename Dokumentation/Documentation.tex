@@ -484,13 +484,13 @@
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.7\linewidth] {../Bilder/mask_2_mediane}
+				\includegraphics[width=0.7\linewidth] {../Bilder/mask_1_mediane}
 				\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 1. Mediane}}
 			\end{figure}
 	
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.7\linewidth] {../Bilder/mask_1_mediane}
+				\includegraphics[width=0.7\linewidth] {../Bilder/mask_2_mediane}
 				\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 2. Mediane}}
 			\end{figure}
 		
@@ -769,6 +769,48 @@
 		Wir erkennen, dass unsere Kanten noch nicht so fein und granular wie die des Canny sind. Grund hierfür ist, dass wir die Kante in voller Breite finden und an keiner Stelle ausdünnen. Statt die Kante auszudünnen wäre der richtige Ansatz, bereits im Vorfeld zu prüfen, ob dieses Kantenpixel noch als Teil der Kante markiert werden soll oder nicht. Mit diesem Vorgehen kann man Rechenzeit einsparen und gleichzeitig die Kanten feiner halten. Trotz allem wurden mit unserem Algorithmus, alleine auf einem Grauwertvergleich basierend, alle Kanten gefunden und verfolgt. Auch die runden und kurvigen Objekte wurden richtig erkannt und markiert.\nl
 		Werfen wir nun einen Blick auf die Laufzeit. Während Canny das Bild in 0.002 Sekunden bearbeitet, benötigt unser Algorithmus 13.36 Sekunden. Hier muss, wie oben beschrieben, die Performance noch stark erhöht werden.\nl
 	
+	\subsection{Performance Steigerung des Algorithmus}
+		Unsere Suchmasken berechnen zurzeit 2 3$\times$3 Matrizen für jede der 4 Möglichen Richtungen. Diese Berechnungen nehmen am meisten Zeit in Anspruch. Nun werden wir die Suchmasken Abändern, so, dass sie noch immer die Kantenrichtung anhand der durchschnittlichen Grauwerte der Nachbarpixel berechnen, allerdings mit weniger Rechenaufwand als zuvor. Die neuen Suchmasken sollen nun nur die jeweils 2 nächsten Nachbarpixel des aktuellen Pixels berechnen. Dies sind die 4 neuen, vereinfachten Suchmasken:\nl
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth] {../Bilder/mask_1_mediane_eff}
+			\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 1. Mediane}}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth] {../Bilder/mask_2_mediane_eff}
+			\caption{\textit{Maske zur Untersuchung auf eine Kante in Richtung der 2. Mediane}}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth] {../Bilder/mask_horizontal_eff}
+			\caption{\textit{Maske zur Untersuchung auf eine Kante in horizontaler Richtung}}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.3\linewidth] {../Bilder/mask_vertical_eff}
+			\caption{\textit{Maske zur Untersuchung auf eine Kante in vertikaler Richtung}}
+		\end{figure}
+	
+		Vergleichen wir nun das Ergebnis mit dem Vorherigen Ergebnissen:\nl
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\linewidth] {../Bilder/edge_finding_eff}
+			\caption{\textit{Ergebnis der Kantensuche mit den neuen Masken}}
+		\end{figure}
+		
+		Auch mit dieser, durchaus effizienteren Methode wurden alle Kanten erkannt. Die Kanten sind etwas unfeiner als die der vorhergehenden Methode, jedoch ausreichend, um die Objekte zu erkennen. Ebenso wurde Zeit eingespart, mit 9,15 Sekunden ist diese Methode um 4,20 Sekunden schneller als ihr Rechenaufwändigerer Vorgänger.\nl
+		Im Vergleich zur Kantenerkennung mit dem Canny Algorithmus sind die Kanten allerdings noch immer sehr grob und unfein.
+		
+	\section{Fazit}
+		Die Grundidee ist plausibel und es ist auch möglich nur anhand der Intensitätswerte der Nachbarpixel Kanten und ihre Richtung zu berechnen. Die so gefunden Kanten sind allerdings noch sehr rau. Man muss die so gefundenen Kanten noch ausdünnen. Dünnt man die Kanten aus, nachdem der Algorithmus durchgelaufen ist, so müsste man noch zusätzliche Rechenzeit aufbringen, was den kompletten Prozess erneut verlangsamen würde. Man muss also einen Weg finden, bereits vor dem Berechnen einer Kante festzustellen, ob dieses Pixel berechnet werden muss oder nicht. Anhand einer geeigneten Überprüfung der Nachbarn sollte dies möglich sein. Mit der Geschwindigkeit des Canny Algorithmus konnten wir jedoch trotz allem nicht mithalten, die zusätzliche Verfolgung der Kanten bringt einen erheblichen zeitlichen Mehraufwand mit sich, welcher nicht durch die Einsparung der Pixel, welche man durch unsere Suchmethode weniger berechnen muss, auszugleichen ist.
+	
+	
 	\section{Literaturverzeichnis}
 		\begin{itemize}
 			\item \textit{http://www9.in.tum.de/seminare/hs.SS06.EAMA/material/\\01\_ausarbeitung.pdf}
@@ -776,5 +818,6 @@
 			\item \textit{http://mi.informatik.uni-siegen.de/teaching/lectures/EI/\\script/10eiComplexity.pdf}
 			\item \textit{https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/\\BA\_Tamou.pdf}
 			\item \textit{https://en.wikipedia.org/wiki/Canny\_edge\_detector}
+			\item \textit{https://upload.wikimedia.org/wikipedia/commons/9/9f/Camera\_obscura.jpg}
 		\end{itemize}
 \end{document}

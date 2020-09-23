@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  23 SEP 2020 15:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  23 SEP 2020 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -941,15 +941,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 482--484
 
  []
 
-<../Bilder/mask_2_mediane.png, id=73, 282.05376pt x 282.05376pt>
-File: ../Bilder/mask_2_mediane.png Graphic file (type png)
-<use ../Bilder/mask_2_mediane.png>
-Package pdftex.def Info: ../Bilder/mask_2_mediane.png  used on input line 487.
-(pdftex.def)             Requested size: 176.39923pt x 176.39935pt.
-<../Bilder/mask_1_mediane.png, id=74, 282.05376pt x 282.05376pt>
+<../Bilder/mask_1_mediane.png, id=73, 282.05376pt x 282.05376pt>
 File: ../Bilder/mask_1_mediane.png Graphic file (type png)
 <use ../Bilder/mask_1_mediane.png>
-Package pdftex.def Info: ../Bilder/mask_1_mediane.png  used on input line 493.
+Package pdftex.def Info: ../Bilder/mask_1_mediane.png  used on input line 487.
+(pdftex.def)             Requested size: 176.39923pt x 176.39935pt.
+<../Bilder/mask_2_mediane.png, id=74, 282.05376pt x 282.05376pt>
+File: ../Bilder/mask_2_mediane.png Graphic file (type png)
+<use ../Bilder/mask_2_mediane.png>
+Package pdftex.def Info: ../Bilder/mask_2_mediane.png  used on input line 493.
 (pdftex.def)             Requested size: 176.39923pt x 176.39935pt.
 <../Bilder/mask_horizontal.png, id=75, 220.825pt x 282.05376pt>
 File: ../Bilder/mask_horizontal.png Graphic file (type png)
@@ -961,7 +961,7 @@ Package pdftex.def Info: ../Bilder/mask_horizontal.png  used on input line 499.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9 <../Bilder/camera_obscura.jpg> <../Bilder/image_skeleton.png> <../Bilder/ma
-sk_2_mediane.png> <../Bilder/mask_1_mediane.png>]
+sk_1_mediane.png> <../Bilder/mask_2_mediane.png>]
 <../Bilder/mask_vertical.png, id=82, 283.0575pt x 220.825pt>
 File: ../Bilder/mask_vertical.png Graphic file (type png)
 <use ../Bilder/mask_vertical.png>
@@ -1084,14 +1084,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 769--771
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 775--776
+Underfull \hbox (badness 2726) in paragraph at lines 773--774
+\T1/ptm/m/n/10 Kan-ten-rich-tung an-hand der durch-schnit-tlichen Grauw-erte
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 773--774
+\T1/ptm/m/n/10 der Nach-barpixel berech-nen, allerd-ings mit weniger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 773--774
+
+ []
+
+<../Bilder/mask_1_mediane_eff.png, id=95, 202.7575pt x 201.75375pt>
+File: ../Bilder/mask_1_mediane_eff.png Graphic file (type png)
+<use ../Bilder/mask_1_mediane_eff.png>
+Package pdftex.def Info: ../Bilder/mask_1_mediane_eff.png  used on input line 7
+77.
+(pdftex.def)             Requested size: 100.79846pt x 100.30093pt.
+
+Underfull \vbox (badness 5771) has occurred while \output is active []
+
+<../Bilder/mask_2_mediane_eff.png, id=96, 202.7575pt x 201.75375pt>
+File: ../Bilder/mask_2_mediane_eff.png Graphic file (type png)
+<use ../Bilder/mask_2_mediane_eff.png>
+Package pdftex.def Info: ../Bilder/mask_2_mediane_eff.png  used on input line 7
+83.
+(pdftex.def)             Requested size: 100.79846pt x 100.30093pt.
+<../Bilder/mask_horizontal_eff.png, id=97, 202.7575pt x 140.525pt>
+File: ../Bilder/mask_horizontal_eff.png Graphic file (type png)
+<use ../Bilder/mask_horizontal_eff.png>
+Package pdftex.def Info: ../Bilder/mask_horizontal_eff.png  used on input line 
+789.
+(pdftex.def)             Requested size: 100.79846pt x 69.86134pt.
+<../Bilder/mask_vertical_eff.png, id=98, 140.525pt x 201.75375pt>
+File: ../Bilder/mask_vertical_eff.png Graphic file (type png)
+<use ../Bilder/mask_vertical_eff.png>
+Package pdftex.def Info: ../Bilder/mask_vertical_eff.png  used on input line 79
+5.
+(pdftex.def)             Requested size: 75.60077pt x 108.53903pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 799--800
+
+ []
+
+<../Bilder/edge_finding_eff.png, id=99, 304.13625pt x 468.75125pt>
+File: ../Bilder/edge_finding_eff.png Graphic file (type png)
+<use ../Bilder/edge_finding_eff.png>
+Package pdftex.def Info: ../Bilder/edge_finding_eff.png  used on input line 803
+.
+(pdftex.def)             Requested size: 100.79846pt x 155.35356pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13 <../Bilder/camera_obscura_vergleich.png> <../Bilder/mask_1_mediane_eff.png
+> <../Bilder/mask_2_mediane_eff.png> <../Bilder/mask_horizontal_eff.png> <../Bi
+lder/mask_vertical_eff.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 817--818
 []\T1/ptm/m/it/10 https://www.kuppelwieser.net/index.php/technik/15-
  []
 
 
-Overfull \hbox (17.0549pt too wide) in paragraph at lines 777--778
+Overfull \hbox (17.0549pt too wide) in paragraph at lines 819--820
 []\T1/ptm/m/it/10 https://edoc.sub.uni-hamburg.de/haw/volltexte/2016/3266/pdf/ 
 
+ []
+
+
+Overfull \hbox (71.60408pt too wide) in paragraph at lines 821--822
+[]\T1/ptm/m/it/10 https://upload.wikimedia.org/wikipedia/commons/9/9f/Camera_ob
+scura.jpg 
  []
 
 
@@ -1105,38 +1169,38 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[13
+[14
 
- <../Bilder/camera_obscura_vergleich.png>] (./Documentation.aux) ) 
+ <../Bilder/edge_finding_eff.png>] (./Documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7220 strings out of 480880
- 103762 string characters out of 5907705
+ 7260 strings out of 480880
+ 105051 string characters out of 5907705
  1156772 words of memory out of 5000000
- 22730 multiletter control sequences out of 15000+600000
+ 22765 multiletter control sequences out of 15000+600000
  641697 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,50p,1012b,1777s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/t
-exlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2020/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
-/urw/courier/ucrb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/cou
-rier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucr
-ro8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local
-/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Documentation.pdf (13 pages, 1369859 bytes).
+{/usr/local/texlive/2
+020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/cou
+rier/ucrb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucr
+r8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Documentation.pdf (14 pages, 1746692 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 165 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 
