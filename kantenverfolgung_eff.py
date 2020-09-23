@@ -1,5 +1,5 @@
 from imports import *
-from Python.kantendetektor_algorithmus import *
+from Python.check_neighbours_efficient import *
 
 def edge_tracker(diff):
     img = load_image()
@@ -18,7 +18,7 @@ def edge_tracker(diff):
         for j in range(check_diff, x_length - check_diff):
             next_pixel_pos = (px, j)
             if whitescreen[next_pixel_pos] == 254:
-                dir = check_pixel((px, j), img, check_diff)
+                dir = check_pixel((px, j), img)
                 whitescreen[next_pixel_pos] = dir
 
                 npparr = []
@@ -26,7 +26,7 @@ def edge_tracker(diff):
 
                 while (dir != 255) and (check_diff < next_pixel_pos[0] < (y_length - check_diff - 1)) and (check_diff + 1 < next_pixel_pos[1] < (x_length - check_diff - 1)):
                     next_pixel_pos = set_next_pixel_position(next_pixel_pos, dir)
-                    dir = check_pixel(next_pixel_pos, img, check_diff)
+                    dir = check_pixel(next_pixel_pos, img)
                     npparr.append(next_pixel_pos)
                     dirarr.append(dir)
 

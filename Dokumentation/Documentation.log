@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  23 SEP 2020 22:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.9.5)  23 SEP 2020 22:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1159,6 +1159,12 @@ scura.jpg
  []
 
 
+Overfull \hbox (17.43452pt too wide) in paragraph at lines 822--823
+[]\T1/ptm/m/it/10 https://de.linkfang.org/wiki/Nachbarschaft_(Bildverarbeitung)
+ 
+ []
+
+
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
 
@@ -1197,7 +1203,7 @@ r8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb
 ></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loc
 al/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive
 /2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Documentation.pdf (14 pages, 1746692 bytes).
+Output written on Documentation.pdf (14 pages, 1746923 bytes).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  83 compressed objects within 1 object stream
