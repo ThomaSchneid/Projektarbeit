@@ -1,5 +1,5 @@
-from check_neighbours import *
-from bild_einlesen import *
+from Python.check_neighbours import  *
+from Python.imports import *
 
 def direction(pos, img):
 

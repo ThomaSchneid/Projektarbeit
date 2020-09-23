@@ -107,9 +107,11 @@ def hysterese(img, schwaches_pixel, starkes_pixel=255):
 def test_canny():
     image = load_image()
     start = time.time()
-    cv2.Canny(image, 100, 200)
+    res = cv2.Canny(image, 100, 200)
     end = time.time()
     print(end - start)
+
+    return res
 
 def run():
     image = load_image()
@@ -117,6 +119,7 @@ def run():
     sob = sobel(image)
     nms = non_max_suppression(sob[0], sob[1])
     dt = double_threshold(nms)
-    hysterese(dt, 25)
+    res = hysterese(dt, 25)
     end = time.time()
     print(end - start)
+    return res

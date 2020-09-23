@@ -1,4 +1,5 @@
 from Python.helper import *
+from Python.check_neighbours import *
 
 def spiral(diff):
     img = load_image()

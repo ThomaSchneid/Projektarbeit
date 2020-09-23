@@ -1,3 +1,6 @@
+from Python.helper import *
+from Python.check_neighbours import *
+
 def edge_tracker(diff):
     img = load_image()
     start = time.time()

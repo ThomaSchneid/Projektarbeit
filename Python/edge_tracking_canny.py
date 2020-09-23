@@ -53,9 +53,6 @@ def sobel_filter(img):
 
     return G, theta
 
-def edge_finder():
-    return 0
-
 def starter():
     images = get_small_image_matrix_from_picture()
     small_imag = images[1]
