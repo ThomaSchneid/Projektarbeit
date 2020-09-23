@@ -12,7 +12,6 @@
 \usepackage{color}
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
-%\usepackage{listings}
 \usepackage{pythonhighlight}
 
 
@@ -116,17 +115,15 @@
 			
 			\begin{python}
 				def g_kern(mask, sigm=1.8):
-				mask = int(mask) // 2
-				x, y = np.mgrid[-mask:mask + 1,
-				-mask:mask + 1]
-				norm = 1 / (2 * np.pi * sigm ** 2)
-				kern = np.exp(-((x ** 2 + y ** 2) / 
-				(2 * sigm ** 2))) * norm
+					mask = int(mask) // 2
+					x, y = np.mgrid[-mask:mask + 1,
+							-mask:mask + 1]
+					norm = 1 / (2 * np.pi * sigm ** 2)
+					kern = np.exp(-((x ** 2 + y ** 2) / 
+							(2 * sigm ** 2))) * norm
 				
-				return kern
+					return kern
 			\end{python}
-			
-\pagebreak
 			
 		\subsection{Sobel Operator}
 			Der Sobel Operator besteht aus zwei 3$\times$3 Faltungskernen, wobei ein Kern dem jeweils anderen um 90° gedreht entspricht.
@@ -808,8 +805,9 @@
 		Im Vergleich zur Kantenerkennung mit dem Canny Algorithmus sind die Kanten allerdings noch immer sehr grob und unfein.
 		
 	\section{Fazit}
-		Die Grundidee ist plausibel und es ist auch möglich nur anhand der Intensitätswerte der Nachbarpixel Kanten und ihre Richtung zu berechnen. Die so gefunden Kanten sind allerdings noch sehr rau. Man muss die so gefundenen Kanten noch ausdünnen. Dünnt man die Kanten aus, nachdem der Algorithmus durchgelaufen ist, so müsste man noch zusätzliche Rechenzeit aufbringen, was den kompletten Prozess erneut verlangsamen würde. Man muss also einen Weg finden, bereits vor dem Berechnen einer Kante festzustellen, ob dieses Pixel berechnet werden muss oder nicht. Anhand einer geeigneten Überprüfung der Nachbarn sollte dies möglich sein. Mit der Geschwindigkeit des Canny Algorithmus konnten wir jedoch trotz allem nicht mithalten, die zusätzliche Verfolgung der Kanten bringt einen erheblichen zeitlichen Mehraufwand mit sich, welcher nicht durch die Einsparung der Pixel, welche man durch unsere Suchmethode weniger berechnen muss, auszugleichen ist.
-	
+		Die Idee, Rechenzeit zu sparen indem wir nicht, wie beim Canny Algorithmus jedes Pixel berechnen müssen, sondern durch eine geschickte Abtastung des Bildes erheblich weniger, ist gerechtfertigt. Allerdings ist die Berechnung der Verfolgung einer Kante aufwändiger als das überprüfen eines Pixels auf eine Kante. Ebenso sind die von uns gefundenen Kanten noch sehr rau und müssen geglättet werden, was wiederum erneuten Rechenaufwand mit sich ziehen würde. Der Weg um mehr Rechenzeit zu sparen wäre ein Verfahren zu entwickeln, welches bereits bevor man das Pixel auf ein Kantenpixel prüft, beispielsweise anhand der Nachbarn und deren Werte, Information darüber gibt, ob dieses Pixel überprüft werden muss, oder nicht. Somit würden die Kanten glatter und feiner werden und die benötigte Rechenzeit würde sich noch einmal verringern.\nl
+		Schlussendlich konnte mein Algorithmus nicht im Ansatz mit der Geschwindigkeit des Canny Algorithmus mithalten. Es werden noch viele Pixel auf eine Kante geprüft, und die dann eventuell gefundene Kante verfolgt, bei welchen es nicht nötig ist diese zu prüfen, da die Kante des Pixel bereits erkannt wurde und wir die Kante nicht in voller Breite benötigen sondern fein halten wollen.\nl
+		Ich bin mir sicher, dass, mit einer geeigneten Methode zum Entscheiden, ob ein Pixel noch überprüft werden muss oder nicht, noch einmal ein ganzzahliger Faktor an Rechenzeit eingespart werden kann. Davon, dass dieser Algorithmus dann mit der Geschwindigkeit des Canny Algorithmus mithalten kann, bin ich jedoch nicht überzeugt. Der Canny Algorithmus scheint ungeschlagen im Bereich der Kantenerkennung.
 	
 	\section{Literaturverzeichnis}
 		\begin{itemize}

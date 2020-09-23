@@ -12,7 +12,7 @@
 \contentsline {subsubsection}{\numberline {\mbox {II-C}3}Gauß Filter}{3}%
 \contentsline {section}{\numberline {III}Canny-Algorithmus}{3}%
 \contentsline {subsection}{\numberline {\mbox {III-A}}Gauß Kern}{3}%
-\contentsline {subsection}{\numberline {\mbox {III-B}}Sobel Operator}{4}%
+\contentsline {subsection}{\numberline {\mbox {III-B}}Sobel Operator}{3}%
 \contentsline {subsection}{\numberline {\mbox {III-C}}Non Maximum Suppression}{4}%
 \contentsline {subsection}{\numberline {\mbox {III-D}}Double threshold}{5}%
 \contentsline {subsection}{\numberline {\mbox {III-E}}Kantenvervollständigung durch Hysterese}{5}%
