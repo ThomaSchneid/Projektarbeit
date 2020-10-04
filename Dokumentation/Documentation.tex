@@ -26,7 +26,7 @@
 	\footnotesize Quelle:
 }
 \newcommand{\selbst}{\quelle{Selbst erstellt mit diagrams.net von Google}}
-\newcommand{\myname}{\textbf{\textit{\textcolor{red}{MEIN NAME}}}}
+\newcommand{\myname}{edge-tracker }
 
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
@@ -457,12 +457,12 @@
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.9\linewidth] {../Bilder/our_canny_vs_real_one}
-				\caption{\textit{Kantedektion mit unserem Algorithmus (links) und mit dem richtigen Canny (rechts)}}
+				\caption{\textit{Kantedektion mit dem \myname Algorithmus (links) und mit dem richtigen Canny (rechts)}}
 			\end{figure}
 			
 			Man erkennt den Unterschied sofort, der richtige Canny Algorithmus hat die Kanten noch mehr ausgedünnt und verfeinert. Im Vergleich dazu sind unsere Kanten noch immer sehr dick und unfein.\nl
 			Werfen wir nun einen Blick auf die Rechenzeit:\nl
-			Während unser Algorithmus mit 1.221 Sekunden für das Hochschullogo nicht langsam ist, setzt Canny mit 0.026 Sekunden, der knapp 48-fachen Geschwindigkeit, für die Kantenerkennung des Hochschullogos Maßstäbe in ganz anderen Dimensionen. Mit einer einfachen Nachbildung des Canny Algorithmus ist es also nicht getan.\nl
+			Während der \myname Algorithmus mit 1.221 Sekunden für das Hochschullogo nicht langsam ist, setzt Canny mit 0.026 Sekunden, der knapp 48-fachen Geschwindigkeit, für die Kantenerkennung des Hochschullogos Maßstäbe in ganz anderen Dimensionen. Mit einer einfachen Nachbildung des Canny Algorithmus ist es also nicht getan.\nl
 	
 	\section{Effizienzgewinn durch Kantenverfolgung}
 		\subsection{Idee}
@@ -475,7 +475,7 @@
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.5\linewidth] {../Bilder/camera_obscura}
-				\caption{\textit{Testbild für unseren Kantenverfolgungsalgorithmus}}
+				\caption{\textit{Testbild für den \myname Kantenverfolgungsalgorithmus}}
 				\quelle{https://upload.wikimedia.org/wikipedia/commons/9/9f/Camera\_obscura.jpg}
 			\end{figure}
 		
@@ -523,7 +523,7 @@
 			\end{figure}	
 
 			Wenn wir das Bild mit dieser Methode durchlaufen, gibt es allerdings einige Kanten, welche wir nicht finden können. Sollte eine Kante zwischen 2 roten Suchlinien in horizontaler Richtung verlaufen und unverzweigt sein oder befindet sich eine Kante in weniger als 3 Pixeln Abstand, unverzweigt und parallel zum jeweiligen Rand, so können wir diese nicht finden.\nl
-			Wir wollen unseren Algorithmus auf mit Digitalkameras aufgenommene, reale Bilder anwenden. Die Wahrscheinlichkeit, dass eine solche Kante im Bild vorkommt, sollte also verschwindend gering sein. Objekte in der Realität sind größer als 3 Pixel. Die Kanten eines Objekts sind verzweigt und schneiden somit unweigerlich eine der roten Linien. Wir können daher sicher sein, dass wir immer mindestens alle Objekte anschneiden und somit trotz dieser Einschränkungen alle Kanten des Bildes finden werden.\nl
+			Wir wollen den \myname Algorithmus auf mit Digitalkameras aufgenommene, reale Bilder anwenden. Die Wahrscheinlichkeit, dass eine solche Kante im Bild vorkommt, sollte also verschwindend gering sein. Objekte in der Realität sind größer als 3 Pixel. Die Kanten eines Objekts sind verzweigt und schneiden somit unweigerlich eine der roten Linien. Wir können daher sicher sein, dass wir immer mindestens alle Objekte anschneiden und somit trotz dieser Einschränkungen alle Kanten des Bildes finden werden.\nl
 			Die Höhe des Bildes in Pixeln sei y, die Breite x. Somit berechnet sich die Anzahl der durchlaufenen Pixel, ohne eine Kante zu verfolgen, zu:\nl
 			
 			\nlformelbox{Pixel\tief{ges} = $\frac{(y - 3)}{4}$ * (x - 6)}
@@ -535,7 +535,7 @@
 			Was, da der Nenner hier schneller steigt als der Zähler, bei steigender Bildgröße ein immer kleinerer Anteil wird.\nl
 			Mit der Kantenverfolgung ist keine genaue Vorhersage möglich, da wir nicht im Vorfeld wissen, wie viele Kantenpixel sich im Bild befinden. Mit hoher Sicherheit kann man nur sagen, dass es weniger als alle Bildpixel sein werden, welche überprüft werden.\nl
 
-		\subsection{Algorithmus}
+		\subsection{\myname Algorithmus}
 			Wir realisieren den \myname Algorithmus in Python. Folgende Funktion prüft das komplette Bild gemäß unserer oben beschriebenen Methode auf Kantenpixel und verfolgt gegebenenfalls eine gefundene Kante.\nl
 			
 			\begin{python}
@@ -776,10 +776,10 @@
 				\caption{\textit{Kantedektion mit dem \myname Algorithmus (links) und mit Canny (rechts)}}
 			\end{figure}
 	
-		Wir erkennen, dass unsere Kanten noch nicht so fein und granular wie die des Canny sind. Grund hierfür ist, dass wir die Kante in voller Breite finden und an keiner Stelle ausdünnen. Statt die Kante auszudünnen wäre der richtige Ansatz, bereits im Vorfeld zu prüfen, ob dieses Kantenpixel noch als Teil der Kante markiert werden soll oder nicht. Mit diesem Vorgehen kann man Rechenzeit einsparen und gleichzeitig die Kanten feiner halten. Trotz allem wurden mit unserem Algorithmus, alleine auf einem Grauwertvergleich basierend, alle Kanten gefunden und verfolgt. Auch die runden und kurvigen Objekte wurden richtig erkannt und markiert.\nl
+		Wir erkennen, dass unsere Kanten noch nicht so fein und granular wie die des Canny sind. Grund hierfür ist, dass wir die Kante in voller Breite finden und an keiner Stelle ausdünnen. Statt die Kante auszudünnen wäre der richtige Ansatz, bereits im Vorfeld zu prüfen, ob dieses Kantenpixel noch als Teil der Kante markiert werden soll oder nicht. Mit diesem Vorgehen kann man Rechenzeit einsparen und gleichzeitig die Kanten feiner halten. Trotz allem wurden mit dem \myname Algorithmus, alleine auf einem Grauwertvergleich basierend, alle Kanten gefunden und verfolgt. Auch die runden und kurvigen Objekte wurden richtig erkannt und markiert.\nl
 		Werfen wir nun einen Blick auf die Laufzeit. Während Canny das Bild in 0.002 Sekunden bearbeitet, benötigt der \myname Algorithmus 13.36 Sekunden. Hier muss, wie oben beschrieben, die Performance noch stark erhöht werden.\nl
 	
-	\subsection{Performance Steigerung des Algorithmus}
+	\subsection{Performance Steigerung des \myname Algorithmus}
 		Unsere Suchmasken berechnen zurzeit 2 3$\times$3 Matrizen für jede der 4 Möglichen Richtungen. Diese Berechnungen nehmen am meisten Zeit in Anspruch. Nun werden wir die Suchmasken abändern, so, dass sie noch immer die Kantenrichtung anhand der durchschnittlichen Grauwerte der Nachbarpixel berechnen, allerdings mit weniger Rechenaufwand als zuvor. Die neuen Suchmasken sollen nun nur die jeweils 2 nächsten Nachbarpixel des aktuellen Pixels berechnen. Dies sind die 4 neuen, vereinfachten Suchmasken:\nl
 		
 		\begin{figure}[H]
