@@ -14,7 +14,6 @@
 \usepackage{xcolor}
 \usepackage{pythonhighlight}
 
-
 %New commands
 \newcommand{\tief}{\textsubscript}
 \newcommand{\hoch}{\textsuperscript}
@@ -23,6 +22,9 @@
 \newcommand{\nin}{\noindent}
 \newcommand{\nlparagraph}[1]{\paragraph{#1}\mbox{}\\}
 \newcommand{\nlsubsubsection}[1]{\subsubsection{#1}\mbox{}\\}\newcommand{\nlformelbox}[1]{\centerline{\fbox{#1}}\mbox{}\\}
+\newcommand*{\quelle}{%
+	\footnotesize Quelle:
+}
 
 \begin{document}
 	\title{Focus peaking - can edge detection improve the performance of current algorithms?}
@@ -34,9 +36,9 @@
 	
 	\section{Motivation/Einleitung}
 	
-	Wenn es um Bild- und Objekterkennung geht, ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so leistungsstark und effizient wie das menschliche Auge. Nicht nur ist der Canny Algorithmus der wohl bekannteste, sondern auch der am meist benutzte.\nl
-	Der Canny-Algorithmus benutzt mehrere Stufen, um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Während ich meine Seminararbeit im Bereich der Kantenverfolgung geschrieben habe, kam ich nicht umhin auch erste Erfahrungen mit dem Canny-Algorithmus zu sammeln.
-	Präzise und mit durchschnittlich unter einer halben Sekunde Rechenzeit für ein durchschnittliches, mit einer Digitalkamera aufgenommenes Bild auch extrem schnell findet dieser Algorithmus alle Kanten des Bildes, markiert diese und gibt das so veränderte Bild zurück.\nl
+	Wenn es um Bild- und Objekterkennung geht, ist das menschliche Auge ungeschlagen. Innerhalb von wenigen Millisekunden erkennt es Kanten, klassifiziert Objekte, ist imstande diese zu benennen und erkennt den Unterschied zwischen einer Zeichnung, einem Bild und der Realität. Es gibt viele Algorithmen zur Kantenerkennung, jedoch ist keiner von ihnen so leistungsstark und effizient wie das menschliche Auge. Der wohl bekannteste und auch meist benutzte unter ihnen ist wohl der Canny Algorithmus.\nl
+	Der Canny-Algorithmus benutzt mehrere Schritte, um in kurzer Zeit zu einem faszinierenden Ergebnis zu gelangen. Während ich meine Seminararbeit im Bereich der Kantenverfolgung geschrieben habe, kam ich nicht umhin auch erste Erfahrungen mit dem Canny-Algorithmus zu sammeln.
+	Präzise und mit durchschnittlich unter einer halben Sekunde Rechenzeit für ein durchschnittliches, mit einer Digitalkamera aufgenommenes Bild auch extrem schnell findet dieser Algorithmus alle Kanten des Bildes, markiert diese und gibt das Kantenbildbild zurück.\nl
 	Neben all der Faszination stellte sich mir schnell die Frage, ob man den Algorithmus nicht durch Kantenverfolgung statt der reinen Kantenerkennung noch schneller machen könne. Mit dieser Frage beschäftige ich mich nachfolgend, werde einen Kantenverfolgungsalgorithmus entwickeln und evaluieren, ob und zu was für einem eventuellen Preis man den Canny-Algorithmus so schneller machen kann.\nl
 	Um den nachfolgenden Gedankengängen besser folgen zu können, schauen wir uns zuerst einmal vereinfacht an,  mit welchen Schritten der Canny-Algorithmus zum Ziel kommt. Die genannten Methoden werden im weiteren Verlauf dieses Dokuments mathematisch näher beleuchtet.\nl
 	Der Canny Algorithmus lässt sich in 5 Schritte unterteilen:
@@ -345,6 +347,7 @@
 				\centering
 				\includegraphics[width=0.8\linewidth] {../Bilder/blur_result}
 				\caption{\textit{Links das Original und rechts unter Anwendung der Noise reduction.}}
+				\quelle{https://web-done.de/wp-content/uploads/Canon-EOS-6D-ISO-102400-Testbild-12-346x300.jpg}
 			\end{figure}
 		
 			Das verrauschte Bild wurde Kontrastreicher und Kanten dadurch deutlicher erkennbar.\nl
@@ -463,6 +466,7 @@
 				\centering
 				\includegraphics[width=0.5\linewidth] {../Bilder/camera_obscura}
 				\caption{\textit{Testbild für unseren Kantenverfolgungsalgorithmus}}
+				\quelle{https://upload.wikimedia.org/wikipedia/commons/9/9f/Camera\_obscura.jpg}
 			\end{figure}
 		
 			Dieses Bild enthält Kanten, welche nahe beieinander liegen, größere, grauwertemäßig nicht merklich unterschiedliche,  Flächen, weiter auseinanderliegende Kanten und Kanten unterschiedlicher breite, bis hin zu Linien. Es enthält zudem sowohl runde, als auch eckige oder kurvige Objekte. In diesem Bild sind die meisten Kantenformen enthalten, was es zu einem hervorragenden Testbild für unseren Algorithmus macht.\nl
