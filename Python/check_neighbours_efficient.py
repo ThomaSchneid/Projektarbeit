@@ -72,7 +72,6 @@ def check_pixel(pos, image):
     check_array.append(right(pos, image) - left(pos, image))
 
     maxim = max(check_array, key = abs)
-    #todo Schwelle ersetzen
     if abs(maxim) > 20:
         direction = check_array.index(maxim)
         # Wenn es keine Kante ist wird dem Pixel der Wert 255 zugewiesen
